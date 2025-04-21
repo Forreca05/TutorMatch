@@ -1,59 +1,79 @@
 body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    background-color: #f5f5f5;
-    color: #333;
-  }
-  
-  header {
-    background-color: #1dbf73;
-    padding: 1rem 2rem;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  header a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1rem;
-  }
-  
-  .hero {
-    padding: 3rem 2rem;
-    background-color: white;
-    text-align: center;
-  }
-  
-  .services {
-    padding: 2rem;
-  }
-  
-  .card-list {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  .card {
-    background: white;
-    border-radius: 10px;
-    padding: 1rem;
-    width: 250px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    text-align: center;
-  }
-  
-  .card img {
-    width: 100%;
-    border-radius: 8px;
-  }
-  
-  footer {
-    margin-top: 3rem;
-    text-align: center;
-    padding: 1rem;
-    background: #eee;
-  }
-  
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #1dbf73;
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.auth-link {
+  display: inline-block;
+}
+
+.profile-link, .logout-link {
+  display: inline-block;
+}
+
+/* Estilos para a seção hero */
+.hero {
+  padding: 3rem 2rem;
+  background-color: white;
+  text-align: center;
+}
+
+/* Estilos para a seção de serviços */
+.services {
+  padding: 2rem;
+}
+
+.card-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Estilos para o footer */
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 1rem;
+  background: #eee;
+}
