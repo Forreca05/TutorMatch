@@ -1,6 +1,7 @@
 <?php
 try {
-    $db = new PDO('sqlite:tutormatch.db');
+    // Cria a base de dados
+    $db = new PDO('sqlite:../database/tutormatch.db');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Criação das tabelas
@@ -11,7 +12,8 @@ try {
             password TEXT NOT NULL,
             email TEXT NOT NULL UNIQUE,
             role TEXT DEFAULT 'client', -- client, freelancer, admin
-            name TEXT
+            name TEXT,
+            profile_pic TEXT DEFAULT '../img/default.jpeg' -- Adiciona a coluna profile_pic
         );
 
         CREATE TABLE IF NOT EXISTS services (
@@ -57,8 +59,6 @@ try {
             FOREIGN KEY (user_id) REFERENCES users(id)
         );
     ");
-
-    echo "Base de dados criada com sucesso!";
 } catch (PDOException $e) {
     echo "Erro ao criar a base de dados: " . $e->getMessage();
 }

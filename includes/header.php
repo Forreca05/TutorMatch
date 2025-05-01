@@ -23,8 +23,8 @@ if (session_status() === PHP_SESSION_NONE) {
                 <a href="../pages/logout.php">Sair</a>
               </div>
       <?php else: ?>
-              <a href="/pages/login.php">Entrar</a>
-              <a href="/pages/register.php">Registrar</a>
+              <a href="../pages/login.php">Entrar</a>
+              <a href="../pages/register.php">Registrar</a>
       <?php endif; ?>
     </nav>
   </header>

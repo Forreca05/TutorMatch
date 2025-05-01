@@ -9,11 +9,14 @@ $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
 $stmt->execute([$username]);
 $user = $stmt->fetch();
 
+
 if ($user && password_verify($password, $user['password'])) {
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['role'] = $user['role'];
+    $_SESSION['profile_pic'] = $user['profile_pic']; 
     header('Location: ../index.php');
 } else {
-    echo 'Login inválido';
+    header('Location: ../pages/login.php?error=Login inválido');
+    exit;
 }

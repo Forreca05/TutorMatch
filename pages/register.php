@@ -7,4 +7,5 @@
   <input type="password" name="password" placeholder="Password" required>
   <button type="submit">Criar conta</button>
 </form>
+
 <?php include_once '../includes/footer.php'; ?>
