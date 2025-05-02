@@ -16,15 +16,30 @@ if (session_status() === PHP_SESSION_NONE) {
     <h1><a href="/index.php">TutorMatch</a></h1>
     <nav>
       <a href="/index.php">Início</a>
-      <a href="../pages/services.php">Serviços</a>
+      
+      <?php if ($_SESSION['role'] == 'freelancer'): ?>
+        <a href="../actions/switch_role.php">Mudar para Cliente</a>
+        <a href="../pages/create_service.php">Criar Serviço</a>
+        <a href="../pages/myservicex.php">Meus Serviços</a>
+
+    <?php elseif ($_SESSION['role'] == 'client'): ?>
+        <a href="../actions/switch_role.php">Mudar para Freelancer</a>
+        <a href="../pages/create_request.php">Criar Pedido</a>
+        <a href="../pages/services.php">Serviços</a>
+    <?php endif; ?>
+
       <?php if (isset($_SESSION['user_id'])): ?>
-              <div class="user-info">
-                <a href="../pages/profile.php">Meu Perfil</a>
-                <a href="../pages/logout.php">Sair</a>
-              </div>
+        <div class="user-info">
+          <a href="../pages/profile.php">Meu Perfil</a>
+          <a href="../pages/logout.php">Sair</a>
+        </div>
+
       <?php else: ?>
-              <a href="../pages/login.php">Entrar</a>
-              <a href="../pages/register.php">Registrar</a>
+        <a href="../pages/login.php">Entrar</a>
+        <a href="../pages/register.php">Registrar</a>
       <?php endif; ?>
+
+    
     </nav>
+
   </header>
