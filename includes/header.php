@@ -27,16 +27,10 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="../pages/create_request.php">Criar Pedido</a>
         <a href="../pages/services.php">Serviços</a>
 
-        <?php elseif ($_SESSION['role'] == 'admin'): ?>
-          <div class="admin-menu">
-            <span>Administração</span>
-            <ul>
-              <li><a href="../pages/admin_dashboard.php">Painel</a></li>
-              <li><a href="../pages/manage_users.php">Gerir Utilizadores</a></li>
-              <li><a href="../pages/manage_categories.php">Gerir Categorias</a></li>
-              <li><a href="../pages/services.php">Ver Serviços</a></li>
-            </ul>
-          </div>
+      <?php elseif ($_SESSION['role'] == 'admin'): ?>
+        <div class="admin-menu">
+            <a href="../pages/admin_dashboard.php">Painel</a>
+        </div>
       <?php endif; ?>
 
       <?php if (isset($_SESSION['user_id'])): ?>
