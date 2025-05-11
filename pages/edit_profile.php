@@ -17,7 +17,7 @@ $user = $stmt->fetch();
 
 <h2>Editar Perfil</h2>
 
-<form action="../actions/action_update_profile.php" method="POST" enctype="multipart/form-data">
+<form action="../actions/action_updateprofile.php" method="POST" enctype="multipart/form-data">
   <label for="profile_pic">Nova Foto de Perfil:</label><br>
   <input type="file" name="profile_pic" id="profile_pic" accept="image/*"><br><br>
 
@@ -29,8 +29,5 @@ $user = $stmt->fetch();
 
   <button type="submit">Guardar Alterações</button>
 </form>
-
-<!-- Botão para mudar a password -->
-<p><a href="../pages/change_password.php">Alterar Password</a></p>
 
 <?php include_once '../includes/footer.php'; ?>

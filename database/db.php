@@ -17,15 +17,17 @@ try {
         );
 
         CREATE TABLE IF NOT EXISTS services (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            description TEXT,
-            price REAL NOT NULL,
-            category TEXT,
-            delivery_time INTEGER,
-            image TEXT,
-            user_id INTEGER,
-            FOREIGN KEY (user_id) REFERENCES users(id)
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            category_id INT NOT NULL,
+            title VARCHAR(255) NOT NULL,
+            description TEXT NOT NULL,
+            price DECIMAL(10,2) NOT NULL,
+            delivery_time INT NOT NULL,
+            image_path VARCHAR(255),
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id),
+            FOREIGN KEY (category_id) REFERENCES categories(id)
         );
 
         CREATE TABLE IF NOT EXISTS messages (

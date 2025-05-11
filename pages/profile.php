@@ -27,7 +27,6 @@ if ($user) {
     <h2><?php echo htmlspecialchars($user['name']); ?> <small>(<?php echo htmlspecialchars($user['username']); ?>)</small></h2>
     <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
     <p><strong>Função:</strong> <?php echo htmlspecialchars($user['role']); ?></p>
-    <p><strong>Data de Registo:</strong> <?php echo htmlspecialchars(date('d/m/Y', strtotime($user['created_at']))); ?></p>
 
     <a href="../pages/edit_profile.php" class="btn">Editar Perfil</a>
     <a href="../pages/change_password.php" class="btn">Mudar Password</a>
