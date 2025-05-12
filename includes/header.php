@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TutorMatch</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
   <header>

@@ -1,0 +1,32 @@
+header {
+    background-color: #1dbf73;
+    padding: 1rem 2rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  footer {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 1rem;
+    background: #eee;
+  }
+  

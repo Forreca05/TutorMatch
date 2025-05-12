@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagePath = $targetFile;
     }
 
-    $stmt = $db->prepare("INSERT INTO services (user_id, category_id, title, description, price, delivery_time, image_path, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt = $db->prepare("INSERT INTO services (user_id, category_id, title, description, price, delivery_time, image_path, created_at) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, DATETIME('now'))");
     $stmt->execute([$userId, $category_id, $title, $description, $price, $delivery_time, $imagePath]);
     header('Location: ../pages/my_services.php');
 }

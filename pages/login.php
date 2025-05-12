@@ -8,18 +8,11 @@
 </form>
 
 <?php if (isset($_GET['error'])): ?>
-  <p id="error-message" style="color:red;">
-    <?php echo htmlspecialchars($_GET['error']); ?>
+  <p class="flash-message error">
+    <?= htmlspecialchars($_GET['error']); ?>
   </p>
 <?php endif; ?>
 
-<script>
-  setTimeout(function() {
-    const errorMessage = document.getElementById('error-message');
-    if (errorMessage) {
-      errorMessage.style.display = 'none';
-    }
-  }, 4000); 
-</script>
+<script src="../js/messages.js"></script>
 
 <?php include_once '../includes/footer.php'; ?>

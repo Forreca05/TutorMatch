@@ -1,0 +1,27 @@
+.profile-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .profile-sidebar {
+    flex: 0 0 200px;
+    text-align: center;
+  }
+  
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #1dbf73;
+  }
+  
+  .profile-main {
+    flex: 1;
+  }
+  
+  .profile-main h2 {
+    margin-top: 0;
+  }
+  

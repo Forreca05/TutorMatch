@@ -1,34 +1,70 @@
 <?php
+session_start();
 require_once '../database/db.php';
-include_once '../includes/header.php';
 
-// Buscar categorias existentes
-$stmt = $db->query("SELECT * FROM categories");
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    die('Acesso negado.');
+}
+
+$success = $error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name']);
+    if (!empty($name)) {
+        try {
+            $stmt = $db->prepare("INSERT INTO categories (name) VALUES (?)");
+            $stmt->execute([$name]);
+            $success = "Categoria adicionada com sucesso.";
+        } catch (PDOException $e) {
+            $error = "Erro: " . $e->getMessage();
+        }
+    } else {
+        $error = "O nome da categoria não pode estar vazio.";
+    }
+}
+
+// Buscar categorias ordenadas alfabeticamente
+$stmt = $db->query("SELECT * FROM categories ORDER BY name ASC");
 $categories = $stmt->fetchAll();
 ?>
 
-<h2>Categorias</h2>
+<?php include_once '../includes/header.php'; ?>
 
-<form method="post" action="../actions/add_category.php">
-    <input type="text" name="name" placeholder="Nova categoria" required>
-    <button type="submit">Adicionar</button>
-</form>
+<link rel="stylesheet" href="../css/admin.css">
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Ações</th>
-    </tr>
-    <?php foreach ($categories as $category): ?>
-    <tr>
-        <td><?= $category['id']; ?></td>
-        <td><?= htmlspecialchars($category['name']); ?></td>
-        <td>
-            <a href="../actions/delete_category.php?id=<?= $category['id']; ?>" onclick="return confirm('Apagar esta categoria?');">Eliminar</a>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+<div class="category-container">
+    <h2>Gestão de Categorias</h2>
+
+    <?php if ($success): ?>
+        <p class="flash-message success"><?= $success ?></p>
+    <?php elseif ($error): ?>
+        <p class="flash-message error"><?= $error ?></p>
+    <?php endif; ?>
+
+    <form method="post" action="" class="category-form">
+        <input type="text" name="name" placeholder="Nova categoria" required>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <table class="category-table">
+        <thead>
+            <tr>
+                <th>Nome da Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($categories as $category): ?>
+            <tr>
+                <td><?= htmlspecialchars($category['name']); ?></td>
+                <td>
+                    <a href="../actions/delete_category.php?id=<?= $category['id']; ?>" onclick="return confirm('Apagar esta categoria?');" class="delete-link">Eliminar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<script src="../js/messages.js"></script>
 
 <?php include_once '../includes/footer.php'; ?>
