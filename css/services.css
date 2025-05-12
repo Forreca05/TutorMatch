@@ -1,4 +1,191 @@
-.services {
-    padding: 2rem;
-  }
-  
+.create-service-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.create-service-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1dbf73;
+}
+
+.create-service-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-service-form label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.create-service-form input,
+.create-service-form select,
+.create-service-form textarea {
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.create-service-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.create-service-form button {
+  background-color: #1dbf73;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.create-service-form button:hover {
+  background-color: #17a463;
+}
+
+.my-services-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.category-group {
+  margin-bottom: 3rem;
+}
+
+.category-group h3 {
+  color: #1dbf73;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.service-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service-card h4 {
+  margin-top: 0;
+  color: #333;
+}
+
+.service-card .description {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.service-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+}
+
+.page-title {
+  text-align: center;
+  margin: 2rem 0 1rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.service-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.service-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.service-info h3 {
+  color: #1dbf73;
+  margin: 0.5rem 0;
+}
+
+.service-info .description {
+  flex-grow: 1;
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+}
+
+.service-info .price {
+  font-weight: bold;
+  color: #333;
+}
+
+.service-info .author {
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 0.8rem;
+}
+
+.btn {
+  align-self: flex-start;
+  background-color: #1dbf73;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #17a360;
+}
+
+.no-services {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+  color: #777;
+}
+

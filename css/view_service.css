@@ -1,0 +1,50 @@
+.view-service-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .view-service-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .view-service-container p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    line-height: 1.5;
+    color: #444;
+  }
+  
+  .category,
+  .freelancer {
+    color: #1dbf73;
+    font-weight: 600;
+  }
+  
+  .description {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #f7f7f7;
+    border-left: 5px solid #1dbf73;
+    border-radius: 5px;
+    white-space: pre-line;
+  }
+  
+  .image-wrapper {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .image-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  

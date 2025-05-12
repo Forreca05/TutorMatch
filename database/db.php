@@ -15,9 +15,9 @@ try {
             name TEXT,
             profile_pic TEXT DEFAULT '../img/default.jpeg' -- Adiciona a coluna profile_pic
         );
-
+        
         CREATE TABLE IF NOT EXISTS services (
-            id INT AUTO_INCREMENT PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INT NOT NULL,
             category_id INT NOT NULL,
             title VARCHAR(255) NOT NULL,
@@ -30,36 +30,44 @@ try {
             FOREIGN KEY (category_id) REFERENCES categories(id)
         );
 
-        CREATE TABLE IF NOT EXISTS messages (
+        DROP TABLE IF EXISTS messages; -- Adiciona esta linha para evitar conflitos
+        CREATE TABLE messages (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            sender_id INTEGER,
-            receiver_id INTEGER,
-            content TEXT NOT NULL,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (sender_id) REFERENCES users(id),
-            FOREIGN KEY (receiver_id) REFERENCES users(id)
-        );
-
-        CREATE TABLE IF NOT EXISTS orders (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            service_id INTEGER,
-            client_id INTEGER,
-            status TEXT DEFAULT 'pending', -- pending, completed
-            order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+            service_id INT,
+            from_user_id INT,
+            to_user_id INT,
+            message TEXT NOT NULL,
+            sent_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (service_id) REFERENCES services(id),
-            FOREIGN KEY (client_id) REFERENCES users(id)
+            FOREIGN KEY (from_user_id) REFERENCES users(id),
+            FOREIGN KEY (to_user_id) REFERENCES users(id)
         );
 
-        CREATE TABLE IF NOT EXISTS reviews (
+        DROP TABLE IF EXISTS orders; -- Adiciona esta linha para evitar conflitos
+
+
+        CREATE TABLE orders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            service_id INTEGER,
-            user_id INTEGER,
-            rating INTEGER,
+            user_id INT,
+            service_id INT,
+            status TEXT DEFAULT 'pendente',
+            ordered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id),
+            FOREIGN KEY (service_id) REFERENCES services(id)
+        );
+
+        DROP TABLE IF EXISTS reviews; -- Adiciona esta linha para evitar conflitos
+        CREATE TABLE reviews (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            service_id INT,
+            user_id INT,
+            rating INT CHECK (rating BETWEEN 1 AND 5),
             comment TEXT,
-            review_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (service_id) REFERENCES services(id),
             FOREIGN KEY (user_id) REFERENCES users(id)
         );
+
 
         CREATE TABLE IF NOT EXISTS categories (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
