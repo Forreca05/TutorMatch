@@ -31,7 +31,7 @@ $latestUsers = $db->query("SELECT username, email, role FROM users ORDER BY id D
 <div class="dashboard-actions">
     <a href="manage_users.php" class="btn">Gerir Utilizadores</a>
     <a href="manage_categories.php" class="btn">Gerir Categorias</a>
-    <a href="services.php" class="btn">Ver Serviços</a>
+    <a href="available_services.php" class="btn">Ver Serviços</a>
     <a href="orders.php" class="btn">Ver Pedidos</a>
 </div>
 

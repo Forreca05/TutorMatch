@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 $service_id = intval($_GET['id']);
 
 $stmt = $db->prepare("
-    SELECT s.*, c.name AS category_name, u.username
+    SELECT s.*, c.name AS category_name, u.username, u.id AS freelancer_id
     FROM services s
     JOIN categories c ON s.category_id = c.id
     JOIN users u ON s.user_id = u.id
@@ -39,6 +39,48 @@ if (!$service) {
             <img src="<?= $service['image_path'] ?>" alt="Imagem do serviço">
         </div>
     <?php endif; ?>
+
+    <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
+        <form action="../actions/create_order.php" method="POST" style="margin-top: 20px;">
+            <input type="hidden" name="service_id" value="<?= $service_id ?>">
+            <button type="submit" class="btn">Encomendar Serviço</button>
+        </form>
+        <a href="../pages/chat.php?user_id=<?= $service['freelancer_id'] ?>" class="btn" style="margin-top: 10px; display: inline-block;">Enviar Mensagem</a>
+    <?php endif; ?>
+
+    <div class="review-section">
+        <h3>Avaliações</h3>
+        <?php
+        $review_stmt = $db->prepare("SELECT r.*, u.username FROM reviews r JOIN users u ON r.user_id = u.id WHERE r.service_id = ? ORDER BY r.created_at DESC");
+        $review_stmt->execute([$service_id]);
+        $reviews = $review_stmt->fetchAll();
+        ?>
+
+        <?php foreach ($reviews as $review): ?>
+            <div class="review">
+                <strong><?= htmlspecialchars($review['username']) ?></strong> - <?= $review['rating'] ?>/5
+                <p><?= htmlspecialchars($review['comment']) ?></p>
+            </div>
+        <?php endforeach; ?>
+
+        <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
+            <form action="../actions/submit_review.php" method="POST" class="review-form">
+                <h4>Deixe uma avaliação:</h4>
+                <input type="hidden" name="service_id" value="<?= $service_id ?>">
+                <label for="rating">Classificação:</label>
+                <select name="rating" id="rating" required>
+                    <option value="">Escolha...</option>
+                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                        <option value="<?= $i ?>"><?= $i ?></option>
+                    <?php endfor; ?>
+                </select>
+
+                <label for="comment">Comentário:</label>
+                <textarea name="comment" id="comment" required></textarea>
+                <button type="submit">Submeter Avaliação</button>
+            </form>
+        <?php endif; ?>
+    </div>
 </div>
 
 <?php include_once '../includes/footer.php'; ?>

@@ -30,38 +30,33 @@ try {
             FOREIGN KEY (category_id) REFERENCES categories(id)
         );
 
-        DROP TABLE IF EXISTS messages; -- Adiciona esta linha para evitar conflitos
-        CREATE TABLE messages (
+        CREATE TABLE IF NOT EXISTS orders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            service_id INT,
-            from_user_id INT,
-            to_user_id INT,
-            message TEXT NOT NULL,
-            sent_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            service_id INTEGER,
+            client_id INTEGER,
+            freelancer_id INTEGER,
+            status TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (service_id) REFERENCES services(id),
-            FOREIGN KEY (from_user_id) REFERENCES users(id),
-            FOREIGN KEY (to_user_id) REFERENCES users(id)
+            FOREIGN KEY (client_id) REFERENCES users(id),
+            FOREIGN KEY (freelancer_id) REFERENCES users(id)
         );
 
-        DROP TABLE IF EXISTS orders; -- Adiciona esta linha para evitar conflitos
-
-
-        CREATE TABLE orders (
+        CREATE TABLE IF NOT EXISTS messages (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INT,
-            service_id INT,
-            status TEXT DEFAULT 'pendente',
-            ordered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id),
-            FOREIGN KEY (service_id) REFERENCES services(id)
+            order_id INTEGER,
+            sender_id INTEGER,
+            message TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (order_id) REFERENCES orders(id),
+            FOREIGN KEY (sender_id) REFERENCES users(id)
         );
 
-        DROP TABLE IF EXISTS reviews; -- Adiciona esta linha para evitar conflitos
-        CREATE TABLE reviews (
+        CREATE TABLE IF NOT EXISTS reviews (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            service_id INT,
-            user_id INT,
-            rating INT CHECK (rating BETWEEN 1 AND 5),
+            service_id INTEGER,
+            user_id INTEGER,
+            rating INTEGER,
             comment TEXT,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (service_id) REFERENCES services(id),
