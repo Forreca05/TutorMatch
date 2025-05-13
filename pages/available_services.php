@@ -3,7 +3,18 @@ session_start();
 require_once '../database/db.php';
 include_once '../includes/header.php';
 
-$stmt = $db->query("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id");
+$current_user_id = $_SESSION['user_id'] ?? null;
+
+if ($current_user_id) {
+    $stmt = $db->prepare("SELECT s.*, u.username 
+                          FROM services s 
+                          JOIN users u ON s.user_id = u.id 
+                          WHERE s.user_id != ?");
+    $stmt->execute([$current_user_id]);
+} else {
+    // Se não estiver logado, mostra todos os serviços
+    $stmt = $db->query("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id");
+}
 $services = $stmt->fetchAll();
 ?>
 

@@ -24,7 +24,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
       <?php elseif ($_SESSION['role'] == 'client'): ?>
         <a href="../actions/switch_role.php">Mudar para Freelancer</a>
-        <a href="../pages/create_request.php">Criar Pedido</a>
         <a href="../pages/available_services.php">Serviços</a>
 
       <?php elseif ($_SESSION['role'] == 'admin'): ?>
