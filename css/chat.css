@@ -9,15 +9,31 @@
   height: 80vh;
 }
 
+/* Cabeçalho com imagem + nome */
 .chat-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   padding: 1rem;
   background: #1dbf73;
   color: white;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  text-align: center;
 }
 
+.chat-header img.chat-user-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* Área principal do chat */
 .chat-box {
   flex: 1;
   overflow-y: auto;
@@ -27,6 +43,7 @@
   gap: 0.8rem;
 }
 
+/* Bolhas de mensagem */
 .chat-message {
   max-width: 60%;
   padding: 0.7rem 1rem;
@@ -58,6 +75,7 @@
   text-align: right;
 }
 
+/* Formulário de envio */
 .chat-form {
   display: flex;
   padding: 1rem;
@@ -90,6 +108,7 @@
   background-color: #17a360;
 }
 
+/* Separador de data */
 .date-separator {
   text-align: center;
   font-size: 0.8rem;

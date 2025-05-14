@@ -39,6 +39,8 @@ if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
 
 // Atualizar a sessão (caso mudem o username)
 $_SESSION['username'] = $username;
+$_SESSION['name'] = $name;
+$_SESSION['profile_pic'] = $uniqueName ?? $_SESSION['profile_pic']; // Atualiza a imagem na sessão se foi alterada
 
 header('Location: ../pages/profile.php');
 exit;

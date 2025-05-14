@@ -45,7 +45,7 @@ if (!$service) {
             <input type="hidden" name="service_id" value="<?= $service_id ?>">
             <button type="submit" class="btn">Encomendar Serviço</button>
         </form>
-        <a href="../pages/chat.php?user_id=<?= $service['freelancer_id'] ?>" class="btn" style="margin-top: 10px; display: inline-block;">Enviar Mensagem</a>
+        <a href="../pages/chat.php?receiver_id=<?= $service['freelancer_id'] ?>" class="btn" style="margin-top: 10px; display: inline-block;">Enviar Mensagem</a>
     <?php endif; ?>
 
     <div class="review-section">

@@ -2,6 +2,8 @@
 session_start();
 include_once('includes/header.php');
 require_once 'database/db.php'; // Ficheiro que liga à DB (PDO em $db)
+
+$current_user_id = $_SESSION['user_id'] ?? null;
 ?>
 
 <section class="hero">
@@ -16,7 +18,14 @@ require_once 'database/db.php'; // Ficheiro que liga à DB (PDO em $db)
   <h2>Serviços Populares</h2>
   <div class="card-list">
     <?php
-    $stmt = $db->query("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id ORDER BY RANDOM() LIMIT 6");
+    if ($current_user_id) {
+        // Se o utilizador estiver logado, mostra serviços de outros utilizadores
+        $stmt = $db->prepare("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id WHERE s.user_id != ? ORDER BY RANDOM() LIMIT 6");
+        $stmt->execute([$current_user_id]);
+    } else {
+        // Se não estiver logado, mostra serviços aleatórios
+        $stmt = $db->query("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id ORDER BY RANDOM() LIMIT 6");
+    }
     $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($services as $service): ?>

@@ -45,11 +45,13 @@ try {
         CREATE TABLE IF NOT EXISTS messages (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             order_id INTEGER,
-            sender_id INTEGER,
-            message TEXT,
+            sender_id INTEGER NOT NULL,
+            receiver_id INTEGER NOT NULL,
+            message TEXT NOT NULL,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (order_id) REFERENCES orders(id),
-            FOREIGN KEY (sender_id) REFERENCES users(id)
+            FOREIGN KEY (sender_id) REFERENCES users(id),
+            FOREIGN KEY (receiver_id) REFERENCES users(id)
         );
 
         CREATE TABLE IF NOT EXISTS reviews (
