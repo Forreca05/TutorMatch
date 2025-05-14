@@ -1,36 +1,82 @@
 <?php
+// File: pages/orders.php
+session_start();
 require_once '../database/db.php';
-include_once '../includes/header.php';
 
-// Busca todas as encomendas
-$stmt = $db->query("
-    SELECT orders.*, users.username, services.title
-    FROM orders
-    JOIN users ON orders.client_id = users.id
-    JOIN services ON orders.service_id = services.id
-");
-$orders = $stmt->fetchAll();
+if (!isset($_SESSION['user_id'])) {
+  header("Location: ../auth/login.php");
+  exit;
+}
+
+$user_id = $_SESSION['user_id'];
+$role = $_SESSION['role'] ?? 'client';
+
+if ($role === 'freelancer') {
+  // Freelancers see incoming orders
+  $stmt = $db->prepare("SELECT o.*, s.title, u.username AS client_name
+                        FROM orders o
+                        JOIN (
+                            SELECT client_id, MAX(created_at) AS max_created
+                            FROM orders
+                            WHERE freelancer_id = ?
+                            GROUP BY client_id
+                        ) latest ON o.client_id = latest.client_id AND o.created_at = latest.max_created
+                        JOIN services s ON o.service_id = s.id
+                        JOIN users u ON o.client_id = u.id
+                        ORDER BY o.created_at DESC");
+  $stmt->execute([$user_id]);
+  $orders = $stmt->fetchAll();
+} else {
+  // Clients see orders they placed
+  $stmt = $db->prepare("SELECT o.*, s.title, u.username AS freelancer_name
+                        FROM orders o
+                        JOIN (
+                            SELECT freelancer_id, MAX(created_at) AS max_created
+                            FROM orders
+                            WHERE client_id = ?
+                            GROUP BY freelancer_id
+                        ) latest ON o.freelancer_id = latest.freelancer_id AND o.created_at = latest.max_created
+                        JOIN services s ON o.service_id = s.id
+                        JOIN users u ON o.freelancer_id = u.id
+                        ORDER BY o.created_at DESC");
+  $stmt->execute([$user_id]);
+  $orders = $stmt->fetchAll();
+}
 ?>
 
-<h2>Encomendas</h2>
+<?php include_once '../includes/header.php'; ?>
+<link rel="stylesheet" href="../css/orders.css">
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Cliente</th>
-        <th>Serviço</th>
-        <th>Status</th>
-        <th>Data</th>
-    </tr>
-    <?php foreach ($orders as $order): ?>
-    <tr>
-        <td><?= $order['id']; ?></td>
-        <td><?= htmlspecialchars($order['username']); ?></td>
-        <td><?= htmlspecialchars($order['title']); ?></td>
-        <td><?= htmlspecialchars($order['status']); ?></td>
-        <td><?= htmlspecialchars($order['order_date']); ?></td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+<div class="orders-container">
+  <h2><?= $role === 'freelancer' ? 'Pedidos Recebidos' : 'Minhas Encomendas' ?></h2>
+
+  <?php if (empty($orders)): ?>
+    <p>Nenhuma encomenda encontrada.</p>
+  <?php else: ?>
+    <div class="orders-list">
+      <?php foreach ($orders as $order): ?>
+        <div class="order-card">
+          <h3><?= htmlspecialchars($order['title']) ?></h3>
+          <p><strong><?= $role === 'freelancer' ? 'Cliente' : 'Freelancer' ?>:</strong> <?= htmlspecialchars($role === 'freelancer' ? $order['client_name'] : $order['freelancer_name']) ?></p>
+          <p><strong>Estado:</strong> <?= ucfirst($order['status']) ?></p>
+          <p><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></p>
+
+          <?php if ($role === 'freelancer' && $order['status'] === 'pending'): ?>
+            <form action="../actions/update_order_status.php" method="POST" class="status-form">
+              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+              <button name="action" value="accepted">Aceitar</button>
+              <button name="action" value="rejected">Rejeitar</button>
+            </form>
+          <?php elseif ($role === 'client' && $order['status'] === 'accepted'): ?>
+            <form action="../actions/complete_order.php" method="POST">
+              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+              <button type="submit">Marcar como Concluído</button>
+            </form>
+          <?php endif; ?>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+</div>
 
 <?php include_once '../includes/footer.php'; ?>

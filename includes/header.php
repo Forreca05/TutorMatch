@@ -21,10 +21,12 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="../actions/switch_role.php">Mudar para Cliente</a>
         <a href="../pages/create_service.php">Criar Serviço</a>
         <a href="../pages/my_services.php">Meus Serviços</a>
+        <a href="../pages/orders.php">Pedidos Recebidos</a>
 
       <?php elseif ($_SESSION['role'] == 'client'): ?>
         <a href="../actions/switch_role.php">Mudar para Freelancer</a>
         <a href="../pages/available_services.php">Serviços</a>
+        <a href="../pages/orders.php">Minhas Encomendas</a>
 
       <?php elseif ($_SESSION['role'] == 'admin'): ?>
         <div class="admin-menu">

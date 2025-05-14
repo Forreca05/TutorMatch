@@ -2,10 +2,9 @@
 session_start();
 require_once '../database/db.php';
 
-$order_id = filter_input(INPUT_GET, 'order_id', FILTER_VALIDATE_INT);
 $user_id = $_SESSION['user_id'] ?? null;
 
-if (!$order_id || !$user_id) {
+if (!$user_id) {
     die('Acesso negado.');
 }
 
