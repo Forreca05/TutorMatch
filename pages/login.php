@@ -13,6 +13,6 @@
   </p>
 <?php endif; ?>
 
-<script src="../js/messages.js"></script>
+<script src="../js/messages.js" ></script>
 
 <?php include_once '../includes/footer.php'; ?>
