@@ -1,7 +1,7 @@
 <?php
 try {
     // Cria a base de dados
-    $db = new PDO('sqlite:../database/tutormatch.db');
+    $db = new PDO('sqlite:' . __DIR__ . '/tutormatch.db');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Criação das tabelas

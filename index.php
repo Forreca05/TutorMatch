@@ -1,26 +1,35 @@
-<?php session_start(); ?>
-<?php include_once('includes/header.php'); ?>
+<?php
+session_start();
+include_once('includes/header.php');
+require_once 'database/db.php'; // Ficheiro que liga à DB (PDO em $db)
+?>
 
 <section class="hero">
-  <h1>Encontra o teu explicador ideal</h1>
-  <p>Serviços de apoio escolar, revisão de trabalhos, explicações e mais.</p>
+  <div class="hero-content">
+    <h1>Encontra o teu explicador ideal</h1>
+    <p>Serviços de apoio escolar, explicações, revisões e muito mais.</p>
+    <a href="pages/available_services.php" class="cta-button">Explorar Serviços</a>
+  </div>
 </section>
 
 <section class="services">
-  <h2>Serviços populares</h2>
+  <h2>Serviços Populares</h2>
   <div class="card-list">
-    <div class="card">
-      <img src="img/maths.jpg" alt="Explicações de Matemática">
-      <h3>Explicações de Matemática</h3>
-      <p>A partir de 10€/hora</p>
-    </div>
-    <div class="card">
-      <img src="img/english.jpg" alt="Traduções EN-PT">
-      <h3>Traduções EN-PT</h3>
-      <p>Revisão e tradução de textos escolares.</p>
-    </div>
-    <!-- Adiciona mais serviços aqui -->
-    
+    <?php
+    $stmt = $db->query("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id ORDER BY RANDOM() LIMIT 6");
+    $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($services as $service): ?>
+      <div class="card">
+        <img src="<?= htmlspecialchars($service['image_path'] ?? '/img/default.jpeg') ?>" alt="<?= htmlspecialchars($service['title']) ?>">
+        <div class="card-content">
+          <h3><?= htmlspecialchars($service['title']) ?></h3>
+          <p>por <strong><?= htmlspecialchars($service['username']) ?></strong></p>
+          <p class="price">Desde <?= number_format($service['price'], 2) ?>€</p>
+          <a href="/pages/view_service.php?id=<?= $service['id'] ?>" class="view-btn">Ver Serviço</a>
+        </div>
+      </div>
+    <?php endforeach; ?>
   </div>
 </section>
 

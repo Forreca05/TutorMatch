@@ -1,6 +1,70 @@
 .hero {
-    padding: 3rem 2rem;
-    background-color: white;
-    text-align: center;
-  }
-  
+  background: linear-gradient(to right, #1dbf73, #159b5c);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.hero .cta-button {
+  background: white;
+  color: #1dbf73;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.services {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.services h2 {
+  margin-bottom: 2rem;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card-content {
+  padding: 1rem;
+}
+.card-content h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+.price {
+  color: #1dbf73;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+.view-btn {
+  background: #1dbf73;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}

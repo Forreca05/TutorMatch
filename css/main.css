@@ -1,8 +1,15 @@
-@import url('layout.css');
+@import url('admin.css');
+@import url('chat.css');
 @import url('components.css');
+@import url('hero.css');
+@import url('layout.css');
+@import url('main.css');
+@import url('navbar.css');
+@import url('orders.css');
 @import url('profile.css');
 @import url('services.css');
-@import url('hero.css');
+@import url('style.css');
+@import url('view_service.css');
 
 body {
   font-family: 'Segoe UI', sans-serif;
