@@ -25,6 +25,9 @@ if (session_status() === PHP_SESSION_NONE) {
           <a href="/pages/profile.php" class="profile-pic">
             <img src="<?= $_SESSION['profile_pic'] ?? '/img/default.jpeg' ?>" alt="Perfil">
           </a>
+          <a href="/pages/conversations.php" class="nav-icon chat-icon" title="Mensagens">
+            <img src="/img/icons/white-balloon.png" alt="Mensagens">
+          </a>
 
           <button id="menu-toggle" class="menu-btn">&#9776;</button>
 

@@ -127,3 +127,29 @@
   margin: 0 0.5rem;
   vertical-align: middle;
 }
+
+.chat-preview {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+  color: inherit;
+}
+
+.chat-user-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.preview-text {
+  flex: 1;
+}
+
+.preview-time {
+  font-size: 0.75rem;
+  color: #888;
+}
