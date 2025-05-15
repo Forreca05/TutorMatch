@@ -14,10 +14,17 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 <body>
   <header>
+  <div class="header-left">
     <h1><a href="/index.php">TutorMatch</a></h1>
 
-    <nav class="navbar">
-      <div class="nav-right">
+    <form id="search-form" action="/index.php" method="GET" autocomplete="off">
+      <input type="text" id="search-input" name="q" placeholder="Procurar serviços...">
+      <div id="suggestions-box" class="suggestions-box"></div>
+    </form>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-right">    
         <?php if (isset($_SESSION['user_id'])): ?>
           <a href="/index.php" class="nav-icon home-icon" title="Início">
             <img src="/img/icons/home-white.png" alt="Início">

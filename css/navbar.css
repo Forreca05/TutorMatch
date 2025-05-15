@@ -64,3 +64,44 @@
 .dropdown-menu a:hover {
   background-color: #f3f3f3;
 }
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#search-form {
+  position: relative;
+}
+
+#search-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 250px;
+  font-size: 1rem;
+}
+
+.suggestions-box {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+}
+
+.suggestions-box div {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.suggestions-box div:hover {
+  background-color: #f0f0f0;
+}
