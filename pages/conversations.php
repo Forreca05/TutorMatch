@@ -11,19 +11,26 @@ $stmt = $db->prepare("
   FROM messages m1
   JOIN users u ON u.id = CASE 
       WHEN m1.sender_id = :user_id THEN m1.receiver_id
-      ELSE m1.sender_id END
+      ELSE m1.sender_id
+  END
   WHERE m1.id IN (
-    SELECT MAX(m2.id)
-    FROM messages m2
-    WHERE m2.sender_id = :user_id OR m2.receiver_id = :user_id
+    SELECT MAX(id)
+    FROM messages
+    WHERE sender_id = :user_id OR receiver_id = :user_id
     GROUP BY 
       CASE 
-        WHEN m2.sender_id = :user_id THEN m2.receiver_id
-        ELSE m2.sender_id
+        WHEN sender_id < receiver_id THEN sender_id
+        ELSE receiver_id
+      END,
+      CASE 
+        WHEN sender_id > receiver_id THEN sender_id
+        ELSE receiver_id
       END
   )
   ORDER BY m1.created_at DESC
 ");
+
+
 $stmt->execute(['user_id' => $user_id]);
 $conversations = $stmt->fetchAll();
 ?>
@@ -41,7 +48,13 @@ $conversations = $stmt->fetchAll();
         <img src="<?= htmlspecialchars($conv['profile_pic'] ?? '/img/default.jpeg') ?>" class="chat-user-pic" alt="Foto">
         <div class="preview-text">
           <strong><?= htmlspecialchars($conv['username']) ?></strong><br>
-          <small><?= htmlspecialchars(mb_strimwidth($conv['message'], 0, 40, '...')) ?></small>
+          <?php if (strlen($conv['message']) > 40) {
+                $previewMessage = substr($conv['message'], 0, 40) . '...';
+              } else {
+                $previewMessage = $conv['message'];
+              }
+          ?>
+          <small><?= htmlspecialchars($previewMessage) ?></small>
         </div>
         <span class="preview-time"><?= date('H:i', strtotime($conv['created_at'])) ?></span>
       </a>
