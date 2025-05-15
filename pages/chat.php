@@ -9,7 +9,7 @@ if (!$user_id || !$receiver_id) {
     die('Acesso negado.');
 }
 
-// Obter info do utilizador com quem estás a falar
+// Buscar info do utilizador com quem se está a falar
 $stmt = $db->prepare("SELECT username, profile_pic FROM users WHERE id = ?");
 $stmt->execute([$receiver_id]);
 $chatUser = $stmt->fetch();
@@ -21,7 +21,7 @@ if (!$chatUser) {
 $chatUserName = $chatUser['username'];
 $chatUserPic = $chatUser['profile_pic'] ?? '/img/default.jpeg';
 
-// Obter mensagens trocadas entre os dois utilizadores (sem order)
+// Mensagens entre os dois
 $stmt = $db->prepare("
     SELECT m.*, u.username 
     FROM messages m
@@ -35,7 +35,7 @@ $stmt = $db->prepare("
 $stmt->execute(['user1' => $user_id, 'user2' => $receiver_id]);
 $messages = $stmt->fetchAll();
 
-// Enviar nova mensagem
+// Nova mensagem
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $msg = trim($_POST['message'] ?? '');
     if (!empty($msg)) {
@@ -50,10 +50,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include_once '../includes/header.php'; ?>
 <link rel="stylesheet" href="../css/chat.css">
 
+<!-- Extra estilo para remover sublinhado e ajustar link -->
+<style>
+.chat-header h2 a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+</style>
+
 <div class="chat-container">
     <div class="chat-header">
         <img src="<?= htmlspecialchars($chatUserPic) ?>" alt="Foto de perfil" class="chat-user-pic">
-        <h2><?= htmlspecialchars($chatUserName) ?></h2>
+        <h2>
+            <a href="/pages/view_profile.php?id=<?= urlencode($receiver_id) ?>">
+                <?= htmlspecialchars($chatUserName) ?>
+            </a>
+        </h2>
     </div>
 
     <div class="chat-box">

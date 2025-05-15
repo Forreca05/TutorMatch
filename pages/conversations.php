@@ -7,22 +7,22 @@ if (!$user_id) die('Acesso negado.');
 
 // Vai buscar todas as conversas do user (único par sender/receiver)
 $stmt = $db->prepare("
-  SELECT m1.*, u.username, u.profile_pic
-  FROM messages m1
-  JOIN users u ON u.id = CASE 
-      WHEN m1.sender_id = :user_id THEN m1.receiver_id
-      ELSE m1.sender_id END
-  WHERE m1.id IN (
-    SELECT MAX(m2.id)
-    FROM messages m2
-    WHERE m2.sender_id = :user_id OR m2.receiver_id = :user_id
+  SELECT m.*, u.username, u.profile_pic
+  FROM messages m
+  JOIN users u ON u.id = 
+    CASE 
+      WHEN m.sender_id = :user_id THEN m.receiver_id 
+      ELSE m.sender_id 
+    END
+  WHERE (m.sender_id = :user_id OR m.receiver_id = :user_id)
+  AND m.id IN (
+    SELECT MAX(id) FROM messages 
+    WHERE sender_id = :user_id OR receiver_id = :user_id
     GROUP BY 
-      CASE 
-        WHEN m2.sender_id = :user_id THEN m2.receiver_id
-        ELSE m2.sender_id
-      END
+      LEAST(sender_id, receiver_id), 
+      GREATEST(sender_id, receiver_id)
   )
-  ORDER BY m1.created_at DESC
+  ORDER BY m.created_at DESC
 ");
 $stmt->execute(['user_id' => $user_id]);
 $conversations = $stmt->fetchAll();
