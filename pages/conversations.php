@@ -37,7 +37,7 @@ $conversations = $stmt->fetchAll();
     <?php foreach ($conversations as $conv): 
       $other_id = ($conv['sender_id'] == $user_id) ? $conv['receiver_id'] : $conv['sender_id'];
     ?>
-      <a class="chat-preview" href="chat.php?user_id=<?= $other_id ?>">
+      <a class="chat-preview" href="chat.php?receiver_id=<?= $other_id ?>">
         <img src="<?= htmlspecialchars($conv['profile_pic'] ?? '/img/default.jpeg') ?>" class="chat-user-pic" alt="Foto">
         <div class="preview-text">
           <strong><?= htmlspecialchars($conv['username']) ?></strong><br>
