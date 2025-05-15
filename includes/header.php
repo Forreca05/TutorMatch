@@ -54,6 +54,7 @@ if (session_status() === PHP_SESSION_NONE) {
               <a href="/pages/admin_dashboard.php">Painel</a>
             <?php endif; ?>
 
+            <a href="/pages/terms_and_policy.php">Termos &amp; Privacidade</a>
             <a href="/pages/logout.php">Sair</a>
           </div>
         <?php else: ?>

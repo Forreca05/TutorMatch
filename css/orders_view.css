@@ -1,0 +1,53 @@
+/* Wrapper principal */
+.orders-view-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  font-family: Arial, sans-serif;
+}
+
+.orders-view-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+
+/* Mensagem vazia */
+.orders-view-empty {
+  text-align: center;
+  color: #777;
+}
+
+/* Tabela */
+.orders-view-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-view-table thead {
+  background: #1dbf73;
+  color: #fff;
+}
+
+.orders-view-table th,
+.orders-view-table td {
+  padding: 12px 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.orders-view-table tbody tr:nth-child(even) {
+  background: #f3f3f3;
+}
+
+.orders-view-table a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.orders-view-table a:hover {
+  text-decoration: underline;
+}

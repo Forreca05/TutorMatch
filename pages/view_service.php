@@ -31,12 +31,12 @@ if (!$service) {
     <p class="category"><strong>Categoria:</strong> <?= htmlspecialchars($service['category_name']) ?></p>
     <p class="freelancer"><strong>Prestador:</strong> <?= htmlspecialchars($service['username']) ?></p>
     <p class="description"><?= nl2br(htmlspecialchars($service['description'])) ?></p>
-    <p><strong>Preço:</strong> €<?= $service['price'] ?></p>
-    <p><strong>Tempo de entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
+    <p><strong>Preço:</strong> €<?= number_format($service['price'], 2, ',', '.') ?></p>
+    <p><strong>Tempo de entrega:</strong> <?= htmlspecialchars($service['delivery_time']) ?> dias</p>
 
     <?php if (!empty($service['image_path'])): ?>
         <div class="image-wrapper">
-            <img src="<?= $service['image_path'] ?>" alt="Imagem do serviço">
+            <img src="<?= htmlspecialchars($service['image_path']) ?>" alt="Imagem do serviço">
         </div>
     <?php endif; ?>
 
@@ -47,16 +47,33 @@ if (!$service) {
 
     <div class="review-section">
         <h3>Avaliações</h3>
+
+        <?php if (isset($_GET['review']) && $_GET['review'] === 'success'): ?>
+            <p class="flash-message success">Avaliação submetida com sucesso!</p>
+        <?php elseif (isset($_GET['review']) && $_GET['review'] === 'error'): ?>
+            <p class="flash-message error">Erro ao submeter avaliação.</p>
+        <?php endif; ?>
+
         <?php
-        $review_stmt = $db->prepare("SELECT r.*, u.username FROM reviews r JOIN users u ON r.user_id = u.id WHERE r.service_id = ? ORDER BY r.created_at DESC");
+        $review_stmt = $db->prepare("
+            SELECT r.*, u.username 
+            FROM reviews r 
+            JOIN users u ON r.user_id = u.id 
+            WHERE r.service_id = ? 
+            ORDER BY r.created_at DESC
+        ");
         $review_stmt->execute([$service_id]);
         $reviews = $review_stmt->fetchAll();
         ?>
 
+        <?php if (count($reviews) === 0): ?>
+            <p>Nenhuma avaliação ainda.</p>
+        <?php endif; ?>
+
         <?php foreach ($reviews as $review): ?>
             <div class="review">
                 <strong><?= htmlspecialchars($review['username']) ?></strong> - <?= $review['rating'] ?>/5
-                <p><?= htmlspecialchars($review['comment']) ?></p>
+                <p><?= nl2br(htmlspecialchars($review['comment'])) ?></p>
             </div>
         <?php endforeach; ?>
 
@@ -64,6 +81,7 @@ if (!$service) {
             <form action="../actions/submit_review.php" method="POST" class="review-form">
                 <h4>Deixe uma avaliação:</h4>
                 <input type="hidden" name="service_id" value="<?= $service_id ?>">
+                
                 <label for="rating">Classificação:</label>
                 <select name="rating" id="rating" required>
                     <option value="">Escolha...</option>
@@ -79,5 +97,7 @@ if (!$service) {
         <?php endif; ?>
     </div>
 </div>
+
+<script src="../js/messages.js"></script>
 
 <?php include_once '../includes/footer.php'; ?>

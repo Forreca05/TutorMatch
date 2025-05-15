@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (msg) {
       setTimeout(() => {
         msg.style.display = 'none';
-      }, 5000);
+      }, 3500);
     }
   });
   
