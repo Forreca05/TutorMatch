@@ -41,10 +41,7 @@ if (!$service) {
     <?php endif; ?>
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
-        <form action="../actions/create_order.php" method="POST" style="margin-top: 20px;">
-            <input type="hidden" name="service_id" value="<?= $service_id ?>">
-            <button type="submit" class="btn">Encomendar Serviço</button>
-        </form>
+        <a href="../pages/order.php?id=<?= $service_id ?>" class="btn" style="margin-top: 10px; display: inline-block;">Encomendar Serviço</a>
         <a href="../pages/chat.php?receiver_id=<?= $service['freelancer_id'] ?>" class="btn" style="margin-top: 10px; display: inline-block;">Enviar Mensagem</a>
     <?php endif; ?>
 
