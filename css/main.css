@@ -6,11 +6,11 @@
 @import url('main.css');
 @import url('navbar.css');
 @import url('orders.css');
+@import url('order_service.css');
 @import url('profile.css');
 @import url('services.css');
 @import url('style.css');
 @import url('view_service.css');
-@import url('order.css');
 
 body {
   font-family: 'Segoe UI', sans-serif;

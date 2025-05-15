@@ -88,7 +88,7 @@
   top: 110%;
   left: 0;
   right: 0;
-  background: white;
+  background: rgb(8, 6, 6);
   border: 1px solid #ddd;
   border-radius: 4px;
   z-index: 1000;
@@ -103,5 +103,5 @@
 }
 
 .suggestions-box div:hover {
-  background-color: #f0f0f0;
+  background-color: #b1adad;
 }

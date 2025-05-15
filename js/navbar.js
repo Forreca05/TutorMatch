@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
           data.forEach(item => {
             const div = document.createElement('div');
             div.textContent = item.title;
+            div.classList.add('suggestion-item');
             div.addEventListener('click', () => {
-              searchInput.value = item.title;
-              document.getElementById('search-form').submit();
+              window.location.href = `/pages/view_service.php?id=${item.id}`;
             });
             suggestionsBox.appendChild(div);
           });
