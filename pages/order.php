@@ -15,7 +15,10 @@ $service_id = intval($_GET['id']);
 
 // Get service details
 $stmt = $db->prepare(
-    "SELECT s.*, u.username AS freelancer_name, u.id AS freelancer_id FROM services s JOIN users u ON s.user_id = u.id WHERE s.id = ?"
+    "SELECT s.*, u.username AS freelancer_name, u.id AS freelancer_id 
+     FROM services s 
+     JOIN users u ON s.user_id = u.id 
+     WHERE s.id = ?"
 );
 $stmt->execute([$service_id]);
 $service = $stmt->fetch();
@@ -28,7 +31,7 @@ if (!$service) {
 <?php include_once '../includes/header.php'; ?>
 <link rel="stylesheet" href="../css/order_service.css">
 
-<div class="order-container">
+<section class="order-container">
     <h2>Encomendar: <?= htmlspecialchars($service['title']) ?></h2>
 
     <p><strong>Prestador:</strong> <?= htmlspecialchars($service['freelancer_name']) ?></p>
@@ -43,18 +46,19 @@ if (!$service) {
         <textarea name="details" id="details" rows="5" required></textarea>
 
         <h3>Dados de Pagamento</h3>
+
         <label for="card_name">Nome no Cartão:</label>
         <input type="text" id="card_name" name="card_name" placeholder="Nome impresso no cartão" required>
 
         <label for="card_number">Número do Cartão:</label>
         <input type="text" id="card_number" name="card_number" placeholder="0000 0000 0000 0000" maxlength="19" required>
 
-        <div class="card-row">
-            <div class="card-col">
+        <div class="card-flex">
+            <div>
                 <label for="expiry">Validade (MM/AA):</label>
                 <input type="text" id="expiry" name="expiry" placeholder="MM/AA" maxlength="5" required>
             </div>
-            <div class="card-col">
+            <div>
                 <label for="cvv">CVV:</label>
                 <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4" required>
             </div>
@@ -62,6 +66,6 @@ if (!$service) {
 
         <button type="submit" class="btn">Confirmar e Pagar</button>
     </form>
-</div>
+</section>
 
 <?php include_once '../includes/footer.php'; ?>

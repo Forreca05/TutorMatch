@@ -10,6 +10,7 @@
 @import url('services.css');
 @import url('style.css');
 @import url('view_service.css');
+@import url('order.css');
 
 body {
   font-family: 'Segoe UI', sans-serif;
