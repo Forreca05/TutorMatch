@@ -1,5 +1,4 @@
 <?php
-// File: pages/orders.php
 session_start();
 require_once '../database/db.php';
 
@@ -12,7 +11,7 @@ $user_id = $_SESSION['user_id'];
 $role = $_SESSION['role'] ?? 'client';
 
 if ($role === 'freelancer') {
-  // Freelancers see incoming orders
+  // Freelancers veem pedidos recebidos
   $stmt = $db->prepare("SELECT o.*, s.title, u.username AS client_name
                         FROM orders o
                         JOIN (
@@ -27,7 +26,7 @@ if ($role === 'freelancer') {
   $stmt->execute([$user_id]);
   $orders = $stmt->fetchAll();
 } else {
-  // Clients see orders they placed
+  // Clientes veem suas encomendas
   $stmt = $db->prepare("SELECT o.*, s.title, u.username AS freelancer_name
                         FROM orders o
                         JOIN (
@@ -68,9 +67,10 @@ if ($role === 'freelancer') {
               <button name="action" value="rejected">Rejeitar</button>
             </form>
           <?php elseif ($role === 'client' && $order['status'] === 'accepted'): ?>
-            <form action="../actions/complete_order.php" method="POST">
+            <form action="order_service.php" method="GET">
+              <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
               <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-              <button type="submit">Marcar como Concluído</button>
+              <button type="submit">Proceder para o Pagamento</button>
             </form>
           <?php endif; ?>
         </div>

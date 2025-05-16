@@ -7,13 +7,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'client') {
     exit;
 }
 
-if (!isset($_GET['id'])) {
-    die("Serviço não especificado.");
-}
-
 $service_id = intval($_GET['id']);
+$order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : null;
 
-// Get service details
+// Obter detalhes do serviço
 $stmt = $db->prepare(
     "SELECT s.*, u.username AS freelancer_name, u.id AS freelancer_id 
      FROM services s 
@@ -32,23 +29,29 @@ if (!$service) {
 <link rel="stylesheet" href="../css/order_service.css">
 
 <section class="order-container">
-    <h2>Encomendar: <?= htmlspecialchars($service['title']) ?></h2>
+    <h2>Proceder para Pagamento</h2>
 
-    <p><strong>Prestador:</strong> <?= htmlspecialchars($service['freelancer_name']) ?></p>
-    <p><strong>Preço:</strong> €<?= number_format($service['price'], 2) ?></p>
-    <p><strong>Entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
+    <div class="service-summary">
+        <p><strong>Serviço:</strong> <?= htmlspecialchars($service['title']) ?></p>
+        <p><strong>Prestador:</strong> <?= htmlspecialchars($service['freelancer_name']) ?></p>
+        <p><strong>Preço:</strong> €<?= number_format($service['price'], 2, ',', '.') ?></p>
+        <p><strong>Tempo de entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
+    </div>
 
     <form action="../actions/create_order.php" method="POST">
         <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
         <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
+        <?php if ($order_id): ?>
+            <input type="hidden" name="order_id" value="<?= $order_id ?>">
+        <?php endif; ?>
 
         <label for="details">Detalhes da Encomenda:</label>
-        <textarea name="details" id="details" rows="5" required></textarea>
+        <textarea name="details" id="details" rows="5" placeholder="Descreve claramente o que pretendes com este serviço..." required></textarea>
 
-        <h3>Dados de Pagamento</h3>
+        <h3>Informações de Pagamento</h3>
 
         <label for="card_name">Nome no Cartão:</label>
-        <input type="text" id="card_name" name="card_name" placeholder="Nome impresso no cartão" required>
+        <input type="text" id="card_name" name="card_name" placeholder="Nome completo" required>
 
         <label for="card_number">Número do Cartão:</label>
         <input type="text" id="card_number" name="card_number" placeholder="0000 0000 0000 0000" maxlength="19" required>

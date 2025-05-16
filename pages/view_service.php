@@ -42,7 +42,6 @@ if (!$service) {
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
         <a href="../pages/order_service.php?id=<?= $service_id ?>" class="btn" style="margin-top: 10px; display: inline-block;">Encomendar Serviço</a>
-        <a href="../pages/chat.php?receiver_id=<?= $service['freelancer_id'] ?>" class="btn" style="margin-top: 10px; display: inline-block;">Enviar Mensagem</a>
     <?php endif; ?>
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $service['freelancer_id']): ?>
