@@ -3,17 +3,17 @@ require_once '../database/db.php';
 include '../includes/header.php';
 
 $query = $_GET['q'] ?? '';
-$category = $_GET['category'] ?? '';
 $min_price = $_GET['min_price'] ?? '';
 $max_price = $_GET['max_price'] ?? '';
+$category = $_GET['category'] ?? '';
 
 $catStmt = $db->query("
-  SELECT DISTINCT c.name 
+  SELECT DISTINCT c.id, c.name 
   FROM categories c
   JOIN services s ON s.category_id = c.id
   ORDER BY c.name
 ");
-$categories = $catStmt->fetchAll(PDO::FETCH_COLUMN);
+$categories = $catStmt->fetchAll(PDO::FETCH_ASSOC);
 
 $sql = "SELECT * FROM services WHERE 1=1";
 $params = [];
@@ -23,7 +23,7 @@ if (!empty($query)) {
     $params[':query'] = '%' . $query . '%';
 }
 if (!empty($category)) {
-    $sql .= " AND category = :category";
+    $sql .= " AND category_id = :category";
     $params[':category'] = $category;
 }
 if (is_numeric($min_price)) {
@@ -49,8 +49,8 @@ $results = $stmt->fetchAll();
     <select name="category">
       <option value="">Todas as categorias</option>
       <?php foreach ($categories as $cat): ?>
-        <option value="<?= htmlspecialchars($cat) ?>" <?= $category === $cat ? 'selected' : '' ?>>
-          <?= ucfirst(htmlspecialchars($cat)) ?>
+        <option value="<?= htmlspecialchars($cat['id']) ?>" <?= $category == $cat['id'] ? 'selected' : '' ?>>
+          <?= ucfirst(htmlspecialchars($cat['name'])) ?>
         </option>
       <?php endforeach; ?>
     </select>
