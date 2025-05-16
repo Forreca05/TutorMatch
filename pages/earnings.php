@@ -1,0 +1,15 @@
+<?php
+session_start();
+require_once '../database/db.php';
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'freelancer') die('Acesso negado.');
+
+$user_id = $_SESSION['user_id'];
+$stmt = $db->prepare("SELECT SUM(price) AS total FROM orders o JOIN services s ON o.service_id = s.id WHERE s.user_id = ? AND o.status = 'concluído'");
+$stmt->execute([$user_id]);
+$total = $stmt->fetchColumn();
+
+include '../includes/header.php';
+?>
+<h2>Ganhos Totais</h2>
+<p>€<?= number_format($total ?? 0, 2) ?></p>
+<?php include '../includes/footer.php'; ?>
