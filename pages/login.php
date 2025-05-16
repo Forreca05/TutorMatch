@@ -1,18 +1,21 @@
 <?php include_once '../includes/header.php'; ?>
-<h2>Inicia sessão</h2>
+<link rel="stylesheet" href="../css/login.css">
 
-<form action="../actions/action_login.php" method="post">
-  <input type="text" name="username" placeholder="Username" required>
-  <input type="password" name="password" placeholder="Password" required>
-  <button type="submit">Entrar</button>
-</form>
+<div class="login-container">
+  <h2>Bem-vindo de volta!</h2>
 
-<?php if (isset($_GET['error'])): ?>
-  <p class="flash-message error">
-    <?= htmlspecialchars($_GET['error']); ?>
-  </p>
-<?php endif; ?>
+  <form action="../actions/action_login.php" method="post" class="login-form">
+    <input type="text" name="username" placeholder="Nome de utilizador" required>
+    <input type="password" name="password" placeholder="Palavra-passe" required>
+    <button type="submit">Entrar</button>
 
-<script src="../js/messages.js" ></script>
+    <?php if (isset($_GET['error'])): ?>
+      <p class="flash-message error">
+        <?= htmlspecialchars($_GET['error']); ?>
+      </p>
+    <?php endif; ?>
+  </form>
+</div>
 
+<script src="../js/messages.js"></script>
 <?php include_once '../includes/footer.php'; ?>
