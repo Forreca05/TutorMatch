@@ -62,6 +62,6 @@
 }
 
 .dashboard-cards .card:last-child {
-  flex: 0 1 400px;     /* largura fixa menor que a container */
-  margin: 0 auto;      /* centraliza horizontalmente */
+  flex: 0 1 400px;    
+  margin: 0 auto;      
 }

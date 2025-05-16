@@ -39,15 +39,17 @@ foreach ($services as $service) {
         <h3><?= htmlspecialchars($category) ?></h3>
         <div class="service-list">
           <?php foreach ($services as $service): ?>
-            <div class="service-card">
-              <h4><?= htmlspecialchars($service['title']) ?></h4>
-              <p class="description"><?= htmlspecialchars($service['description']) ?></p>
-              <p><strong>Preço:</strong> €<?= $service['price'] ?></p>
-              <p><strong>Entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
-              <?php if (!empty($service['image_path'])): ?>
-                <img src="<?= $service['image_path'] ?>" alt="Imagem do serviço">
-              <?php endif; ?>
-            </div>
+            <a href="view_service.php?id=<?= $service['id'] ?>" class="service-card-link">
+              <div class="service-card">
+                <h4><?= htmlspecialchars($service['title']) ?></h4>
+                <p class="description"><?= htmlspecialchars($service['description']) ?></p>
+                <p><strong>Preço:</strong> €<?= $service['price'] ?></p>
+                <p><strong>Entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
+                <?php if (!empty($service['image_path'])): ?>
+                  <img src="<?= $service['image_path'] ?>" alt="Imagem do serviço">
+                <?php endif; ?>
+              </div>
+            </a>
           <?php endforeach; ?>
         </div>
       </div>

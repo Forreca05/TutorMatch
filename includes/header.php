@@ -17,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <div class="header-left">
     <h1><a href="/index.php">TutorMatch</a></h1>
 
-    <form id="search-form" action="/index.php" method="GET" autocomplete="off">
+    <form id="search-form" action="/pages/search.php" method="GET" autocomplete="off">
       <input type="text" id="search-input" name="q" placeholder="Procurar serviços...">
       <div id="suggestions-box" class="suggestions-box"></div>
     </form>

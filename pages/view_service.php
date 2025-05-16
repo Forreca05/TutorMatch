@@ -45,6 +45,10 @@ if (!$service) {
         <a href="../pages/chat.php?receiver_id=<?= $service['freelancer_id'] ?>" class="btn" style="margin-top: 10px; display: inline-block;">Enviar Mensagem</a>
     <?php endif; ?>
 
+    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $service['freelancer_id']): ?>
+        <a href="../pages/edit_service.php?id=<?= $service_id ?>" class="btn" style="margin-top: 10px; display: inline-block;">Editar Serviço</a>
+    <?php endif; ?>
+
     <div class="review-section">
         <h3>Avaliações</h3>
 
