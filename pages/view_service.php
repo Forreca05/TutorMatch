@@ -21,6 +21,14 @@ $service = $stmt->fetch();
 if (!$service) {
     die("Serviço não encontrado.");
 }
+
+
+$rating_stmt = $db->prepare("SELECT AVG(rating) AS avg_rating, COUNT(*) AS total_reviews FROM reviews WHERE service_id = ?");
+$rating_stmt->execute([$service_id]);
+$ratingData = $rating_stmt->fetch();
+
+$averageRating = round($ratingData['avg_rating'], 1);
+$totalReviews = (int)$ratingData['total_reviews'];
 ?>
 
 <?php include_once '../includes/header.php'; ?>
@@ -74,6 +82,22 @@ if (!$service) {
         <?php endif; ?>
 
         <?php foreach ($reviews as $review): ?>
+            <?php if ($totalReviews > 0): ?>
+                <div class="average-rating">
+                    <div class="stars">
+                    <?php
+                        $filled = floor($averageRating);
+                        $half = ($averageRating - $filled >= 0.5) ? 1 : 0;
+                        $empty = 5 - $filled - $half;
+
+                        for ($i = 0; $i < $filled; $i++) echo '<span class="star full">★</span>';
+                        if ($half) echo '<span class="star half">★</span>';
+                        for ($i = 0; $i < $empty; $i++) echo '<span class="star empty">★</span>';
+                    ?>
+                    </div>
+                    <p><?= $averageRating ?> em 5 (<?= $totalReviews ?> avaliação<?= $totalReviews > 1 ? 'es' : '' ?>)</p>
+                </div>
+            <?php endif; ?>
             <div class="review">
                 <strong><?= htmlspecialchars($review['username']) ?></strong> - <?= $review['rating'] ?>/5
                 <p><?= nl2br(htmlspecialchars($review['comment'])) ?></p>

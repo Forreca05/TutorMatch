@@ -112,3 +112,38 @@
   font-weight: bold;
   margin-top: 10px;
 }
+
+.average-rating {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  text-align: left;
+}
+
+.average-rating .stars {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #ffc107;
+}
+
+.star.full {
+  color: #ffc107;
+}
+
+.star.half {
+  color: #ffc107;
+  position: relative;
+}
+
+.star.half::after {
+  content: '★';
+  color: #ccc;
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  overflow: hidden;
+}
+
+.star.empty {
+  color: #ccc;
+}
