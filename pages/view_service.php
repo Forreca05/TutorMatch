@@ -81,28 +81,30 @@ $totalReviews = (int)$ratingData['total_reviews'];
             <p>Nenhuma avaliação ainda.</p>
         <?php endif; ?>
 
-        <?php foreach ($reviews as $review): ?>
-            <?php if ($totalReviews > 0): ?>
-                <div class="average-rating">
-                    <div class="stars">
-                    <?php
-                        $filled = floor($averageRating);
-                        $half = ($averageRating - $filled >= 0.5) ? 1 : 0;
-                        $empty = 5 - $filled - $half;
+        <?php if ($totalReviews > 0): ?>
+            <div class="average-rating">
+                <div class="stars">
+                <?php
+                    $filled = floor($averageRating);
+                    $half = ($averageRating - $filled >= 0.5) ? 1 : 0;
+                    $empty = 5 - $filled - $half;
 
-                        for ($i = 0; $i < $filled; $i++) echo '<span class="star full">★</span>';
-                        if ($half) echo '<span class="star half">★</span>';
-                        for ($i = 0; $i < $empty; $i++) echo '<span class="star empty">★</span>';
-                    ?>
-                    </div>
-                    <p><?= $averageRating ?> em 5 (<?= $totalReviews ?> avaliação<?= $totalReviews > 1 ? 'es' : '' ?>)</p>
+                    for ($i = 0; $i < $filled; $i++) echo '<span class="star full">★</span>';
+                    if ($half) echo '<span class="star half">★</span>';
+                    for ($i = 0; $i < $empty; $i++) echo '<span class="star empty">★</span>';
+                ?>
                 </div>
-            <?php endif; ?>
+                <p><?= $averageRating ?> em 5 (<?= $totalReviews ?> avaliação<?= $totalReviews > 1 ? 'es' : '' ?>)</p>
+            </div>
+        <?php endif; ?>
+
+        <?php foreach ($reviews as $review): ?>
             <div class="review">
                 <strong><?= htmlspecialchars($review['username']) ?></strong> - <?= $review['rating'] ?>/5
                 <p><?= nl2br(htmlspecialchars($review['comment'])) ?></p>
             </div>
         <?php endforeach; ?>
+
 
         <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
             <form action="../actions/submit_review.php" method="POST" class="review-form">

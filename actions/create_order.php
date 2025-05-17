@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $freelancer_id = $stmt->fetchColumn();
 
     if ($freelancer_id && $client_id) {
-        $stmt = $db->prepare("INSERT INTO orders (service_id, client_id, freelancer_id, status, created_at) VALUES (?, ?, ?, 'pending', CURRENT_TIMESTAMP)");
+        $stmt = $db->prepare("INSERT INTO orders (service_id, client_id, freelancer_id, status, created_at) VALUES (?, ?, ?, 'completed', CURRENT_TIMESTAMP)");
         $stmt->execute([$service_id, $client_id, $freelancer_id]);
-        header("Location: ../pages/view_service.php?id=$service_id&order=success");
+        header("Location: ../pages/payment_status.php?result=success");
         exit;
     }
 }
-header("Location: ../pages/services.php?error=order_failed");
+header("Location: ../pages/payment_status.php?result=error");
 exit;
