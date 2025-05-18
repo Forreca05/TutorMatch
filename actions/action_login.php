@@ -2,23 +2,23 @@
 session_start();
 require_once '../database/db.php';
 
-$username = $_POST['username'];
+$login = $_POST['username']; // Can be username or email
 $password = $_POST['password'];
 
-$stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
-$stmt->execute([$username]);
-$user = $stmt->fetch();
+$stmt = $db->prepare("SELECT * FROM users WHERE username = ? Or email = ? LIMIT 1");
+$stmt->execute([$login, $login]);
+$userName = $stmt->fetch();
 
-
-if ($user && password_verify($password, $user['password'])) {
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['role'] = $user['role'];
-    $_SESSION['profile_pic'] = $user['profile_pic']; 
-    $_SESSION['name'] = $user['name']; // Adicionando o nome do usuário à sessão
-    $_SESSION['email'] = $user['email']; // Adicionando o email do usuário à sessão
+if ($userName && password_verify($password, $userName['password'])) {
+    $_SESSION['user_id'] = $userName['id'];
+    $_SESSION['username'] = $userName['username'];
+    $_SESSION['role'] = $userName['role'];
+    $_SESSION['profile_pic'] = $userName['profile_pic']; 
+    $_SESSION['name'] = $userName['name']; // Adicionando o nome do usuário à sessão
+    $_SESSION['email'] = $userName['email']; // Adicionando o email do usuário à sessão
     header('Location: ../index.php');
-} else {
+}
+else {
     header('Location: ../pages/login.php?error=Login inválido');
     exit;
 }

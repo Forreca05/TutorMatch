@@ -27,7 +27,7 @@ $rating_stmt = $db->prepare("SELECT AVG(rating) AS avg_rating, COUNT(*) AS total
 $rating_stmt->execute([$service_id]);
 $ratingData = $rating_stmt->fetch();
 
-$averageRating = round($ratingData['avg_rating'], 1);
+$averageRating = $ratingData['avg_rating'] !== null ? round($ratingData['avg_rating'], 1) : 0;
 $totalReviews = (int)$ratingData['total_reviews'];
 ?>
 

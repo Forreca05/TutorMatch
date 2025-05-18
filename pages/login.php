@@ -5,7 +5,7 @@
   <h2>Bem-vindo de volta!</h2>
 
   <form action="../actions/action_login.php" method="post" class="login-form">
-    <input type="text" name="username" placeholder="Nome de utilizador" required>
+    <input type="text" name="username" placeholder="Nome de utilizador ou Email" required>
     <input type="password" name="password" placeholder="Palavra-passe" required>
     <button type="submit">Entrar</button>
 

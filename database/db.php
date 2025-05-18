@@ -10,7 +10,6 @@ try {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
-            salt Text,
             email TEXT NOT NULL UNIQUE,
             role TEXT DEFAULT 'client', -- client, freelancer, admin
             name TEXT,
