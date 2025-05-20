@@ -1,3 +1,5 @@
+@import url('variables.css');
+
 .auth-link,
 .profile-link,
 .logout-link {
@@ -6,12 +8,12 @@
 
 .btn {
   display: inline-block;
-  background: #1dbf73;
-  color: white;
-  padding: 0.5rem 1rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-sm) var(--space);
   text-decoration: none;
-  border-radius: 5px;
-  margin-right: 1rem;
+  border-radius: var(--radius-xs);
+  margin-right: var(--space);
 }
 
 .btn:hover {

@@ -1,23 +1,25 @@
+@import url('variables.css');
+
 /* overlay de ecrã inteiro */
 .payment-overlay{
   position:fixed; inset:0;
   background:rgba(0,0,0,.6);
   display:flex; align-items:center; justify-content:center;
   z-index:9999;
-  font-family:Arial, sans-serif;
+  font-family:var(--font-main);
 }
 .payment-box{
-  background:#fff;
+  background:var(--color-white);
   padding:40px 60px;
-  border-radius:12px;
+  border-radius:var(--radius-xl);
   text-align:center;
-  color:#333;
+  color:var(--color-gray-dark);
   width:90%; max-width:400px;
 }
 .spinner{
   width:60px; height:60px;
   border:6px solid #eee;
-  border-top:6px solid #1dbf73;
+  border-top:6px solid var(--color-primary);
   border-radius:50%;
   margin:0 auto 25px;
   animation:spin 1s linear infinite;
@@ -29,6 +31,6 @@
   font-weight:bold;
   margin-top:10px;
 }
-#result-msg.success{color:#1dbf73;}
-#result-msg.error{color:#d93025;}
+#result-msg.success{color:var(--color-primary);}
+#result-msg.error{color:var(--color-danger);}
 .hidden{display:none;}

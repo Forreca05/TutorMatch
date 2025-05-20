@@ -22,7 +22,6 @@ if (!$service) {
     die("Serviço não encontrado.");
 }
 
-
 $rating_stmt = $db->prepare("SELECT AVG(rating) AS avg_rating, COUNT(*) AS total_reviews FROM reviews WHERE service_id = ?");
 $rating_stmt->execute([$service_id]);
 $ratingData = $rating_stmt->fetch();
@@ -39,7 +38,7 @@ $totalReviews = (int)$ratingData['total_reviews'];
     <p class="category"><strong>Categoria:</strong> <?= htmlspecialchars($service['category_name']) ?></p>
     <p class="freelancer"><strong>Prestador:</strong> <?= htmlspecialchars($service['username']) ?></p>
     <p class="description"><?= nl2br(htmlspecialchars($service['description'])) ?></p>
-    <p><strong>Preço:</strong> €<?= number_format($service['price'], 2, ',', '.') ?></p>
+    <p><strong>Preço:</strong> <?= number_format($service['price'], 2, ',', '.') ?>€</p>
     <p><strong>Tempo de entrega:</strong> <?= htmlspecialchars($service['delivery_time']) ?> dias</p>
 
     <?php if (!empty($service['image_path'])): ?>

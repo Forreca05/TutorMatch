@@ -1,44 +1,46 @@
+@import url('variables.css');
+
 .order-container {
   max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #f9f9f9; /* leve fundo cinza */
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+  margin: var(--space-lg) auto;
+  padding: var(--space);
+  background-color: var(--color-gray-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--color-shadow);
+  font-family: var(--font-main);
 }
 
 .order-container h2,
 .order-container h3 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--space);
 }
 
 .order-container p {
-  margin: 10px 0;
-  font-size: 16px;
+  margin: var(--space-xs) 0;
+  font-size: var(--font-size-base);
 }
 
 .order-container label {
   display: block;
-  margin-top: 15px;
+  margin-top: var(--space);
   font-weight: bold;
 }
 
 .order-container input,
 .order-container textarea {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: var(--space);
+  margin-top: var(--space-xs);
+  border: 1px solid var(--color-gray);
+  border-radius: var(--radius-sm);
   box-sizing: border-box;
 }
 
 .order-container .card-flex {
   display: flex;
-  gap: 20px;
-  margin-top: 10px;
+  gap: var(--space);
+  margin-top: var(--space-xs);
 }
 
 .order-container .card-flex > div {
@@ -46,14 +48,14 @@
 }
 
 .order-container .btn {
-  margin-top: 20px;
-  background-color: #007bff;
-  color: white;
-  padding: 12px;
+  margin-top: var(--space);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  padding: var(--space);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--font-size-base);
 }
 
 .order-container .btn:hover {

@@ -1,3 +1,5 @@
+@import url('variables.css');
+
 .orders-container {
   max-width: 1000px;
   margin: 3rem auto;
@@ -10,15 +12,15 @@
 
 .order-section h2 {
   margin-bottom: 1rem;
-  color: #1dbf73;
+  color: var(--color-primary);
 }
 
 .order-card {
-  background: white;
+  background: var(--color-white);
   padding: 1rem 1.5rem;
   margin-bottom: 1rem;
   border: 1px solid #eee;
-  border-radius: 8px;
+  border-radius: var(--radius);
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -29,7 +31,7 @@
 .order-card .status {
   font-weight: bold;
   text-transform: capitalize;
-  color: #555;
+  color: var(--color-gray-dark);
 }
 
 .order-actions {
@@ -44,15 +46,15 @@
 .order-actions button {
   padding: 0.4rem 0.8rem;
   border: none;
-  border-radius: 4px;
-  background-color: #1dbf73;
-  color: white;
+  border-radius: var(--radius-xs);
+  background-color: var(--color-primary);
+  color: var(--color-white);
   cursor: pointer;
   transition: 0.2s;
 }
 
 .order-actions button.reject {
-  background-color: #ff4d4f;
+  background-color: var(--color-danger);
 }
 
 .order-actions button:hover {

@@ -1,0 +1,19 @@
+@import url('variables.css');
+
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--color-shadow);
+  padding: var(--space);
+  margin-bottom: var(--space);
+}
+
+.card-title {
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+}
+
+.card-content {
+  color: var(--color-gray-dark);
+  font-size: var(--font-size-base);
+}

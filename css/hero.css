@@ -1,12 +1,14 @@
+@import url('variables.css');
+
 .hero {
-  background: linear-gradient(to right, #1dbf73, #159b5c);
-  color: white;
+  background: linear-gradient(to right, var(--color-primary), #159b5c);
+  color: var(--color-white);
   padding: 4rem 2rem;
   text-align: center;
 }
 .hero .cta-button {
-  background: white;
-  color: #1dbf73;
+  background: var(--color-white);
+  color: var(--color-primary);
   padding: 0.75rem 1.5rem;
   font-weight: bold;
   border-radius: 30px;
@@ -31,8 +33,8 @@
 }
 
 .card {
-  background: #fff;
-  border-radius: 12px;
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   width: 100%;
@@ -55,13 +57,13 @@
   font-size: 1.1rem;
 }
 .price {
-  color: #1dbf73;
+  color: var(--color-primary);
   font-weight: bold;
   margin: 0.5rem 0;
 }
 .view-btn {
-  background: #1dbf73;
-  color: white;
+  background: var(--color-primary);
+  color: var(--color-white);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 20px;

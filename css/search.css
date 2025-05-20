@@ -1,38 +1,40 @@
+@import url('variables.css');
+
 .search-container {
   max-width: 1000px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fefefe;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  margin: var(--space-lg) auto;
+  padding: var(--space);
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--color-shadow);
 }
 
 .search-container h2 {
   text-align: center;
-  color: #333;
+  color: var(--color-gray-dark);
 }
 
 .search-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
 }
 
 .search-form input,
 .search-form select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-gray);
+  border-radius: var(--radius-sm);
   flex: 1 1 200px;
 }
 
 .search-form button {
-  padding: 10px 20px;
-  background-color: #0077cc;
-  color: white;
+  padding: var(--space-sm) var(--space);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
 }
 
@@ -42,16 +44,16 @@
 
 .results .service {
   border-bottom: 1px solid #eee;
-  padding: 15px 0;
+  padding: var(--space-sm) 0;
 }
 
 .results .service h3 {
   margin: 0;
-  color: #0077cc;
+  color: var(--color-secondary);
 }
 
 .results .service a {
-  color: #0077cc;
+  color: var(--color-secondary);
   text-decoration: none;
 }
 

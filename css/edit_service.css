@@ -1,16 +1,18 @@
+@import url('variables.css');
+
 .edit-service-container {
   max-width: 600px;
-  margin: 3rem auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin: var(--space-lg) auto;
+  padding: var(--space-lg);
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--color-shadow);
 }
 
 .edit-service-container h2 {
   text-align: center;
   margin-bottom: 2rem;
-  color: #1dbf73;
+  color: var(--color-primary);
 }
 
 .edit-service-form {
@@ -26,10 +28,10 @@
 .edit-service-form input,
 .edit-service-form select,
 .edit-service-form textarea {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space);
   padding: 0.7rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid var(--color-gray);
+  border-radius: var(--radius-sm);
   font-size: 1rem;
 }
 
@@ -39,16 +41,16 @@
 }
 
 .edit-service-form button {
-  background-color: #1dbf73;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   padding: 0.8rem;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   font-size: 1rem;
   cursor: pointer;
   transition: 0.3s ease;
 }
 
 .edit-service-form button:hover {
-  background-color: #17a463;
+  background-color: var(--color-primary-dark);
 }

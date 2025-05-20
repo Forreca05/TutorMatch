@@ -1,12 +1,14 @@
+@import url('variables.css');
+
 /* Wrapper principal */
 .orders-view-wrapper {
   max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fafafa;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  font-family: Arial, sans-serif;
+  margin: var(--space-lg) auto;
+  padding: var(--space);
+  background: var(--color-gray-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--color-shadow);
+  font-family: var(--font-main);
 }
 
 .orders-view-title {
@@ -28,14 +30,14 @@
 }
 
 .orders-view-table thead {
-  background: #1dbf73;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-white);
 }
 
 .orders-view-table th,
 .orders-view-table td {
   padding: 12px 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   text-align: left;
 }
 
@@ -44,7 +46,7 @@
 }
 
 .orders-view-table a {
-  color: #0077cc;
+  color: var(--color-secondary);
   text-decoration: none;
 }
 
