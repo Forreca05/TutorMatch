@@ -32,6 +32,7 @@ $totalReviews = (int)$ratingData['total_reviews'];
 
 <?php include_once '../includes/header.php'; ?>
 <link rel="stylesheet" href="../css/view_service.css">
+<link rel="stylesheet" href="../css/register.css">
 
 <div class="view-service-container">
     <h2><?= htmlspecialchars($service['title']) ?></h2>
@@ -48,7 +49,7 @@ $totalReviews = (int)$ratingData['total_reviews'];
     <?php endif; ?>
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
-        <a href="../pages/order_service.php?id=<?= $service_id ?>" class="btn" style="margin-top: 10px; display: inline-block;">Encomendar Serviço</a>
+        <a href="#" id="order-link" class="btn" style="margin-top: 10px; display: inline-block;">Encomendar Serviço</a>
     <?php endif; ?>
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $service['freelancer_id']): ?>
@@ -124,8 +125,48 @@ $totalReviews = (int)$ratingData['total_reviews'];
             </form>
         <?php endif; ?>
     </div>
+
+    <!-- Encomendar -->
+    <div id="order-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        
+        <section class="order-container">
+        <h2>Encomendar Serviço</h2>
+
+        <div class="service-summary">
+            <p><strong>Serviço:</strong> <?= htmlspecialchars($service['title']) ?></p>
+            <p><strong>Prestador:</strong> <?= htmlspecialchars($service['username']) ?></p>
+            <p><strong>Preço:</strong> €<?= number_format($service['price'], 2, ',', '.') ?></p>
+            <p><strong>Tempo de entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
+        </div>
+
+        <form action="../actions/create_order.php" method="POST">
+            <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
+            <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
+
+            <?php if ($order_id): ?>
+            <input type="hidden" name="order_id" value="<?= $order_id ?>">
+            <?php endif; ?>
+
+            <label for="details">Detalhes da Encomenda:</label>
+            <textarea
+            name="details"
+            id="details"
+            rows="5"
+            placeholder="Descreve claramente o que pretendes com este serviço..."
+            required
+            ></textarea>
+
+            <button type="submit" class="btn">Confirmar</button>
+        </form>
+        </section>
+    </div>
+    </div>
+
 </div>
 
+<script src="../js/order.js"></script>
 <script src="../js/messages.js"></script>
 
 <?php include_once '../includes/footer.php'; ?>

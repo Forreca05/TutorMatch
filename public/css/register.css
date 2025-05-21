@@ -63,33 +63,3 @@
   background-color: var(--color-primary-light);
 }
 
-/* Modal estilos */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background-color: var(--color-white);
-  margin: 10% auto;
-  padding: var(--space);
-  border-radius: var(--radius);
-  width: 80%;
-  max-width: 600px;
-  position: relative;
-}
-
-.close-modal {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 24px;
-  cursor: pointer;
-}
