@@ -1,0 +1,33 @@
+@import url('variables.css');
+
+header {
+    background-color: var(--color-primary);
+    padding: var(--space) var(--space-lg);
+    color: var(--color-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header a {
+    color: var(--color-white);
+    text-decoration: none;
+    margin-left: var(--space);
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  footer {
+    margin-top: var(--space-lg);
+    text-align: center;
+    padding: var(--space);
+    background: var(--color-gray-light);
+  }

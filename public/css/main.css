@@ -1,0 +1,23 @@
+@import url('variables.css');
+@import url('admin.css');
+@import url('chat.css');
+@import url('components.css');
+@import url('hero.css');
+@import url('layout.css');
+@import url('navbar.css');
+@import url('order_service.css');
+@import url('orders_view.css');
+@import url('orders.css');
+@import url('profile.css');
+@import url('services.css');
+@import url('style.css');
+@import url('terms.css');
+@import url('view_profile.css');
+@import url('view_service.css');
+
+body {
+  font-family: var(--font-main);
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-gray-dark);
+}

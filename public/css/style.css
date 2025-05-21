@@ -1,0 +1,122 @@
+@import url('variables.css');
+
+body {
+  font-family: var(--font-main);
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-gray-dark);
+}
+
+header {
+  background-color: var(--color-primary);
+  padding: var(--space) var(--space-lg);
+  color: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a {
+  color: var(--color-white);
+  text-decoration: none;
+  margin-left: var(--space);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.auth-link {
+  display: inline-block;
+}
+
+.profile-link, .logout-link {
+  display: inline-block;
+}
+
+/* Estilos para a seção hero */
+.hero {
+  padding: 3rem 2rem;
+  background-color: white;
+  text-align: center;
+}
+
+/* Estilos para a seção de serviços */
+.services {
+  padding: 2rem;
+}
+
+.card-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.profile-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.profile-sidebar {
+  flex: 0 0 200px;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+}
+
+.profile-main {
+  flex: 1;
+}
+
+.profile-main h2 {
+  margin-top: 0;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Estilos para o footer */
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 1rem;
+  background: #eee;
+}

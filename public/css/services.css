@@ -1,0 +1,160 @@
+@import url('variables.css');
+
+/* FORMULÁRIO DE CRIAÇÃO/EDIÇÃO */
+.create-service-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--color-shadow);
+}
+
+.create-service-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.create-service-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-service-form label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.create-service-form input,
+.create-service-form select,
+.create-service-form textarea {
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  border: 1px solid var(--color-gray);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+}
+
+.create-service-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.create-service-form button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.8rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.create-service-form button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* MINHA LISTA DE SERVIÇOS */
+.my-services-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.category-group {
+  margin-bottom: 3rem;
+}
+
+.category-group h3 {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.service-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+/* CARD DE SERVIÇO */
+.service-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.service-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  box-shadow: var(--color-shadow);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.service-card:hover {
+  transform: scale(1.02);
+}
+
+.service-card h4 {
+  margin-top: 0;
+  color: #333;
+}
+
+.service-card .description {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.service-card img {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.service-card .btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+}
+
+.service-card .btn:hover {
+  background: #0056b3;
+}
+
+/* GRID DE SERVIÇOS (ex: homepage, pesquisa) */
+.services-grid,
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.page-title {
+  text-align: center;
+  margin: 2rem 0 1rem;
+}
+
+.no-services {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+  color: #777;
+}
