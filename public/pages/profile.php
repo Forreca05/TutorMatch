@@ -24,7 +24,7 @@ if ($user) {
     <img src="../uploads/<?php echo htmlspecialchars($profilePic); ?>" alt="Foto de Perfil" class="profile-avatar">
   </div>
   <div class="profile-main">
-    <h3><?php echo htmlspecialchars($user['name']); ?> <small>(<?php echo htmlspecialchars($user['username']); ?>)</small></h3>
+    <h3><?php echo htmlspecialchars($user['name'] ?? 'Sorry there is an error and we are not able to get your username'); ?> <small>(<?php echo htmlspecialchars($user['username'] ?? 'Coloca aqui o teu nome'); ?>)</small></h3>
     <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
     <p><strong>Função:</strong> <?php echo htmlspecialchars($user['role']); ?></p>
 

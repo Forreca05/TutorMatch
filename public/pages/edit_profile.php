@@ -25,7 +25,7 @@ $user = $stmt->fetch();
   <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user['username']); ?>"><br><br>
 
   <label for="name">Nome Completo:</label><br>
-  <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($user['name']); ?>"><br><br>
+  <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($user['name'] ?? 'Your user name'); ?>"><br><br>
 
   <button type="submit">Guardar Alterações</button>
 </form>
