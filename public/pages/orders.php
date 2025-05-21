@@ -67,10 +67,16 @@ if ($role === 'freelancer') {
               <button name="action" value="rejected">Rejeitar</button>
             </form>
           <?php elseif ($role === 'client' && $order['status'] === 'accepted'): ?>
-            <form action="order_service.php" method="GET">
+            <form action="pay_service.php" method="GET">
               <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
               <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
               <button type="submit">Proceder para o Pagamento</button>
+            </form>
+          <?php elseif ($role === 'freelancer' && $order['status'] === 'Paid'): ?>
+            <form action="../actions/complete_order.php" method="POST">
+              <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
+              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+              <button type="submit">Marcar como concluído</button>
             </form>
           <?php endif; ?>
         </div>

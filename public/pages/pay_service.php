@@ -38,15 +38,12 @@ if (!$service) {
         <p><strong>Tempo de entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
     </div>
 
-    <form action="../actions/create_order.php" method="POST">
+    <form action="../actions/process_payment.php" method="POST">
         <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
         <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
         <?php if ($order_id): ?>
             <input type="hidden" name="order_id" value="<?= $order_id ?>">
         <?php endif; ?>
-
-        <label for="details">Detalhes da Encomenda:</label>
-        <textarea name="details" id="details" rows="5" placeholder="Descreve claramente o que pretendes com este serviço..." required></textarea>
 
         <h3>Informações de Pagamento</h3>
 
