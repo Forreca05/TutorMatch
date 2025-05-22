@@ -11,36 +11,29 @@ $user_id = $_SESSION['user_id'];
 $role = $_SESSION['role'] ?? 'client';
 
 if ($role === 'freelancer') {
-  // Freelancers veem pedidos recebidos
-  $stmt = $db->prepare("SELECT o.*, s.title, u.username AS client_name
-                        FROM orders o
-                        JOIN (
-                            SELECT client_id, MAX(created_at) AS max_created
-                            FROM orders
-                            WHERE freelancer_id = ?
-                            GROUP BY client_id
-                        ) latest ON o.client_id = latest.client_id AND o.created_at = latest.max_created
-                        JOIN services s ON o.service_id = s.id
-                        JOIN users u ON o.client_id = u.id
-                        ORDER BY o.created_at DESC");
+  $stmt = $db->prepare("
+    SELECT o.*, s.title, u.username AS client_name
+      FROM orders o
+      JOIN services s  ON o.service_id    = s.id
+      JOIN users    u  ON o.client_id     = u.id
+     WHERE o.freelancer_id = ?
+     ORDER BY o.created_at DESC
+  ");
   $stmt->execute([$user_id]);
   $orders = $stmt->fetchAll();
 } else {
-  // Clientes veem suas encomendas
-  $stmt = $db->prepare("SELECT o.*, s.title, u.username AS freelancer_name
-                        FROM orders o
-                        JOIN (
-                            SELECT freelancer_id, MAX(created_at) AS max_created
-                            FROM orders
-                            WHERE client_id = ?
-                            GROUP BY freelancer_id
-                        ) latest ON o.freelancer_id = latest.freelancer_id AND o.created_at = latest.max_created
-                        JOIN services s ON o.service_id = s.id
-                        JOIN users u ON o.freelancer_id = u.id
-                        ORDER BY o.created_at DESC");
+  $stmt = $db->prepare("
+    SELECT o.*, s.title, u.username AS freelancer_name
+      FROM orders o
+      JOIN services s  ON o.service_id     = s.id
+      JOIN users    u  ON o.freelancer_id  = u.id
+     WHERE o.client_id     = ?
+     ORDER BY o.created_at DESC
+  ");
   $stmt->execute([$user_id]);
   $orders = $stmt->fetchAll();
 }
+
 ?>
 
 <?php include_once '../includes/header.php'; ?>
@@ -59,24 +52,35 @@ if ($role === 'freelancer') {
           <p><strong><?= $role === 'freelancer' ? 'Cliente' : 'Freelancer' ?>:</strong> <?= htmlspecialchars($role === 'freelancer' ? $order['client_name'] : $order['freelancer_name']) ?></p>
           <p><strong>Estado:</strong> <?= ucfirst($order['status']) ?></p>
           <p><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></p>
+          <form action="chat.php" method="GET">
+            <input type="hidden" name="user_id" value="<?= $user_id?>">
+            <input type="hidden" name="receiver_id" value="<?= $role === 'freelancer' ? 
+            $order['client_id'] : $order['freelancer_id']?>">
+            <button type="submit">Chat</button>
+          </form>
 
-          <?php if ($role === 'freelancer' && $order['status'] === 'pending'): ?>
-            <form action="../actions/update_order_status.php" method="POST" class="status-form">
+          <?php if ($role === 'freelancer' && $order['status'] === 'Pendente'): ?>
+            <form action="../actions/accept_order.php" method="POST" class="status-form">
               <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-              <button name="action" value="accepted">Aceitar</button>
-              <button name="action" value="rejected">Rejeitar</button>
+              <button type="submit" name="action" value="Aceite">Aceitar</button>
+              <button type="submit" name="action" value="Rejeitado">Rejeitar</button>
             </form>
-          <?php elseif ($role === 'client' && $order['status'] === 'accepted'): ?>
-            <form action="pay_service.php" method="GET">
-              <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
-              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-              <button type="submit">Proceder para o Pagamento</button>
-            </form>
-          <?php elseif ($role === 'freelancer' && $order['status'] === 'Paid'): ?>
+          <?php elseif ($role === 'client' && $order['status'] === 'Aceite'): ?>
+              <form action="pay_service.php" method="GET">
+                <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
+                <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                <button type="submit">Proceder para o Pagamento</button>
+              </form>
+          <?php elseif ($role === 'freelancer' && $order['status'] === 'Pago'): ?>
+              <form action="../actions/deliver_order.php" method="POST">
+                <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                <button type="submit">Entregar</button>
+              </form>
+          <?php elseif ($role === 'client' && $order['status'] === 'Entregue'): ?>
             <form action="../actions/complete_order.php" method="POST">
-              <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
               <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-              <button type="submit">Marcar como concluído</button>
+              <button type="submit" name="action" value="Aceite">Marcar como concluído</button>
+              <button type="submit" name="action" value="Rejeitado">Rejeitar</button>
             </form>
           <?php endif; ?>
         </div>

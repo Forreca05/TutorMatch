@@ -27,7 +27,7 @@ if (!$order_id || !$service_id || !$freelancer_id) {
 
 $stmt = $db->prepare("
     UPDATE orders
-       SET status = 'Paid'
+       SET status = 'Pago'
      WHERE id = ?
 ");
 $stmt->execute([$order_id]);
