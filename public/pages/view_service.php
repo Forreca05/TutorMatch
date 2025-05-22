@@ -100,7 +100,7 @@ $totalReviews = (int)$ratingData['total_reviews'];
 
         <?php foreach ($reviews as $review): ?>
             <div class="review">
-                <strong><?= htmlspecialchars($review['username']) ?></strong> - <?= $review['rating'] ?>/5
+                <strong><?= htmlspecialchars($review['username']) ?></strong> <?= $review['rating'] ?>/5
                 <p><?= nl2br(htmlspecialchars($review['comment'])) ?></p>
             </div>
         <?php endforeach; ?>
