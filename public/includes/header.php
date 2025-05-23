@@ -40,9 +40,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <nav class="navbar">
       <div class="nav-right">
         <?php if (isset($_SESSION['user_id'])): ?>
-          <a href="/index.php" class="nav-icon home-icon" title="Início">
-            <img src="/img/icons/home-white.png" alt="Início">
-          </a>
+
           <a href="/pages/profile.php" class="nav-icon profile-pic" title="Perfil">
             <img src="<?= $_SESSION['profile_pic'] ?? '/img/default.jpeg' ?>" alt="Perfil">
           </a>
