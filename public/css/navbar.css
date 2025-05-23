@@ -49,7 +49,6 @@
   transition: background-color 0.4s;
 }
 
-/* sliding circle (the knob) */
 .slider::before {
   content: "";
   position: absolute;
@@ -62,7 +61,6 @@
   transition: transform 0.4s ease;
 }
 
-/* toggle "on" state */
 .dark-mode-toggle input:checked + .slider {
   background-color: #666;
 }
@@ -171,7 +169,7 @@
   .main-header {
     display: grid;
     grid-template-rows: auto auto;
-    grid-template-columns: auto auto;
+    grid-template-columns: 80% 20%;
     align-items: center;
     gap: var(--space-sm);
   }
@@ -184,6 +182,7 @@
   }
 
   .menu-btn {
+    width: 6rem;
     grid-row: 1;
     grid-column: 2;
     display: block;
@@ -195,8 +194,7 @@
 
   .search-row {
     grid-row: 2;
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column: 1;
     margin-left: var(--space);
     margin-right: var(--space);
     width: 92%;
@@ -209,5 +207,11 @@
 
   #search-input {
     width: 100%;
+  }
+
+  .dark-mode-toggle {
+    grid-row: 2;
+    grid-column: 2;
+    margin-bottom: 1.1rem;
   }
 }
