@@ -20,23 +20,22 @@ $latestUsers = $db->query("SELECT username, email, role FROM users ORDER BY id D
 <?php include_once '../includes/header.php'; ?>
 
 <h1>Painel de Administração</h1>
-
-<div class="dashboard-stats">
-    <div class="stat">Utilizadores: <?php echo $totalUsers; ?></div>
-    <div class="stat">Admins: <?php echo $totalAdmins; ?></div>
-    <div class="stat">Serviços: <?php echo $totalServices; ?></div>
-    <div class="stat">Pedidos: <?php echo $totalOrders; ?></div>
+<div class="admin-dashboard-stats">
+    <div class="admin-stat-card">Utilizadores: <?php echo $totalUsers; ?></div>
+    <div class="admin-stat-card">Admins: <?php echo $totalAdmins; ?></div>
+    <div class="admin-stat-card">Serviços: <?php echo $totalServices; ?></div>
+    <div class="admin-stat-card">Pedidos: <?php echo $totalOrders; ?></div>
 </div>
 
-<div class="dashboard-actions">
-    <a href="manage_users.php" class="btn">Gerir Utilizadores</a>
-    <a href="manage_categories.php" class="btn">Gerir Categorias</a>
-    <a href="available_services.php" class="btn">Ver Serviços</a>
-    <a href="orders.php" class="btn">Ver Pedidos</a>
+<div class="admin-dashboard-actions">
+    <a href="manage_users.php" class="admin-action-btn">Gerir Utilizadores</a>
+    <a href="manage_categories.php" class="admin-action-btn">Gerir Categorias</a>
+    <a href="available_services.php" class="admin-action-btn">Ver Serviços</a>
+    <a href="orders.php" class="admin-action-btn">Ver Pedidos</a>
 </div>
 
 <h2>Últimos Utilizadores Registados</h2>
-<table>
+<table class="admin-users-table">
     <tr><th>Username</th><th>Email</th><th>Role</th></tr>
     <?php foreach ($latestUsers as $user): ?>
         <tr>
@@ -46,5 +45,3 @@ $latestUsers = $db->query("SELECT username, email, role FROM users ORDER BY id D
         </tr>
     <?php endforeach; ?>
 </table>
-
-<?php include_once '../includes/footer.php'; ?>

@@ -65,7 +65,6 @@ try {
             FOREIGN KEY (user_id) REFERENCES users(id)
         );
 
-
         CREATE TABLE IF NOT EXISTS categories (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL UNIQUE
