@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   height: 80vh;
+  min-width: 75%;
 }
 
 /* Cabeçalho com imagem + nome */
