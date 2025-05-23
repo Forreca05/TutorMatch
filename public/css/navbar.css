@@ -1,55 +1,98 @@
 @import url('variables.css');
 
-.navbar {
+/* ----------------- */
+/*  Base / Desktop   */
+/* ----------------- */
+
+.main-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: var(--space);
   background-color: var(--color-primary);
-  padding: 0.5rem 1rem;
+  padding: var(--space-sm) var(--space);
 }
 
-.nav-icon img {
-  width: 28px;
-  height: 28px;
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space);
+  flex-shrink: 0;
+}
+
+.logo a {
+  color: var(--color-white);
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+.menu-btn {
+  display: block;
+  font-size: 1.75rem;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.search-row {
+  flex-grow: 1;
+}
+
+#search-form {
+  position: relative;
+  max-width: 20rem;
+  width: 100%;
+}
+
+#search-input {
+  width: 100%;
+  padding: var(--space-sm) var(--space);
+  border: 0.0625rem solid var(--color-gray);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-base);
+  box-sizing: border-box;
+}
+
+.navbar {
+  flex-shrink: 0;
 }
 
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space);
   position: relative;
 }
 
-.profile-pic img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid white;
-  cursor: pointer;
+.nav-icon img {
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
-.menu-btn {
-  font-size: 26px;
-  background: none;
-  border: none;
-  color: white;
+.profile-pic img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.125rem solid var(--color-white);
   cursor: pointer;
-  margin-left: 0.5rem;
 }
 
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 50px;
+  top: 3.125rem;
   right: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: var(--color-white);
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--color-shadow);
   flex-direction: column;
-  min-width: 180px;
+  min-width: 11.25rem;
   z-index: 1000;
+  overflow: hidden;
 }
 
 .dropdown-menu.open {
@@ -58,53 +101,67 @@
 
 .dropdown-menu a {
   margin: 0;
-  padding: 0.75rem 1rem;
-  color: #333;
+  padding: var(--space);
+  color: var(--color-gray-dark);
+  font-size: var(--font-size-base);
   text-decoration: none;
-  transition: background 0.2s;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
 }
 
 .dropdown-menu a:hover {
-  background-color: #f3f3f3;
+  background-color: var(--color-gray-light);
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+/* ----------------- */
+/*    Mobile Styles  */
+/* ----------------- */
 
-#search-form {
-  position: relative;
-}
+@media (max-width: 768px) {
+  .main-header {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: var(--space-sm);
+  }
 
-#search-input {
-  padding: var(--space-sm) var(--space);
-  border: 1px solid var(--color-gray);
-  border-radius: 20px;
-  width: 250px;
-  font-size: 1rem;
-}
+  .top-bar {
+    grid-row: 1;
+    grid-column: 1;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-.suggestions-box {
-  position: absolute;
-  top: 110%;
-  left: 0;
-  right: 0;
-  background: rgb(8, 6, 6);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xs);
-  z-index: 1000;
-  max-height: 200px;
-  overflow-y: auto;
-  display: none;
-}
+  .menu-btn {
+    grid-row: 1;
+    grid-column: 2;
+    display: block;
+  }
 
-.suggestions-box div {
-  padding: var(--space-sm) var(--space);
-  cursor: pointer;
-}
+  .nav-icon {
+    display: none;
+  }
 
-.suggestions-box div:hover {
-  background-color: #b1adad;
+  .search-row {
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-left: var(--space);
+    margin-right: var(--space);
+    width: 92%;
+    margin-bottom: var(--space);
+  }
+
+  #search-form {
+    max-width: 100%;
+  }
+
+  #search-input {
+    width: 100%;
+  }
 }

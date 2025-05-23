@@ -24,7 +24,7 @@ $total_orders = $total_orders_stmt->fetchColumn();
 $total_earnings_stmt = $db->prepare("
     SELECT SUM(s.price) FROM orders o
     JOIN services s ON s.id = o.service_id
-    WHERE s.user_id = ? AND o.status = 'Entregue'
+    WHERE s.user_id = ? AND o.status = 'Concluído'
 ");
 $total_earnings_stmt->execute([$user_id]);
 $total_earnings = $total_earnings_stmt->fetchColumn();

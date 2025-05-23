@@ -1,45 +1,53 @@
 @import url('variables.css');
 
 .hero {
-  background: linear-gradient(to right, var(--color-primary), #159b5c);
+  background: linear-gradient(
+    to right,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
   color: var(--color-white);
-  padding: 4rem 2rem;
+  padding: var(--space-lg) var(--space);
   text-align: center;
+  font-family: var(--font-main);
 }
 .hero .cta-button {
   background: var(--color-white);
   color: var(--color-primary);
-  padding: 0.75rem 1.5rem;
+  padding: var(--space-sm) var(--space);
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: var(--radius-xl);
   text-decoration: none;
-  margin-top: 1rem;
+  margin-top: var(--space);
   display: inline-block;
 }
 
 .services {
-  padding: 3rem 2rem;
+  padding: var(--space-lg) var(--space);
   text-align: center;
 }
 .services h2 {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-lg);
+  font-size: var(--font-size-lg);
 }
 
 .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
+  gap: var(--space-lg);
+  justify-content: center;
+  padding: var(--space) 0;
 }
 
 .card {
   background: var(--color-white);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: var(--color-shadow);
   width: 100%;
   max-width: 300px;
   transition: transform 0.2s ease;
+  font-family: var(--font-main);
 }
 .card:hover {
   transform: translateY(-5px);
@@ -50,23 +58,23 @@
   object-fit: cover;
 }
 .card-content {
-  padding: 1rem;
+  padding: var(--space);
 }
 .card-content h3 {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
+  margin: var(--space-sm) 0;
+  font-size: var(--font-size-lg);
 }
 .price {
   color: var(--color-primary);
   font-weight: bold;
-  margin: 0.5rem 0;
+  margin: var(--space-sm) 0;
 }
 .view-btn {
   background: var(--color-primary);
   color: var(--color-white);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: var(--space-xs) var(--space);
+  border-radius: var(--radius-sm);
   display: inline-block;
-  margin-top: 0.5rem;
+  margin-top: var(--space-xs);
 }

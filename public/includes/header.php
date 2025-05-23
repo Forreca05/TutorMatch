@@ -13,42 +13,51 @@ if (session_status() === PHP_SESSION_NONE) {
   <link rel="stylesheet" href="../css/navbar.css" />
 </head>
 <body>
-  <header>
-  <div class="header-left">
-    <h1><a href="/index.php">TutorMatch</a></h1>
+  <header class="main-header">
 
-    <form id="search-form" action="/pages/search.php" method="GET" autocomplete="off">
-      <input type="text" id="search-input" name="q" placeholder="Procurar serviços...">
-      <div id="suggestions-box" class="suggestions-box"></div>
-    </form>
-  </div>
+    <!-- top bar: logo -->
+    <div class="top-bar">
+      <h1 class="logo">
+        <a href="/index.php">TutorMatch</a>
+      </h1>
+    </div>
 
-  <nav class="navbar">
-    <div class="nav-right">    
+    <!-- search row -->
+    <div class="search-row">
+      <form id="search-form" action="/pages/search.php" method="GET" autocomplete="off">
+        <input type="text" id="search-input" name="q" placeholder="Procurar serviços...">
+        <div id="suggestions-box" class="suggestions-box"></div>
+      </form>
+    </div>
+
+    <!-- desktop-only nav icons + dropdown -->
+    <nav class="navbar">
+      <div class="nav-right">
         <?php if (isset($_SESSION['user_id'])): ?>
           <a href="/index.php" class="nav-icon home-icon" title="Início">
             <img src="/img/icons/home-white.png" alt="Início">
           </a>
-          <a href="/pages/profile.php" class="profile-pic">
+          <a href="/pages/profile.php" class="nav-icon profile-pic" title="Perfil">
             <img src="<?= $_SESSION['profile_pic'] ?? '/img/default.jpeg' ?>" alt="Perfil">
           </a>
           <a href="/pages/conversations.php" class="nav-icon chat-icon" title="Mensagens">
             <img src="/img/icons/white-balloon.png" alt="Mensagens">
           </a>
-
-          <button id="menu-toggle" class="menu-btn">&#9776;</button>
+          <button id="menu-toggle" class="menu-btn" aria-label="Toggle menu">
+            &#9776;
+          </button>
 
           <div id="dropdown-menu" class="dropdown-menu">
+            <a href="/pages/profile.php">Perfil</a>
+            
             <?php if ($_SESSION['role'] == 'freelancer'): ?>
               <a href="/actions/switch_role.php">Mudar para Cliente</a>
               <a href="/pages/create_service.php">Criar Serviço</a>
               <a href="/pages/freelancer_dashboard.php">Painel</a>
-
             <?php elseif ($_SESSION['role'] == 'client'): ?>
               <a href="/actions/switch_role.php">Mudar para Freelancer</a>
               <a href="/pages/available_services.php">Serviços</a>
               <a href="/pages/orders.php">Minhas Encomendas</a>
-
             <?php elseif ($_SESSION['role'] == 'admin'): ?>
               <a href="/pages/admin_dashboard.php">Painel</a>
             <?php endif; ?>
@@ -57,13 +66,17 @@ if (session_status() === PHP_SESSION_NONE) {
             <a href="/pages/logout.php">Sair</a>
           </div>
         <?php else: ?>
-          <a href="/pages/login.php">Entrar</a>
-          <a href="/pages/register.php">Registrar</a>
+          <button id="menu-toggle" class="menu-btn" aria-label="Toggle menu">
+            &#9776;
+          </button>
+          <div id="dropdown-menu" class="dropdown-menu">
+            <a href="/pages/login.php">Entrar</a>   
+            <a href="/pages/register.php">Registrar</a>
+          </div>
         <?php endif; ?>
       </div>
     </nav>
+
   </header>
 
-<script src="/js/navbar.js"></script>
-
-
+  <script src="/js/navbar.js"></script>

@@ -40,13 +40,6 @@ nav {
   display: inline-block;
 }
 
-/* Estilos para a seção hero */
-.hero {
-  padding: 3rem 2rem;
-  background-color: white;
-  text-align: center;
-}
-
 /* Estilos para a seção de serviços */
 .services {
   padding: 2rem;
@@ -78,10 +71,6 @@ nav {
   padding: 2rem;
 }
 
-.profile-sidebar {
-  flex: 0 0 200px;
-  text-align: center;
-}
 
 .profile-avatar {
   width: 150px;

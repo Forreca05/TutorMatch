@@ -1,28 +1,53 @@
 @import url('variables.css');
 
 .profile-container {
-    display: flex;
-    gap: var(--spacing-large);
-    padding: var(--spacing-large);
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+    padding: var(--space);
+    gap: var(--space);
   }
-  
+
   .profile-sidebar {
-    flex: 0 0 200px;
+    display: block;
+    flex: none;
     text-align: center;
   }
-  
+
   .profile-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: var(--border-radius-circle);
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
     object-fit: cover;
-    border: var(--border-width) solid var(--color-primary);
+    border: 2px solid var(--color-primary);
   }
-  
+
   .profile-main {
-    flex: 1;
+    width: 100%;
   }
-  
-  .profile-main h2 {
-    margin-top: 0;
+
+  .profile-main h3 {
+    font-size: var(--font-size-base);
+    text-align: center;
+    margin-bottom: var(--space-sm);
   }
+
+  .profile-main p {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .profile-main .btn {
+    display: block;
+    text-align: center;
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm) var(--space);
+    border-radius: var(--radius-sm);
+  }
+}
