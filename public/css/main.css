@@ -15,10 +15,18 @@
 @import url('view_profile.css');
 @import url('view_service.css');
 
+
 body {
   font-family: var(--font-main);
-  font-
   margin: 0;
   background-color: var(--color-background);
   color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+footer {
+  margin-top: auto;
 }
