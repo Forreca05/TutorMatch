@@ -30,6 +30,12 @@ if (session_status() === PHP_SESSION_NONE) {
       </form>
     </div>
 
+    <label class="dark-mode-toggle">
+      <input type="checkbox" id="darkModeSwitch" />
+      <span class="slider"></span>
+    </label>
+
+
     <!-- desktop-only nav icons + dropdown -->
     <nav class="navbar">
       <div class="nav-right">
@@ -79,4 +85,5 @@ if (session_status() === PHP_SESSION_NONE) {
 
   </header>
 
-  <script src="/js/navbar.js"></script>
+<script src="/js/darkmode.js"></script>
+<script src="/js/navbar.js"></script>

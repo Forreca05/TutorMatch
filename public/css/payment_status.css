@@ -13,7 +13,7 @@
   padding:40px 60px;
   border-radius:var(--radius-xl);
   text-align:center;
-  color:var(--color-gray-dark);
+  color:var(--color-text);
   width:90%; max-width:400px;
 }
 .spinner{

@@ -4,7 +4,7 @@
   max-width: 600px;
   margin: var(--space-lg) auto;
   padding: var(--space-lg);
-  background: var(--color-white);
+  background: var(--color-background);
   border-radius: var(--radius);
   box-shadow: var(--color-shadow);
 }

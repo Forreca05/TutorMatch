@@ -27,7 +27,7 @@
 }
 
 .card {
-  background: white;
+  background: var(--color-background);
   border-radius: 10px;
   padding: 1rem;
   width: 250px;
@@ -54,7 +54,7 @@
 }
 
 .modal-content {
-  background-color: var(--color-white);
+  background-color: var(--color-background-secondary);
   margin: 10% auto;
   padding: var(--space);
   border-radius: var(--radius);

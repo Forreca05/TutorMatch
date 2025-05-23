@@ -4,7 +4,7 @@
   max-width: 400px;
   margin: var(--space-lg) auto;
   padding: var(--space-lg);
-  background-color: var(--color-white);
+  background-color: var(--color-background-secondary);
   border-radius: var(--radius-lg);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
@@ -13,11 +13,13 @@
 
 .login-container h2 {
   margin-bottom: var(--space);
-  color: var(--color-gray-dark);
+  color: var(--color-text);
 }
 
 .login-form input[type="text"],
 .login-form input[type="password"] {
+  color: var(--color-text);
+  background-color: var(--color-background-tertiary);
   width: 100%;
   padding: var(--space);
   margin: var(--space-sm) 0;

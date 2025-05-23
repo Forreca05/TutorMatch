@@ -4,7 +4,7 @@ body {
   font-family: var(--font-main);
   margin: 0;
   background-color: var(--color-background);
-  color: var(--color-gray-dark);
+  color: var(--color-text);
 }
 
 header {
@@ -52,7 +52,7 @@ nav {
 }
 
 .card {
-  background: white;
+  background: var(--color-background-secondary);
   border-radius: 10px;
   padding: 1rem;
   width: 250px;
@@ -70,7 +70,6 @@ nav {
   gap: 2rem;
   padding: 2rem;
 }
-
 
 .profile-avatar {
   width: 150px;
@@ -107,5 +106,5 @@ footer {
   margin-top: 3rem;
   text-align: center;
   padding: 1rem;
-  background: #eee;
+  background: var(--color-background-secondary);
 }

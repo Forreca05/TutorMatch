@@ -4,7 +4,7 @@
   max-width: 600px;
   margin: var(--space-lg) auto;
   padding: var(--space);
-  background-color: var(--color-gray-light);
+  background-color: var(--color-background-secondary);
   border-radius: var(--radius-lg);
   box-shadow: var(--color-shadow);
   font-family: var(--font-main);
@@ -29,6 +29,8 @@
 
 .order-container input,
 .order-container textarea {
+  color: var(--color-text);
+  background-color: var(--color-background-tertiary);
   width: 100%;
   padding: var(--space);
   margin-top: var(--space-xs);

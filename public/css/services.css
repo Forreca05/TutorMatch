@@ -5,7 +5,7 @@
   max-width: 600px;
   margin: 3rem auto;
   padding: 2rem;
-  background: var(--color-white);
+  background: var(--color-background);
   border-radius: var(--radius);
   box-shadow: var(--color-shadow);
 }
@@ -88,7 +88,7 @@
 }
 
 .service-card {
-  background: var(--color-white);
+  background: var(--color-background-secondary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: 1rem;

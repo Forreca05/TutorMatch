@@ -4,14 +4,14 @@
   max-width: 1000px;
   margin: var(--space-lg) auto;
   padding: var(--space);
-  background: var(--color-white);
+  background: var(--color-background);
   border-radius: var(--radius);
   box-shadow: var(--color-shadow);
 }
 
 .search-container h2 {
   text-align: center;
-  color: var(--color-gray-dark);
+  color: var(--color-text);
 }
 
 .search-form {
