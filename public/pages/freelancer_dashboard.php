@@ -30,7 +30,8 @@ $total_earnings_stmt->execute([$user_id]);
 $total_earnings = $total_earnings_stmt->fetchColumn();
 $total_earnings = $total_earnings !== null ? $total_earnings : 0;
 
-include '../includes/header.php';
+require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader();
 ?>
 <link rel="stylesheet" href="/css/freelancer_dashboard.css">
 
@@ -58,4 +59,4 @@ include '../includes/header.php';
   </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

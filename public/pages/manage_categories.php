@@ -27,7 +27,8 @@ $stmt = $db->query("SELECT * FROM categories ORDER BY name ASC");
 $categories = $stmt->fetchAll();
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 
 <link rel="stylesheet" href="../css/admin.css">
 
@@ -67,4 +68,4 @@ $categories = $stmt->fetchAll();
 
 <script src="../js/messages.js"></script>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

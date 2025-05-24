@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
-include '../includes/header.php';
+require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader();
 
 $query = $_GET['q'] ?? '';
 $min_price = $_GET['min_price'] ?? '';
@@ -78,4 +79,4 @@ $results = $stmt->fetchAll();
 
 <script src="../js/ajaxsearch.js"></script>
 
-<?php include '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
-include_once '../includes/header.php';
+require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader();
 
 $current_user_id = $_SESSION['user_id'] ?? null;
 
@@ -43,4 +44,4 @@ $services = $stmt->fetchAll();
   <?php endif; ?>
 </div>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

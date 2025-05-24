@@ -19,7 +19,8 @@ $stmt = $db->prepare("
 $stmt->execute([$ownerId]);
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-include_once '../includes/header.php';
+require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader();
 ?>
 <link rel="stylesheet" href="/css/orders_view.css">
 
@@ -50,4 +51,4 @@ include_once '../includes/header.php';
   <?php endif; ?>
 </div>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

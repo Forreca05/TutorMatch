@@ -32,7 +32,8 @@ $totalReviews = (int)$ratingData['total_reviews'];
 $order_id = null;
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 <link rel="stylesheet" href="../css/view_service.css">
 <link rel="stylesheet" href="../css/register.css">
 
@@ -171,4 +172,4 @@ $order_id = null;
 <script src="../js/order.js"></script>
 <script src="../js/messages.js"></script>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

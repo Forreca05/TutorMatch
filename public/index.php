@@ -1,6 +1,7 @@
 <?php
 session_start();
-include_once('includes/header.php');
+require_once(__DIR__ . '/templates/common.tpl.php');
+drawHeader();
 require_once '../private/database/db.php'; // Ficheiro que liga à DB (PDO em $db)
 
 $current_user_id = $_SESSION['user_id'] ?? null;
@@ -42,4 +43,4 @@ $current_user_id = $_SESSION['user_id'] ?? null;
   </div>
 </section>
 
-<?php include_once('includes/footer.php'); ?>
+<?php drawFooter(); ?>

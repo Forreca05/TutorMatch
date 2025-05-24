@@ -36,7 +36,8 @@ if ($role === 'freelancer') {
 
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 <link rel="stylesheet" href="../css/orders.css">
 
 <div class="orders-container">
@@ -89,4 +90,4 @@ if ($role === 'freelancer') {
   <?php endif; ?>
 </div>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>
