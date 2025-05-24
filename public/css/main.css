@@ -14,7 +14,7 @@
 @import url('terms.css');
 @import url('view_profile.css');
 @import url('view_service.css');
-
+@import url('edit_profile.css');
 
 body {
   font-family: var(--font-main);

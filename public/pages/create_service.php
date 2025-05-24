@@ -42,7 +42,7 @@ $categories = $stmt->fetchAll();
     <input type="number" name="delivery_time" id="delivery_time" placeholder="Dias para entrega" required>
 
     <label for="image">Imagem (opcional):</label>
-    <input type="file" name="image" id="image" accept="image/*">
+    <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png">
 
     <button type="submit">Criar Serviço</button>
   </form>
