@@ -1,0 +1,12 @@
+.profile-form {
+    display: grid;
+    grid-template-columns: min-content min-content;
+    justify-items: center; 
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
