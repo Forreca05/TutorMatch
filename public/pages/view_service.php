@@ -147,7 +147,7 @@ $order_id = null;
             <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
             <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
 
-            <?php if ($order_id): ?>
+            <?php if($order_id): ?>
             <input type="hidden" name="order_id" value="<?= $order_id ?>">
             <?php endif; ?>
 
