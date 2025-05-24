@@ -28,6 +28,8 @@ $ratingData = $rating_stmt->fetch();
 
 $averageRating = $ratingData['avg_rating'] !== null ? round($ratingData['avg_rating'], 1) : 0;
 $totalReviews = (int)$ratingData['total_reviews'];
+
+$order_id = null;
 ?>
 
 <?php include_once '../includes/header.php'; ?>
