@@ -12,3 +12,4 @@ function sendUnauthorized() {
     echo json_encode(['error' => 'Unauthorized']);
     exit;
 }
+?>

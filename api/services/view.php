@@ -1,5 +1,5 @@
 <?php
-require_once '../../database/db.php';
+require_once '../../private/database/db.php';
 require_once '../auth.php';
 
 header('Content-Type: application/json');

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../../private/database/db.php';
 include '../includes/header.php';
 
@@ -45,8 +46,8 @@ $results = $stmt->fetchAll();
 <div class="search-container">
   <h2>Pesquisar Serviços</h2>
   <form class="search-form" method="GET" action="search.php">
-    <input type="text" name="q" placeholder="Pesquisar..." value="<?= htmlspecialchars($query) ?>">
-    <select name="category">
+    <input id="search-input2" type="text" name="q" placeholder="Pesquisar..." value="<?= htmlspecialchars($query) ?>">
+    <select id="category-select" name="category">
       <option value="">Todas as categorias</option>
       <?php foreach ($categories as $cat): ?>
         <option value="<?= htmlspecialchars($cat['id']) ?>" <?= $category == $cat['id'] ? 'selected' : '' ?>>
@@ -54,8 +55,8 @@ $results = $stmt->fetchAll();
         </option>
       <?php endforeach; ?>
     </select>
-    <input type="number" name="min_price" placeholder="Preço mín." value="<?= htmlspecialchars($min_price) ?>">
-    <input type="number" name="max_price" placeholder="Preço máx." value="<?= htmlspecialchars($max_price) ?>">
+    <input type="number" id="min_price" name="min_price" placeholder="Preço mín." value="<?= htmlspecialchars($min_price) ?>">
+    <input type="number" id="max_price" name="max_price" placeholder="Preço máx." value="<?= htmlspecialchars($max_price) ?>">
     <button type="submit">Filtrar</button>
   </form>
 
@@ -74,5 +75,7 @@ $results = $stmt->fetchAll();
     <?php endif; ?>
   </div>
 </div>
+
+<script src="../js/ajaxsearch.js"></script>
 
 <?php include '../includes/footer.php'; ?>

@@ -1,6 +1,6 @@
 meter no readme funcionalidades extra que nos lembramos que tenhamos feito(tipo freelancer dashboard, not sure se esta a funcionar bem?)
 
-fazer cartao bancarioi ao pagar ser a serio tipo so funcionar se tiver 8 digitos e tal, o mesmo para a password no login e outras coisas parecidas
+fazer cartao bancario ao pagar ser a serio tipo so funcionar se tiver 8 digitos e tal, o mesmo para a password no login e outras coisas parecidas
 
 No admin_dasboard:
 aparecer no role: client/freelancer, em vez de so um dos 2 e nao aparecer eliminar em outros admin
@@ -12,6 +12,6 @@ melhorar barra de pesquisa
 
 improve api
 
-acrescentar mais funcionalidades se der tipo multicurrency system
+acrescentar mais funcionalidades se der tipo multicurrency system (done)
 
 Meter um video em vez de imagem num serviço em algum freelancer
