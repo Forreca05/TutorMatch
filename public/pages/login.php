@@ -1,5 +1,8 @@
-<?php require_once(__DIR__ . '/../templates/common.tpl.php');
-drawHeader(); ?>
+<?php
+require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader();
+?>
+
 <link rel="stylesheet" href="../css/login.css">
 
 <div class="login-container">
@@ -19,4 +22,5 @@ drawHeader(); ?>
 </div>
 
 <script src="../js/messages.js"></script>
+
 <?php drawFooter(); ?>
