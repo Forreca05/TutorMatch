@@ -26,6 +26,7 @@ $categories = $stmt->fetchAll();
 
     <label for="category">Categoria:</label>
     <select name="category_id" id="category" required>
+      <option value="" disabled selected>Select a category</option>
       <?php foreach ($categories as $cat): ?>
         <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
       <?php endforeach; ?>

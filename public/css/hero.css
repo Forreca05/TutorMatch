@@ -12,7 +12,7 @@
   font-family: var(--font-main);
 }
 .hero .cta-button {
-  background: var(--color-background);
+  background: var(--color-background-secondary);
   color: var(--color-primary);
   padding: var(--space-sm) var(--space);
   font-weight: bold;

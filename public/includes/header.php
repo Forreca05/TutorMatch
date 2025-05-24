@@ -60,7 +60,7 @@ if (session_status() === PHP_SESSION_NONE) {
               <a href="/pages/freelancer_dashboard.php">Painel</a>
             <?php elseif ($_SESSION['role'] == 'client'): ?>
               <a href="/actions/switch_role.php">Mudar para Freelancer</a>
-              <a href="/pages/available_services.php">Serviços</a>
+              <a href="/pages/search.php">Serviços</a>
               <a href="/pages/orders.php">Minhas Encomendas</a>
             <?php elseif ($_SESSION['role'] == 'admin'): ?>
               <a href="/pages/admin_dashboard.php">Painel</a>

@@ -34,8 +34,16 @@ if (!$service) {
     <div class="service-summary">
         <p><strong>Serviço:</strong> <?= htmlspecialchars($service['title']) ?></p>
         <p><strong>Prestador:</strong> <?= htmlspecialchars($service['freelancer_name']) ?></p>
-        <p><strong>Preço:</strong> €<?= number_format($service['price'], 2, ',', '.') ?></p>
+        <p><strong>Preço:</strong> <span id ="preco" data-eur="<?= $service['price'] ?>"><?= number_format($service['price'], 2, '.', ',') ?></span></p>
         <p><strong>Tempo de entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
+        <label for="currency"><strong>Moeda:</strong></label>
+        <select id="currency" name="currency">
+            <option value="EUR" selected>EUR</option>
+            <option value="USD">USD</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="AUD">AUD</option>
+        </select>
     </div>
 
     <form action="../actions/process_payment.php" method="POST">
@@ -67,5 +75,7 @@ if (!$service) {
         <button type="submit" class="btn">Confirmar e Pagar</button>
     </form>
 </section>
+
+<script src="../js/currency.js"></script>
 
 <?php include_once '../includes/footer.php'; ?>
