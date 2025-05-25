@@ -39,7 +39,9 @@ Site:
     First we need to do "cd public" and then we can :   php -S localhost:9000
 
 ## Credentials
-Admin:
+Admin: 
+-Username:12345
+-Password: 12345
 
 User/Freelancer:
 -Username:JoseRic
