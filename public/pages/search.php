@@ -78,37 +78,48 @@ $stmt->execute($params);
 $results = $stmt->fetchAll();
 ?>
 
-<link rel="stylesheet" href="/css/search.css">
-
-<div class="search-container">
-  <h2>Pesquisar Serviços</h2>
-  <form class="search-form" method="GET" action="search.php">
-    <input id="search-input2" type="text" name="q" placeholder="Pesquisar..." value="<?= htmlspecialchars($query) ?>">
-    <select id="category-select" name="category">
-      <option value="">Todas as categorias</option>
-      <?php foreach ($categories as $cat): ?>
-        <option value="<?= htmlspecialchars($cat['id']) ?>" <?= $category == $cat['id'] ? 'selected' : '' ?>>
-          <?= ucfirst(htmlspecialchars($cat['name'])) ?>
-        </option>
-      <?php endforeach; ?>
-    </select>
-    <input type="number" id="min_price" name="min_price" placeholder="Preço mín." value="<?= htmlspecialchars($min_price) ?>">
-    <input type="number" id="max_price" name="max_price" placeholder="Preço máx." value="<?= htmlspecialchars($max_price) ?>">
-    <button type="submit">Filtrar</button>
+<div class="container">
+  <?php drawPageHeader('Pesquisar Serviços', 'Encontre o serviço perfeito para si'); ?>
+  
+  <form class="form" method="GET" action="search.php">
+    <div class="form-row">
+      <?php drawFormField('text', 'q', 'Pesquisar', $query, ['placeholder' => 'Pesquisar...']); ?>
+      
+      <?php 
+      $categoryOptions = '<option value="">Todas as categorias</option>';
+      foreach ($categories as $cat) {
+        $selected = $category == $cat['id'] ? 'selected' : '';
+        $categoryOptions .= '<option value="' . htmlspecialchars($cat['id']) . '" ' . $selected . '>' . 
+                           ucfirst(htmlspecialchars($cat['name'])) . '</option>';
+      }
+      drawFormField('select', 'category', 'Categoria', $categoryOptions);
+      ?>
+    </div>
+    
+    <div class="form-row">
+      <?php drawFormField('number', 'min_price', 'Preço Mínimo', $min_price, ['placeholder' => 'Preço mín.']); ?>
+      <?php drawFormField('number', 'max_price', 'Preço Máximo', $max_price, ['placeholder' => 'Preço máx.']); ?>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Filtrar</button>
   </form>
 
-  <div class="results">
+  <div class="results mt-lg">
     <?php if ($results): ?>
-      <?php foreach ($results as $service): ?>
-        <div class="service">
-          <h3><?= htmlspecialchars($service['title']) ?></h3>
-          <p><?= htmlspecialchars($service['description']) ?></p>
-          <p><strong>Preço:</strong> €<?= number_format($service['price'], 2) ?></p>
-          <a href="/pages/view_service.php?id=<?= $service['id'] ?>">Ver mais »</a>
-        </div>
-      <?php endforeach; ?>
+      <div class="card-list">
+        <?php foreach ($results as $service): ?>
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title"><?= htmlspecialchars($service['title']) ?></h3>
+              <p><?= htmlspecialchars($service['description']) ?></p>
+              <p class="text-primary font-bold">€<?= number_format($service['price'], 2) ?></p>
+              <a href="/pages/view_service.php?id=<?= $service['id'] ?>" class="btn btn-primary">Ver mais</a>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
     <?php else: ?>
-      <p>Nenhum serviço encontrado com os filtros aplicados.</p>
+      <?php drawEmptyState('Nenhum serviço encontrado com os filtros aplicados.', 'Ver Todos os Serviços', '/pages/search.php'); ?>
     <?php endif; ?>
   </div>
 </div>

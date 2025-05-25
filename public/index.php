@@ -10,9 +10,9 @@ $current_user_id = $_SESSION['user_id'] ?? null;
 
 <section class="hero">
   <div class="hero-content">
-    <h1>Encontra o teu explicador ideal</h1>
+    <h1 style="color: white">Encontra o teu explicador ideal</h1>
     <p>Serviços de apoio escolar, explicações, revisões e muito mais.</p>
-    <a href="pages/search.php" class="cta-button">Explorar Serviços</a>
+    <a href="pages/search.php" class="btn btn-primary btn-large">Explorar Serviços</a>
   </div>
 </section>
 

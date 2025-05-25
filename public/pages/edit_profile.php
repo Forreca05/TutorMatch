@@ -22,26 +22,34 @@ if ($user) {
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
 
-<div class="profile-container">
-  <form action="../actions/action_updateprofile.php" method="POST" enctype="multipart/form-data" class="profile-form">
-    <div class="profile-image-section">
-      <?php drawProfilePicture("../uploads/" . $profilePic, 'Foto de Perfil'); ?>
-      <label for="profile_pic" class="profile-label">Nova Foto de Perfil</label>
-      <input type="file" name="profile_pic" id="profile_pic" accept=".jpg,.jpeg,.png">
+<div class="container-md">
+  <h2 class="text-center">Editar Perfil</h2>
+  
+  <form action="../actions/action_updateprofile.php" method="POST" enctype="multipart/form-data" class="form">
+    <div class="form-row">
+      <div class="text-center">
+        <?php drawProfilePicture("../uploads/" . $profilePic, 'Foto de Perfil'); ?>
+        <label for="profile_pic" class="form-label mt">Nova Foto de Perfil</label>
+        <input type="file" name="profile_pic" id="profile_pic" accept=".jpg,.jpeg,.png" class="form-input">
+      </div>
     </div>
 
-    <div class="profile-fields">
-      <label for="username" class="profile-label">Nome de Utilizador</label>
-      <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user['username']); ?>">
-
-      <label for="name" class="profile-label">Nome Completo</label>
-      <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($user['name'] ?? ''); ?>">
-
-      <label for="email" class="profile-label">Email</label>
-      <input type="text" name="email" id="email" value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>">
-
-      <button type="submit" class="btn">Guardar Alterações</button>
+    <div class="form-group">
+      <label for="username" class="form-label">Nome de Utilizador</label>
+      <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user['username']); ?>" class="form-input">
     </div>
+
+    <div class="form-group">
+      <label for="name" class="form-label">Nome Completo</label>
+      <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($user['name'] ?? ''); ?>" class="form-input">
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input type="text" name="email" id="email" value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>" class="form-input">
+    </div>
+
+    <button type="submit" class="btn btn-full">Guardar Alterações</button>
   </form>
 </div>
 

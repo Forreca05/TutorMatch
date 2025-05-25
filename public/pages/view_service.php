@@ -34,39 +34,67 @@ $order_id = null;
 
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
-<link rel="stylesheet" href="../css/view_service.css">
-<link rel="stylesheet" href="../css/register.css">
 
-<div class="view-service-container">
-  <h2><?= htmlspecialchars($service['title']) ?></h2>
-  <p class="category"><strong>Categoria:</strong> <?= htmlspecialchars($service['category_name']) ?></p>
-  <p class="freelancer"><strong>Prestador:</strong> <?= htmlspecialchars($service['username']) ?></p>
-  <p class="description"><?= nl2br(htmlspecialchars($service['description'])) ?></p>
-  <p><strong>Preço:</strong> <?= number_format($service['price'], 2, ',', '.') ?>€</p>
-  <p><strong>Tempo de entrega:</strong> <?= htmlspecialchars($service['delivery_time']) ?> dias</p>
-
-  <?php if (!empty($service['image_path'])): ?>
-    <div class="image-wrapper">
-      <img src="<?= htmlspecialchars($service['image_path']) ?>" alt="Imagem do serviço">
+<div class="container">
+  <?php drawPageHeader($service['title'], 'Detalhes do serviço'); ?>
+  
+  <div class="service-details bg-secondary rounded p-lg mb-lg">
+    <div class="mb">
+      <span class="text-muted">Categoria:</span> 
+      <span class="text-primary font-bold"><?= htmlspecialchars($service['category_name']) ?></span>
     </div>
-  <?php endif; ?>
+    
+    <div class="mb">
+      <span class="text-muted">Prestador:</span> 
+      <a href="/pages/view_profile.php?id=<?= $service['freelancer_id'] ?>" class="text-primary font-bold">
+        <?= htmlspecialchars($service['username']) ?>
+      </a>
+    </div>
+    
+    <div class="mb-lg">
+      <p class="text-lg"><?= nl2br(htmlspecialchars($service['description'])) ?></p>
+    </div>
+    
+    <div class="d-flex justify-between align-center mb">
+      <div>
+        <span class="text-lg font-bold text-primary">€<?= number_format($service['price'], 2, ',', '.') ?></span>
+      </div>
+      <div class="text-sm text-muted">
+        Entrega em <?= htmlspecialchars($service['delivery_time']) ?> dias
+      </div>
+    </div>
 
-  <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
-    <a href="#" id="order-link" class="order-button" style="margin-top: 10px; display: inline-block;">Encomendar Serviço</a>
-  <?php endif; ?>
+    <?php if (!empty($service['image_path'])): ?>
+      <div class="mb-lg text-center">
+        <img src="<?= htmlspecialchars($service['image_path']) ?>" 
+             alt="Imagem do serviço" 
+             class="w-full rounded shadow" 
+             style="max-height: 400px; object-fit: cover;">
+      </div>
+    <?php endif; ?>
 
-  <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $service['freelancer_id']): ?>
-    <a href="../pages/edit_service.php?id=<?= $service_id ?>" class="btn" style="margin-top: 10px; display: inline-block;">Editar Serviço</a>
-    <a href="../actions/delete_service.php?id=<?= $service_id ?>" class="btn" style="margin-top: 10px; display: inline-block;">Apagar Serviço</a>
-  <?php endif; ?>
+    <div class="d-flex gap justify-center mt-lg">
+      <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
+        <button id="order-link" class="btn btn-primary">Encomendar Serviço</button>
+      <?php endif; ?>
 
-  <div class="review-section">
-    <h3>Avaliações</h3>
+      <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $service['freelancer_id']): ?>
+        <a href="../pages/edit_service.php?id=<?= $service_id ?>" class="btn btn-success">Editar Serviço</a>
+        <a href="../actions/delete_service.php?id=<?= $service_id ?>" 
+           class="btn btn-danger" 
+           onclick="return confirm('Tem certeza que deseja apagar este serviço?')">Apagar Serviço</a>
+      <?php endif; ?>
+    </div>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="reviews-section bg-secondary rounded p-lg mt-lg">
+    <h3 class="mb-lg text-center">Avaliações</h3>
 
     <?php if (isset($_GET['review']) && $_GET['review'] === 'success'): ?>
-      <p class="flash-message success">Avaliação submetida com sucesso!</p>
+      <div class="message message-success">Avaliação submetida com sucesso!</div>
     <?php elseif (isset($_GET['review']) && $_GET['review'] === 'error'): ?>
-      <p class="flash-message error">Erro ao submeter avaliação.</p>
+      <div class="message message-error">Erro ao submeter avaliação.</div>
     <?php endif; ?>
 
     <?php
@@ -81,91 +109,93 @@ drawHeader(); ?>
     $reviews = $review_stmt->fetchAll();
     ?>
 
-    <?php if (count($reviews) === 0): ?>
-      <p>Nenhuma avaliação ainda.</p>
-    <?php endif; ?>
-
     <?php if ($totalReviews > 0): ?>
-      <div class="average-rating">
-        <div class="stars">
+      <div class="mb-lg text-center">
+        <div class="stars mb-sm">
           <?php
           $filled = floor($averageRating);
           $half = ($averageRating - $filled >= 0.5) ? 1 : 0;
           $empty = 5 - $filled - $half;
 
-          for ($i = 0; $i < $filled; $i++) echo '<span class="star full">★</span>';
-          if ($half) echo '<span class="star half">★</span>';
-          for ($i = 0; $i < $empty; $i++) echo '<span class="star empty">★</span>';
+          for ($i = 0; $i < $filled; $i++) echo '<span class="text-primary">★</span>';
+          if ($half) echo '<span class="text-primary">★</span>';
+          for ($i = 0; $i < $empty; $i++) echo '<span class="text-muted">★</span>';
           ?>
         </div>
-        <p><?= $averageRating ?> em 5 (<?= $totalReviews ?> avaliação<?= $totalReviews > 1 ? 'es' : '' ?>)</p>
+        <p class="text-lg font-bold"><?= $averageRating ?> em 5 <span class="text-muted">(<?= $totalReviews ?> avaliação<?= $totalReviews > 1 ? 'es' : '' ?>)</span></p>
       </div>
     <?php endif; ?>
 
-    <?php foreach ($reviews as $review): ?>
-      <div class="review">
-        <strong><?= htmlspecialchars($review['username']) ?></strong> <?= $review['rating'] ?>/5
-        <p><?= nl2br(htmlspecialchars($review['comment'])) ?></p>
+    <?php if (empty($reviews)): ?>
+      <?php drawEmptyState('Nenhuma avaliação ainda.', 'Seja o primeiro a avaliar'); ?>
+    <?php else: ?>
+      <div class="reviews-list">
+        <?php foreach ($reviews as $review): ?>
+          <div class="review-item bg-tertiary rounded p mb">
+            <div class="d-flex justify-between align-center mb-sm">
+              <strong class="text-primary"><?= htmlspecialchars($review['username']) ?></strong>
+              <span class="text-lg font-bold"><?= $review['rating'] ?>/5 ⭐</span>
+            </div>
+            <p><?= nl2br(htmlspecialchars($review['comment'])) ?></p>
+          </div>
+        <?php endforeach; ?>
       </div>
-    <?php endforeach; ?>
-
+    <?php endif; ?>
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
-      <form action="../actions/submit_review.php" method="POST" class="review-form">
-        <h4>Deixe uma avaliação:</h4>
-        <input type="hidden" name="service_id" value="<?= $service_id ?>">
-
-        <label for="rating">Classificação:</label>
-        <select name="rating" id="rating" required>
-          <option value="">Escolha...</option>
-          <?php for ($i = 1; $i <= 5; $i++): ?>
-            <option value="<?= $i ?>"><?= $i ?></option>
-          <?php endfor; ?>
-        </select>
-
-        <label for="comment">Comentário:</label>
-        <textarea name="comment" id="comment" required></textarea>
-        <button type="submit">Submeter Avaliação</button>
-      </form>
+      <div class="review-form-section bg-tertiary rounded p-lg mt-lg">
+        <h4 class="mb">Deixe uma avaliação</h4>
+        <form action="../actions/submit_review.php" method="POST" class="form">
+          <input type="hidden" name="service_id" value="<?= $service_id ?>">
+          
+          <?php 
+          $ratingOptions = '<option value="">Escolha...</option>';
+          for ($i = 1; $i <= 5; $i++) {
+            $ratingOptions .= '<option value="' . $i . '">' . $i . ' estrela' . ($i > 1 ? 's' : '') . '</option>';
+          }
+          drawFormField('select', 'rating', 'Classificação', $ratingOptions, [], true);
+          drawFormField('textarea', 'comment', 'Comentário', '', ['rows' => '4', 'placeholder' => 'Partilhe a sua experiência...'], true);
+          ?>
+          
+          <button type="submit" class="btn btn-primary">Submeter Avaliação</button>
+        </form>
+      </div>
     <?php endif; ?>
   </div>
+</div>
 
-  <!-- Encomendar -->
-  <div id="order-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
+<!-- Modal para Encomendar -->
+<div id="order-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
 
-      <section class="order-container">
-        <h2>Encomendar Serviço</h2>
+    <div class="order-container">
+      <?php drawPageHeader('Encomendar Serviço', 'Confirme os detalhes da sua encomenda'); ?>
 
-        <div class="service-summary">
-          <p><strong>Serviço:</strong> <?= htmlspecialchars($service['title']) ?></p>
-          <p><strong>Prestador:</strong> <?= htmlspecialchars($service['username']) ?></p>
-          <p><strong>Preço:</strong> €<?= number_format($service['price'], 2, ',', '.') ?></p>
-          <p><strong>Tempo de entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
-        </div>
+      <div class="service-summary bg-tertiary rounded p mb-lg">
+        <h4 class="mb">Resumo do Serviço</h4>
+        <p><strong>Serviço:</strong> <?= htmlspecialchars($service['title']) ?></p>
+        <p><strong>Prestador:</strong> <?= htmlspecialchars($service['username']) ?></p>
+        <p><strong>Preço:</strong> €<?= number_format($service['price'], 2, ',', '.') ?></p>
+        <p><strong>Tempo de entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
+      </div>
 
-        <form action="../actions/create_order.php" method="POST">
-          <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
-          <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
+      <form action="../actions/create_order.php" method="POST" class="form">
+        <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
+        <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
 
-          <?php if ($order_id): ?>
-            <input type="hidden" name="order_id" value="<?= $order_id ?>">
-          <?php endif; ?>
+        <?php if ($order_id): ?>
+          <input type="hidden" name="order_id" value="<?= $order_id ?>">
+        <?php endif; ?>
 
-          <label for="details">Detalhes da Encomenda:</label>
-          <textarea
-            name="details"
-            id="details"
-            rows="5"
-            placeholder="Descreve claramente o que pretendes com este serviço..."
-            required></textarea>
+        <?php drawFormField('textarea', 'details', 'Detalhes da Encomenda', '', 
+          ['rows' => '5', 'placeholder' => 'Descreve claramente o que pretendes com este serviço...'], true); ?>
 
-          <button type="submit" class="btn">Confirmar</button>
-        </form>
-      </section>
+        <button type="submit" class="btn btn-primary btn-large w-full">Confirmar Encomenda</button>
+      </form>
     </div>
   </div>
+</div>
 
 </div>
 

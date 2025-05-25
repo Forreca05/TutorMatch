@@ -1,6 +1,6 @@
 const modal = document.getElementById("terms-modal");
 const openLink = document.getElementById("terms-link");
-const closeBtn = document.querySelector(".close-modal");
+const closeBtn = document.querySelector(".modal-close");
 
 openLink.onclick = function (e) {
   e.preventDefault();

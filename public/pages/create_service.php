@@ -16,36 +16,49 @@ $categories = $stmt->fetchAll();
 
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
-<link rel="stylesheet" href="../css/services.css"> <!-- CSS específico para esta página -->
 
-<div class="create-service-container">
-  <h2>Criar Novo Serviço</h2>
-  <form action="../actions/create_service_action.php" method="POST" enctype="multipart/form-data" class="create-service-form">
+<div class="container-sm">
+  <h2 class="text-center">Criar Novo Serviço</h2>
+  
+  <form action="../actions/create_service_action.php" method="POST" enctype="multipart/form-data" class="form">
+    <div class="form-group">
+      <label for="title" class="form-label">Título:</label>
+      <input type="text" name="title" id="title" placeholder="Título do Serviço" class="form-input" required>
+    </div>
 
-    <label for="title">Título:</label>
-    <input type="text" name="title" id="title" placeholder="Título do Serviço" required>
+    <div class="form-group">
+      <label for="category" class="form-label">Categoria:</label>
+      <select name="category_id" id="category" class="form-input form-select" required>
+        <option value="" disabled selected>Select a category</option>
+        <?php foreach ($categories as $cat): ?>
+          <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
 
-    <label for="category">Categoria:</label>
-    <select name="category_id" id="category" required>
-      <option value="" disabled selected>Select a category</option>
-      <?php foreach ($categories as $cat): ?>
-        <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
-      <?php endforeach; ?>
-    </select>
+    <div class="form-group">
+      <label for="description" class="form-label">Descrição:</label>
+      <textarea name="description" id="description" placeholder="Descrição do serviço" class="form-input form-textarea" required></textarea>
+    </div>
 
-    <label for="description">Descrição:</label>
-    <textarea name="description" id="description" placeholder="Descrição do serviço" required></textarea>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="price" class="form-label">Preço (€):</label>
+        <input type="number" name="price" id="price" placeholder="Preço" class="form-input" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="delivery_time" class="form-label">Tempo de Entrega (dias):</label>
+        <input type="number" name="delivery_time" id="delivery_time" placeholder="Dias para entrega" class="form-input" required>
+      </div>
+    </div>
 
-    <label for="price">Preço (€):</label>
-    <input type="number" name="price" id="price" placeholder="Preço" required>
+    <div class="form-group">
+      <label for="image" class="form-label">Imagem (opcional):</label>
+      <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png" class="form-input">
+    </div>
 
-    <label for="delivery_time">Tempo de Entrega (dias):</label>
-    <input type="number" name="delivery_time" id="delivery_time" placeholder="Dias para entrega" required>
-
-    <label for="image">Imagem (opcional):</label>
-    <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png">
-
-    <button type="submit">Criar Serviço</button>
+    <button type="submit" class="btn btn-primary btn-full">Criar Serviço</button>
   </form>
 </div>
 

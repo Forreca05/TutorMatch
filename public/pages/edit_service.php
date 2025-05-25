@@ -67,42 +67,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
-<link rel="stylesheet" href="/css/edit_service.css">
 
-<div class="edit-service-container">
-  <h2>Editar Serviço</h2>
+<div class="container">
+  <?php drawPageHeader('Editar Serviço', 'Atualize os detalhes do seu serviço'); ?>
 
-  <form method="POST" enctype="multipart/form-data" class="edit-service-form">
-    <label for="title">Título</label>
-    <input type="text" id="title" name="title" value="<?= htmlspecialchars($service['title']) ?>" required>
-
-    <label for="description">Descrição</label>
-    <textarea id="description" name="description" required><?= htmlspecialchars($service['description']) ?></textarea>
-
-    <label for="price">Preço (€)</label>
-    <input type="number" step="0.01" id="price" name="price" value="<?= htmlspecialchars($service['price']) ?>" required>
-
-    <label for="delivery_time">Tempo de Entrega (dias)</label>
-    <input type="number" id="delivery_time" name="delivery_time" value="<?= htmlspecialchars($service['delivery_time']) ?>" required>
-
-    <label for="category_id">Categoria</label>
-    <select id="category_id" name="category_id" required>
-      <?php foreach ($categories as $cat): ?>
-        <option value="<?= $cat['id'] ?>" <?= $service['category_id'] == $cat['id'] ? 'selected' : '' ?>>
-          <?= htmlspecialchars($cat['name']) ?>
-        </option>
-      <?php endforeach; ?>
-    </select>
-
-    <label for="image">Imagem (opcional)</label>
-    <input type="file" id="image" name="image">
+  <form method="POST" enctype="multipart/form-data" class="form">
+    <?php 
+    drawFormField('text', 'title', 'Título', $service['title'], ['placeholder' => 'Ex: Desenvolvimento de Website'], true);
+    drawFormField('textarea', 'description', 'Descrição', $service['description'], ['rows' => '5', 'placeholder' => 'Descreva detalhadamente o seu serviço...'], true);
+    drawFormField('number', 'price', 'Preço (€)', $service['price'], ['step' => '0.01', 'min' => '0'], true);
+    drawFormField('number', 'delivery_time', 'Tempo de Entrega (dias)', $service['delivery_time'], ['min' => '1'], true);
+    
+    $categoryOptions = '';
+    foreach ($categories as $cat) {
+      $selected = $service['category_id'] == $cat['id'] ? 'selected' : '';
+      $categoryOptions .= '<option value="' . $cat['id'] . '" ' . $selected . '>' . htmlspecialchars($cat['name']) . '</option>';
+    }
+    drawFormField('select', 'category_id', 'Categoria', $categoryOptions, [], true);
+    ?>
 
     <?php if (!empty($service['image_path'])): ?>
-      <p>Imagem atual:</p>
-      <img src="<?= $service['image_path'] ?>" alt="Imagem atual" style="max-width: 200px;">
+      <div class="current-image mb">
+        <p class="form-label">Imagem atual:</p>
+        <img src="<?= $service['image_path'] ?>" 
+             alt="Imagem atual" 
+             class="rounded" 
+             style="max-width: 200px;">
+      </div>
     <?php endif; ?>
 
-    <button type="submit">Atualizar Serviço</button>
+    <?php drawFormField('file', 'image', 'Imagem (opcional)', '', ['accept' => 'image/*']); ?>
+
+    <button type="submit" class="btn btn-primary btn-large">Atualizar Serviço</button>
   </form>
 </div>
 
