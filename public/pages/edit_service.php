@@ -93,7 +93,7 @@ drawHeader(); ?>
 
         <?php if (!empty($service['image_path'])): ?>
             <p>Imagem atual:</p>
-            <img src="<?= $service['image_path'] ?>" alt="Imagem atual" style="max-width: 200px;">
+            <img src="../uploads/<?php echo htmlspecialchars($service['image_path']); ?>" alt="Imagem atual" style="max-width: 200px;">
         <?php endif; ?>
 
         <button type="submit">Atualizar Serviço</button>

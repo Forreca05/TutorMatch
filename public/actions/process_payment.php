@@ -1,11 +1,13 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 // Only allow POST from a logged-in client
 if ($_SERVER['REQUEST_METHOD'] !== 'POST'
     || !isset($_SESSION['user_id'])
     || ($_SESSION['role'] ?? '') !== 'client'
+    || !verify_csrf_token($_POST['csrf_token'])
 ) {
     header('Location: ../auth/login.php');
     exit;

@@ -2,6 +2,7 @@
 // File: create_service.php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 // Verifica se o utilizador está autenticado e é freelancer
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'freelancer') {
@@ -21,7 +22,7 @@ drawHeader(); ?>
 <div class="create-service-container">
   <h2>Criar Novo Serviço</h2>
   <form action="../actions/create_service_action.php" method="POST" enctype="multipart/form-data" class="create-service-form">
-    
+    <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
     <label for="title">Título:</label>
     <input type="text" name="title" id="title" placeholder="Título do Serviço" required>
 

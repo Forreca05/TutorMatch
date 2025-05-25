@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 if (!isset($_GET['id'])) {
     die("Serviço não especificado.");
@@ -51,7 +52,7 @@ drawHeader(); ?>
         </div>
     <?php endif; ?>
 
-    <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
+    <?php if (isset($_SESSION['user_id']) && ($service['freelancer_id'] !==$_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
         <a href="#" id="order-link" class="btn" style="margin-top: 10px; display: inline-block;">Encomendar Serviço</a>
     <?php endif; ?>
 
@@ -111,6 +112,7 @@ drawHeader(); ?>
 
         <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
             <form action="../actions/submit_review.php" method="POST" class="review-form">
+                <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
                 <h4>Deixe uma avaliação:</h4>
                 <input type="hidden" name="service_id" value="<?= $service_id ?>">
                 
@@ -145,6 +147,7 @@ drawHeader(); ?>
         </div>
 
         <form action="../actions/create_order.php" method="POST">
+            <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
             <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
             <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
 

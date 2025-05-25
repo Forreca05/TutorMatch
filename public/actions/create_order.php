@@ -1,10 +1,15 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 // Garantir que o utilizador está autenticado
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) ) {
     header("Location: ../auth/login.php");
+    exit;
+}
+if(!verify_csrf_token($_POST['csrf_token'])){
+    header("Location: ../pages/view_services.php?error=token_invalido");
     exit;
 }
 

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $order_id = intval($_POST['order_id']);

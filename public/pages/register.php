@@ -1,4 +1,6 @@
-<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+<?php 
+require_once(__DIR__ . '/../templates/common.tpl.php');
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 drawHeader(); ?>
 <link rel="stylesheet" href="../css/register.css">
 
@@ -6,6 +8,7 @@ drawHeader(); ?>
   <h2>Cria a tua Conta</h2>
 
   <form action="../actions/action_register.php" method="post" class="register-form">
+    <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
     <input type="text" name="username" placeholder="Nome de utilizador" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="password" name="password" placeholder="Palavra-passe" required>

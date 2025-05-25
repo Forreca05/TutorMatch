@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 if (!isset($_SESSION['user_id'])) {
   header("Location: ../auth/login.php");
@@ -62,6 +63,7 @@ drawHeader(); ?>
 
           <?php if ($role === 'freelancer' && $order['status'] === 'Pendente'): ?>
             <form action="../actions/accept_order.php" method="POST" class="status-form">
+              <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
               <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
               <button type="submit" name="action" value="Aceite">Aceitar</button>
               <button type="submit" name="action" value="Rejeitado">Rejeitar</button>
@@ -74,11 +76,13 @@ drawHeader(); ?>
               </form>
           <?php elseif ($role === 'freelancer' && $order['status'] === 'Pago'): ?>
               <form action="../actions/deliver_order.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
                 <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
                 <button type="submit">Entregar</button>
               </form>
           <?php elseif ($role === 'client' && $order['status'] === 'Entregue'): ?>
             <form action="../actions/complete_order.php" method="POST">
+              <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
               <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
               <button type="submit" name="action" value="Aceite">Marcar como concluído</button>
               <button type="submit" name="action" value="Rejeitado">Rejeitar</button>

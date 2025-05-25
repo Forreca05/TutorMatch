@@ -2,14 +2,15 @@
 // File: ../actions/create_service_action.php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf_token($_POST['csrf_token'])) {
     $userId = $_SESSION['user_id'];
-    $title = $_POST['title'];
-    $category_id = $_POST['category_id'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
-    $delivery_time = $_POST['delivery_time'];
+    $title = htmlspecialchars($_POST['title'] ?? '');
+    $category_id = htmlspecialchars($_POST['category_id'] ?? '');
+    $description = htmlspecialchars($_POST['description'] ?? '');
+    $price = htmlspecialchars($_POST['price'] ?? '');
+    $delivery_time = htmlspecialchars($_POST['delivery_time'] ?? '');
 
     $imagePath = null;
     if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
@@ -24,5 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     VALUES (?, ?, ?, ?, ?, ?, ?, DATETIME('now'))");
     $stmt->execute([$userId, $category_id, $title, $description, $price, $delivery_time, $imagePath]);
     header('Location: ../pages/my_services.php');
+    exit();
+}
+else {
+    header('Location: ../pages/create_service.php?error=invalid_request');
+    exit();
 }
 ?>

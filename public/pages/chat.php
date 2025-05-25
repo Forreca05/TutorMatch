@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 $user_id = $_SESSION['user_id'] ?? null;
 $receiver_id = $_GET['receiver_id'] ?? null;
@@ -36,7 +37,7 @@ $stmt->execute(['user1' => $user_id, 'user2' => $receiver_id]);
 $messages = $stmt->fetchAll();
 
 // Nova mensagem
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf_token($_POST['csrf_token'])) {
     $msg = trim($_POST['message'] ?? '');
     if (!empty($msg)) {
         $stmt = $db->prepare("INSERT INTO messages (sender_id, receiver_id, message) VALUES (?, ?, ?)");
@@ -93,6 +94,7 @@ drawHeader(); ?>
     </div>
 
     <form action="chat.php?receiver_id=<?= $receiver_id ?>" method="POST" class="chat-form">
+        <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
         <input type="text" name="message" placeholder="Escreve uma mensagem..." required>
         <button type="submit">Enviar</button>
     </form>

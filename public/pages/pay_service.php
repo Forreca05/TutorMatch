@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'client') {
     header("Location: ../auth/login.php");
@@ -48,6 +49,7 @@ drawHeader(); ?>
     </div>
 
     <form action="../actions/process_payment.php" method="POST">
+        <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
         <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
         <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
         <?php if ($order_id): ?>

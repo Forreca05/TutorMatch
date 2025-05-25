@@ -47,7 +47,7 @@ drawHeader(); ?>
                 <p><strong>Preço:</strong> €<?= $service['price'] ?></p>
                 <p><strong>Entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
                 <?php if (!empty($service['image_path'])): ?>
-                  <img src="<?= $service['image_path'] ?>" alt="Imagem do serviço">
+                  <img src="../uploads/<?php echo htmlspecialchars($service['image_path']); ?>" alt="Imagem do serviço">
                 <?php endif; ?>
               </div>
             </a>
