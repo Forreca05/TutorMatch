@@ -15,12 +15,15 @@ $stmt = $db->query("SELECT * FROM categories ORDER BY name ASC");
 $categories = $stmt->fetchAll();
 ?>
 
-<?php require_once(__DIR__ . '/../templates/common.tpl.php');
-drawHeader(); ?>
+<?php 
+require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader('Criar Novo Serviço'); 
+?>
 
-<<<<<<< HEAD
 <div class="container-sm">
-  <h2 class="text-center">Criar Novo Serviço</h2>
+  <div class="page-header">
+    <h2 class="text-center">Criar Novo Serviço</h2>
+  </div>
   
   <form action="../actions/create_service_action.php" method="POST" enctype="multipart/form-data" class="form">
     <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
@@ -44,23 +47,17 @@ drawHeader(); ?>
     </div>
 
     <div class="form-row">
-      <div class="form-group">
-        <label for="price" class="form-label">Preço (€):</label>
-        <input type="number" name="price" id="price" placeholder="Preço" class="form-input" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="delivery_time" class="form-label">Tempo de Entrega (dias):</label>
-        <input type="number" name="delivery_time" id="delivery_time" placeholder="Dias para entrega" class="form-input" required>
-      </div>
+      <?php 
+      drawFormField('number', 'price', 'Preço (€)', '', ['placeholder' => 'Preço', 'step' => '0.01', 'min' => '0'], true);
+      drawFormField('number', 'delivery_time', 'Tempo de Entrega (dias)', '', ['placeholder' => 'Dias para entrega', 'min' => '1'], true);
+      ?>
     </div>
 
-    <div class="form-group">
-      <label for="image" class="form-label">Imagem (opcional):</label>
-      <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png" class="form-input">
-    </div>
+    <?php 
+    drawFormField('file', 'image', 'Imagem (opcional)', '', ['accept' => '.jpg,.jpeg,.png,.mp4,.gif']);
+    ?>
 
-    <button type="submit" class="btn btn-primary btn-full">Criar Serviço</button>
+    <button type="submit" class="btn btn-primary w-full">Criar Serviço</button>
   </form>
 </div>
 

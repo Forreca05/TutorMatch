@@ -44,6 +44,10 @@ drawHeader(); ?>
         </td>
         <td>
           <?php if ($user['role'] !== 'admin'): ?>
+<<<<<<< HEAD
+            <a href="../actions/promote_user.php?id=<?php echo $user['id']; ?>" class="btn btn-primary btn-sm">Promover a admin</a>
+            <a href="../actions/delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Tem a certeza que quer eliminar?')" class="btn btn-danger btn-sm">Eliminar</a>
+=======
             <form action="../actions/promote_user.php" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que quer Promover')">
                     <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
@@ -54,6 +58,7 @@ drawHeader(); ?>
                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
                 <button type="submit" >Eliminar</button>
             </form>
+>>>>>>> refs/remotes/origin/master
           <?php endif; ?>
         </td>
       </tr>
