@@ -64,13 +64,30 @@ drawHeader(); ?>
 
       <?php 
       drawFormField('text', 'card_name', 'Nome no Cartão', '', ['placeholder' => 'Nome completo'], true);
-      drawFormField('text', 'card_number', 'Número do Cartão', '', ['placeholder' => '0000 0000 0000 0000', 'maxlength' => '19'], true);
+
+      drawFormField('text', 'card_number', 'Número do Cartão', '', [
+        'placeholder' => '0000 0000 0000 0000',
+        'maxlength' => '19',
+        'pattern' => '\d{4}\s?\d{4}\s?\d{4}\s?\d{4}',
+        'title' => 'Introduz um número de cartão válido (16 dígitos)'
+      ], true);
       ?>
 
       <div class="form-row">
         <?php 
-        drawFormField('text', 'expiry', 'Validade (MM/AA)', '', ['placeholder' => 'MM/AA', 'maxlength' => '5'], true);
-        drawFormField('text', 'cvv', 'CVV', '', ['placeholder' => '123', 'maxlength' => '4'], true);
+        drawFormField('text', 'expiry', 'Validade (MM/AA)', '', [
+          'placeholder' => 'MM/AA',
+          'maxlength' => '5',
+          'pattern' => '(0[1-9]|1[0-2])\/\d{2}',
+          'title' => 'Formato válido: MM/AA (por exemplo, 05/25)'
+        ], true);
+
+        drawFormField('text', 'cvv', 'CVV', '', [
+          'placeholder' => '123',
+          'maxlength' => '4',
+          'pattern' => '\d{3,4}',
+          'title' => 'O CVV deve ter 3 ou 4 dígitos'
+        ], true);
         ?>
       </div>
 
