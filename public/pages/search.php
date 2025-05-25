@@ -124,6 +124,4 @@ $results = $stmt->fetchAll();
   </div>
 </div>
 
-<script src="../js/ajaxsearch.js"></script>
-
 <?php drawFooter(); ?>
