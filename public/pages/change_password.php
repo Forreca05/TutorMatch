@@ -11,16 +11,20 @@ if (!isset($_SESSION['user_id'])) {
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
 
-<h2>Alterar Password</h2>
+<link rel="stylesheet" href="../css/change_password.css">
+<div class="password-change-container">
+  <h2 class="password-change-container__title">Alterar Password</h2>
 
-<form action="../actions/action_change_password.php" method="POST">
-  <label for="current_password">Password Atual:</label><br>
-  <input type="password" name="current_password" id="current_password" required><br><br>
+  <form action="../actions/action_change_password.php" method="POST">
+    <label for="current_password">Password Atual:</label>
+    <input type="password" name="current_password" id="current_password" required>
 
-  <label for="new_password">Nova Password:</label><br>
-  <input type="password" name="new_password" id="new_password" required><br><br>
+    <label for="new_password">Nova Password:</label>
+    <input type="password" name="new_password" id="new_password" required>
 
-  <button type="submit">Alterar Password</button>
-</form>
+    <button type="submit">Alterar Password</button>
+  </form>
+</div>
+
 
 <?php drawFooter(); ?>
