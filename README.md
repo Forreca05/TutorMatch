@@ -28,11 +28,11 @@
 - [x] Dark/Light Mode.
 - [x] Terms and Services.
 - [x] Freelancer Dashboard
-- [ ] 
+- [x] Possibility to pay with different types of coins(i.e. dollars, euros, ...) 
 
 ## Running
 Database:
-    sqlite3 database/database.db < database/database.sql   ???   acho que e php private/database/db.php
+    php private/database/db.php
 Site:
     First we need to do "cd public" and then we can :   php -S localhost:9000
 

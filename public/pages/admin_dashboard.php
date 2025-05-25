@@ -32,7 +32,6 @@ drawHeader(); ?>
     <a href="manage_users.php" class="admin-action-btn">Gerir Utilizadores</a>
     <a href="manage_categories.php" class="admin-action-btn">Gerir Categorias</a>
     <a href="available_services.php" class="admin-action-btn">Ver Serviços</a>
-    <a href="orders.php" class="admin-action-btn">Ver Pedidos</a>
 </div>
 
 <h2>Últimos Utilizadores Registados</h2>

@@ -4,14 +4,9 @@ fazer cartao bancario ao pagar ser a serio tipo so funcionar se tiver 8 digitos 
 
 No admin_dasboard:
 aparecer no role: client/freelancer, em vez de so um dos 2 e nao aparecer eliminar em outros admin
-retirar opcao de apareces meus pedidos como admin
-
-nao aparecer espanhol logo selecionado ao criar serviço (done)
-
-melhorar barra de pesquisa 
+ao virar admin apagar serviços que tinha
 
 improve api
 
-acrescentar mais funcionalidades se der tipo multicurrency system (done)
 
 Meter um video em vez de imagem num serviço em algum freelancer
