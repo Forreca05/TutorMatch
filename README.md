@@ -30,6 +30,7 @@
 - [x] Freelancer Dashboard
 - [x] Possibility to pay with different types of coins(i.e. dollars, euros, ...) 
 - [x] Freelancer Dashboard
+- [x] Very basic api 
 
 ## Running
 Database:
