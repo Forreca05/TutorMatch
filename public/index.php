@@ -22,11 +22,11 @@ $current_user_id = $_SESSION['user_id'] ?? null;
     <?php
     if ($current_user_id) {
       // Se o utilizador estiver logado, mostra serviços de outros utilizadores
-      $stmt = $db->prepare("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id WHERE s.user_id != ? ORDER BY RANDOM() LIMIT 6");
+      $stmt = $db->prepare("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id WHERE s.user_id != ? ORDER BY RANDOM() LIMIT 5");
       $stmt->execute([$current_user_id]);
     } else {
       // Se não estiver logado, mostra serviços aleatórios
-      $stmt = $db->query("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id ORDER BY RANDOM() LIMIT 6");
+      $stmt = $db->query("SELECT s.*, u.username FROM services s JOIN users u ON s.user_id = u.id ORDER BY RANDOM() LIMIT 5");
     }
     $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

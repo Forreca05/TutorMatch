@@ -30,12 +30,11 @@ foreach ($services as $service) {
 drawHeader(); ?>
 
 <div class="container">
-  <?php drawPageHeader('Meus Serviços', 'Gerir os seus serviços criados', 
-    '<a href="create_service.php" class="btn btn-primary">Criar Novo Serviço</a>'); ?>
-
   <?php if (empty($grouped)): ?>
     <?php drawEmptyState('Ainda não criaste nenhum serviço.', 'Criar Primeiro Serviço', 'create_service.php'); ?>
   <?php else: ?>
+    <?php drawPageHeader('Meus Serviços', 'Gerir os seus serviços criados', 
+    '<a href="create_service.php" class="btn btn-primary">Criar Novo Serviço</a>'); ?>
     <?php foreach ($grouped as $category => $services): ?>
       <div class="category-group">
         <h3><?= htmlspecialchars($category) ?></h3>

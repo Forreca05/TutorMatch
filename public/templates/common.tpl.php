@@ -186,7 +186,6 @@ function drawCard($content, $title = null, $footer = null, $css_class = '')
 
               <?php if ($_SESSION['role'] == 'freelancer'): ?>
                 <a href="/actions/switch_role.php">Mudar para Cliente</a>
-                <a href="/pages/create_service.php">Criar Serviço</a>
                 <a href="/pages/freelancer_dashboard.php">Painel</a>
               <?php elseif ($_SESSION['role'] == 'client'): ?>
                 <a href="/actions/switch_role.php">Mudar para Freelancer</a>
