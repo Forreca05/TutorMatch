@@ -150,8 +150,8 @@ drawHeader(); ?>
       <div class="review-form-section bg-tertiary rounded p-lg mt-lg">
         <h4 class="mb">Deixe uma avaliação</h4>
         <form action="../actions/submit_review.php" method="POST" class="form">
+          <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
           <input type="hidden" name="service_id" value="<?= $service_id ?>">
-          
           <?php 
           $ratingOptions = '<option value="">Escolha...</option>';
           for ($i = 1; $i <= 5; $i++) {
@@ -185,6 +185,7 @@ drawHeader(); ?>
       </div>
 
       <form action="../actions/create_order.php" method="POST" class="form">
+        <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
         <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
         <input type="hidden" name="freelancer_id" value="<?= $service['freelancer_id'] ?>">
 

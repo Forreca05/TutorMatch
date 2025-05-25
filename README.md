@@ -41,11 +41,11 @@ Site:
 
 ## Credentials
 Admin: 
--Username:12345
+-Username: 12345
 -Password: 12345
 
 User/Freelancer:
--Username:JoseRic
+-Username: JoséRic
 -Email: josericardo1967@sapo.pt
 -Password: 1974abril
 
