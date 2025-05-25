@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../templates/service_card.tpl.php');
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'freelancer') {
   header('Location: ../pages/login.php');
@@ -38,20 +39,10 @@ drawHeader(); ?>
     <?php foreach ($grouped as $category => $services): ?>
       <div class="category-group">
         <h3><?= htmlspecialchars($category) ?></h3>
-        <div class="service-list">
-          <?php foreach ($services as $service): ?>
-            <a href="view_service.php?id=<?= $service['id'] ?>" class="service-card-link">
-              <div class="service-card">
-                <h4><?= htmlspecialchars($service['title']) ?></h4>
-                <p class="description"><?= htmlspecialchars($service['description']) ?></p>
-                <p><strong>Preço:</strong> €<?= $service['price'] ?></p>
-                <p><strong>Entrega:</strong> <?= $service['delivery_time'] ?> dias</p>
-                <?php if (!empty($service['image_path'])): ?>
-                  <img src="<?= $service['image_path'] ?>" alt="Imagem do serviço">
-                <?php endif; ?>
-              </div>
-            </a>
-          <?php endforeach; ?>
+        <div class="card-list">
+          <?php foreach ($services as $service): 
+            drawServiceCard($service, false, true, 'freelancer');
+          endforeach; ?>
         </div>
       </div>
     <?php endforeach; ?>

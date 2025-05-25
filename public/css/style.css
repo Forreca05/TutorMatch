@@ -45,24 +45,111 @@ nav {
   padding: 2rem;
 }
 
+/* Unified Service Cards - Replaces .card, .card-list, .service-card, etc. */
 .card-list {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-.card {
+.service-card {
   background: var(--color-background-secondary);
-  border-radius: 10px;
-  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--color-shadow);
+  border-color: var(--color-background-secondary);
+  overflow: hidden;
+  transition: transform 0.3s ease;
   width: 250px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   text-align: center;
 }
 
-.card img {
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card img {
   width: 100%;
-  border-radius: 8px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.service-card-content {
+  padding: 20px;
+}
+
+.service-card-content h3 {
+  margin: 0 0 10px 0;
+  color: var(--color-text);
+}
+
+.service-card-content p {
+  margin: 5px 0;
+  color: var(--color-text);
+}
+
+.service-card .price {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-primary);
+  margin: 10px 0;
+}
+
+.service-card .service-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.service-card .view-btn,
+.service-card .edit-btn,
+.service-card .delete-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-align: center;
+  flex: 1;
+}
+
+.service-card .view-btn {
+  background: var(--color-primary);
+  color: white;
+}
+
+.service-card .view-btn:hover {
+  opacity: 0.9;
+}
+
+.service-card .edit-btn {
+  background: #28a745;
+  color: white;
+}
+
+.service-card .edit-btn:hover {
+  background: #218838;
+}
+
+.service-card .delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.service-card .delete-btn:hover {
+  background: #c82333;
+}
+
+/* Category groups for my_services.php */
+.category-group {
+  margin-bottom: 30px;
+}
+
+.category-group h3 {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .profile-container {
@@ -71,12 +158,12 @@ nav {
   padding: 2rem;
 }
 
-.profile-avatar {
-  width: 150px;
-  height: 150px;
+/* Unified Profile Picture Style */
+.profile-pic {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--color-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-main {

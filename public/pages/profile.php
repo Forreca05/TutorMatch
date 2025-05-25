@@ -22,7 +22,7 @@ drawHeader(); ?>
 
 <div class="profile-container">
   <div class="profile-sidebar">
-    <img src="../uploads/<?php echo htmlspecialchars($profilePic); ?>" alt="Foto de Perfil" class="profile-avatar">
+    <?php drawProfilePicture("../uploads/" . $profilePic, 'Foto de Perfil'); ?>
   </div>
   <div class="profile-main">
     <h3><?php echo htmlspecialchars($user['name'] ?? 'Ainda não temos o teu nome completo'); ?> <small>(<?php echo htmlspecialchars($user['username'] ?? 'Coloca aqui o teu nome'); ?>)</small></h3>

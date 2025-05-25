@@ -2,6 +2,15 @@
   if (session_status() === PHP_SESSION_NONE) {
     
   }
+
+function drawProfilePicture($pic_path, $alt_text = 'Foto de perfil', $size = '120px') {
+?>
+    <img src="<?= htmlspecialchars($pic_path ?: '/img/default.jpeg') ?>" 
+         alt="<?= htmlspecialchars($alt_text) ?>" 
+         class="profile-pic"
+         style="width: <?= $size ?>; height: <?= $size ?>;">
+<?php
+}
 ?>
 
 <?php function drawHeader() { ?>
@@ -44,7 +53,7 @@
             <?php if (isset($_SESSION['user_id'])): ?>
 
             <a href="/pages/profile.php" class="nav-icon profile-pic" title="Perfil">
-              <img src="<?= $_SESSION['profile_pic'] ?? '/img/default.jpeg' ?>" alt="Perfil">
+              <?php drawProfilePicture($_SESSION['profile_pic'] ?? '/img/default.jpeg', 'Perfil', '40px'); ?>
             </a>
             <a href="/pages/conversations.php" class="nav-icon chat-icon" title="Mensagens">
               <img src="/img/icons/white-balloon.png" alt="Mensagens">

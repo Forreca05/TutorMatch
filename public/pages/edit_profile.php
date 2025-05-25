@@ -25,7 +25,7 @@ drawHeader(); ?>
 <div class="profile-container">
   <form action="../actions/action_updateprofile.php" method="POST" enctype="multipart/form-data" class="profile-form">
     <div class="profile-image-section">
-      <img src="../uploads/<?php echo htmlspecialchars($profilePic); ?>" alt="Foto de Perfil" class="profile-avatar">
+      <?php drawProfilePicture("../uploads/" . $profilePic, 'Foto de Perfil'); ?>
       <label for="profile_pic" class="profile-label">Nova Foto de Perfil</label>
       <input type="file" name="profile_pic" id="profile_pic" accept=".jpg,.jpeg,.png">
     </div>

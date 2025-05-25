@@ -62,7 +62,7 @@ drawHeader(); ?>
 
 <div class="chat-container">
   <div class="chat-header">
-    <img src="<?= htmlspecialchars($chatUserPic) ?>" alt="Foto de perfil" class="chat-user-pic">
+    <?php drawProfilePicture($chatUserPic, 'Foto de perfil', '50px'); ?>
     <h2>
       <a href="/pages/view_profile.php?id=<?= urlencode($receiver_id) ?>">
         <?= htmlspecialchars($chatUserName) ?>

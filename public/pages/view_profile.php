@@ -34,7 +34,7 @@ drawHeader(); ?>
 <link rel="stylesheet" href="/css/view_profile.css">
 
 <div class="user-profile-container">
-  <img src="<?= htmlspecialchars($profilePic) ?>" alt="Foto de perfil" class="user-profile-pic">
+  <?php drawProfilePicture($profilePic, 'Foto de perfil', '150px'); ?>
   <h2 class="user-profile-name"><?= htmlspecialchars($username) ?></h2>
 
   <?php if (htmlspecialchars($role) === 'admin'): ?>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once(__DIR__ . '/templates/common.tpl.php');
+require_once(__DIR__ . '/templates/service_card.tpl.php');
 drawHeader();
 require_once '../private/database/db.php'; // Ficheiro que liga à DB (PDO em $db)
 
@@ -29,17 +30,9 @@ $current_user_id = $_SESSION['user_id'] ?? null;
     }
     $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($services as $service): ?>
-      <div class="card">
-        <img src="<?= htmlspecialchars($service['image_path'] ?? '/img/default.jpeg') ?>" alt="<?= htmlspecialchars($service['title']) ?>">
-        <div class="card-content">
-          <h3><?= htmlspecialchars($service['title']) ?></h3>
-          <p>por <strong><?= htmlspecialchars($service['username']) ?></strong></p>
-          <p class="price">Desde <?= number_format($service['price'], 2) ?>€</p>
-          <a href="/pages/view_service.php?id=<?= $service['id'] ?>" class="view-btn">Ver Serviço</a>
-        </div>
-      </div>
-    <?php endforeach; ?>
+    foreach ($services as $service): 
+      drawServiceCard($service, true, false);
+    endforeach; ?>
   </div>
 </section>
 
