@@ -15,10 +15,11 @@ $users = $stmt->fetchAll();
 
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
-<div class="admin-container">
+
+<div class="container">
   <h1>Gerir Utilizadores</h1>
 
-  <table>
+  <table class="table">
     <tr>
       <th>ID</th>
       <th>Username</th>
@@ -41,8 +42,8 @@ drawHeader(); ?>
         </td>
         <td>
           <?php if ($user['role'] !== 'admin'): ?>
-            <a href="../actions/promote_user.php?id=<?php echo $user['id']; ?>">Promover a admin</a>
-            <a class="delete" href="../actions/delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Tem a certeza que quer eliminar?')">Eliminar</a>
+            <a href="../actions/promote_user.php?id=<?php echo $user['id']; ?>" class="btn btn-sm">Promover a admin</a>
+            <a href="../actions/delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Tem a certeza que quer eliminar?')" class="btn btn-danger btn-sm">Eliminar</a>
           <?php endif; ?>
         </td>
       </tr>

@@ -33,28 +33,40 @@ $total_earnings = $total_earnings !== null ? $total_earnings : 0;
 require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader();
 ?>
-<link rel="stylesheet" href="/css/freelancer_dashboard.css">
 
-<div class="freelancer-dashboard">
-  <h2>Painel do Freelancer</h2>
+<div class="container">
+  <div class="page-header">
+    <h2 class="text-center">Painel do Freelancer</h2>
+  </div>
 
-  <div class="dashboard-cards">
+  <div class="card-list">
     <div class="card">
-      <h3>Serviços Publicados</h3>
-      <p><?= $total_services ?></p>
-      <a href="/pages/my_services.php" class="hint-link">Ver lista »</a>
+      <div class="card-header">
+        <h3 class="card-title">Serviços Publicados</h3>
+      </div>
+      <div class="card-body">
+        <p class="text-lg font-bold text-primary text-center"><?= $total_services ?></p>
+        <a href="/pages/my_services.php" class="btn btn-primary">Ver lista »</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Encomendas Recebidas</h3>
-      <p><?= $total_orders ?></p>
-      <a href="/pages/orders.php" class="hint-link">Ver encomendas »</a>
+      <div class="card-header">
+        <h3 class="card-title">Encomendas Recebidas</h3>
+      </div>
+      <div class="card-body">
+        <p class="text-lg font-bold text-primary text-center"><?= $total_orders ?></p>
+        <a href="/pages/orders.php" class="btn btn-primary">Ver encomendas »</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Ganhos Totais</h3>
-      <p>€<?= number_format($total_earnings, 2) ?></p>
-      <a href="/pages/earnings.php" class="hint-link">Detalhe »</a>
+      <div class="card-header">
+        <h3 class="card-title">Ganhos Totais</h3>
+      </div>
+      <div class="card-body">
+        <p class="text-lg font-bold text-success text-center">€<?= number_format($total_earnings, 2) ?></p>
+      </div>
     </div>
   </div>
 </div>

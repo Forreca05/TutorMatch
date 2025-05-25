@@ -16,7 +16,7 @@
     margin-bottom: var(--space-lg);
 }
 
-/* Admin User Table Styles */
+/* Use unified table and button styles */
 .admin-container table {
     width: 100%;
     border-collapse: collapse;

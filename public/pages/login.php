@@ -5,16 +5,16 @@ drawHeader();
 
 <link rel="stylesheet" href="../css/login.css">
 
-<div class="login-container">
+<div class="container-sm text-center">
   <h2>Bem-vindo de volta!</h2>
 
-  <form action="../actions/action_login.php" method="post" class="login-form">
-    <input type="text" name="username" placeholder="Nome de utilizador ou Email" required>
-    <input type="password" name="password" placeholder="Palavra-passe" required>
-    <button type="submit">Entrar</button>
+  <form action="../actions/action_login.php" method="post" class="form">
+    <input type="text" name="username" placeholder="Nome de utilizador ou Email" class="form-input" required>
+    <input type="password" name="password" placeholder="Palavra-passe" class="form-input" required>
+    <button type="submit" class="btn btn-primary btn-full">Entrar</button>
 
     <?php if (isset($_GET['error'])): ?>
-      <p class="flash-message error">
+      <p class="message message-error">
         <?= htmlspecialchars($_GET['error']); ?>
       </p>
     <?php endif; ?>

@@ -31,26 +31,31 @@ $role = $user['role'];
 
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
-<link rel="stylesheet" href="/css/view_profile.css">
 
-<div class="user-profile-container">
-  <?php drawProfilePicture($profilePic, 'Foto de perfil', '150px'); ?>
-  <h2 class="user-profile-name"><?= htmlspecialchars($username) ?></h2>
-
-  <?php if (htmlspecialchars($role) === 'admin'): ?>
-    <p class="user-profile-role admin">Tipo de utilizador: admin</p>
-  <?php else: ?>
-    <p class="user-profile-role">Tipo de utilizador: client/freelancer</p>
-  <?php endif; ?>
-
-  <a href="/pages/user_services.php?id=<?= urlencode($user['id']) ?>" class="user-profile-btn">
-    Ver Serviços que Oferece
-  </a>
-
-  <a href="/pages/user_orders.php?id=<?= urlencode($user['id']) ?>" class="user-profile-btn">
-    Ver Serviços que Comprou
-  </a>
+<div class="container-sm">
+  <?php drawPageHeader($username, 'Perfil do utilizador'); ?>
+  
+  <div class="text-center">
+    <div class="card-body">
+      <?php drawProfilePicture($profilePic, 'Foto de perfil', '150px'); ?>
+      <h2 class="mt"><?= htmlspecialchars($username) ?></h2>
+      
+      <?php if (htmlspecialchars($role) === 'admin'): ?>
+        <p class="text-primary font-bold">Tipo de utilizador: admin</p>
+      <?php else: ?>
+        <p class="text-muted">Tipo de utilizador: client/freelancer</p>
+      <?php endif; ?>
+      
+      <div class="mt-lg">
+        <a href="/pages/user_services.php?id=<?= urlencode($user['id']) ?>" class="btn btn-primary">
+          Ver Serviços que Oferece
+        </a>
+        <a href="/pages/user_orders.php?id=<?= urlencode($user['id']) ?>" class="btn btn-secondary">
+          Ver Serviços que Comprou
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
-
 
 <?php drawFooter(); ?>

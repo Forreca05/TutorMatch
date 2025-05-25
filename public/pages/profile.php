@@ -20,17 +20,24 @@ if ($user) {
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
 
-<div class="profile-container">
-  <div class="profile-sidebar">
-    <?php drawProfilePicture("../uploads/" . $profilePic, 'Foto de Perfil'); ?>
-  </div>
-  <div class="profile-main">
-    <h3><?php echo htmlspecialchars($user['name'] ?? 'Ainda não temos o teu nome completo'); ?> <small>(<?php echo htmlspecialchars($user['username'] ?? 'Coloca aqui o teu nome'); ?>)</small></h3>
-    <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
-    <p><strong>Função:</strong> <?php echo htmlspecialchars($user['role']); ?></p>
+<div class="container-sm">
+  <?php drawPageHeader('Meu Perfil', 'Gerir as suas informações pessoais'); ?>
 
-    <a href="../pages/edit_profile.php" class="btn">Editar Perfil</a>
-    <a href="../pages/change_password.php" class="btn">Mudar Password</a>
+  <div class="card-body text-center">
+    <?php drawProfilePicture("../uploads/" . $profilePic, 'Foto de Perfil', '120px'); ?>
+
+    <h3 class="mt"><?php echo htmlspecialchars($user['name'] ?? 'Ainda não temos o teu nome completo'); ?></h3>
+    <p class="text-muted">@<?php echo htmlspecialchars($user['username'] ?? 'username'); ?></p>
+
+    <div class="mt-lg">
+      <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
+      <p><strong>Função:</strong> <span class="text-primary"><?php echo htmlspecialchars($user['role']); ?></span></p>
+    </div>
+
+    <div class="mt-lg">
+      <a href="../pages/edit_profile.php" class="btn btn-primary">Editar Perfil</a>
+      <a href="../pages/change_password.php" class="btn btn-secondary">Mudar Password</a>
+    </div>
   </div>
 </div>
 

@@ -28,13 +28,13 @@ foreach ($services as $service) {
 
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
-<link rel="stylesheet" href="../css/services.css">
 
-<div class="my-services-container">
-  <h2>Meus Serviços</h2>
+<div class="container">
+  <?php drawPageHeader('Meus Serviços', 'Gerir os seus serviços criados', 
+    '<a href="create_service.php" class="btn btn-primary">Criar Novo Serviço</a>'); ?>
 
   <?php if (empty($grouped)): ?>
-    <p>Ainda não criaste nenhum serviço.</p>
+    <?php drawEmptyState('Ainda não criaste nenhum serviço.', 'Criar Primeiro Serviço', 'create_service.php'); ?>
   <?php else: ?>
     <?php foreach ($grouped as $category => $services): ?>
       <div class="category-group">

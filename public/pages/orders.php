@@ -38,52 +38,61 @@ if ($role === 'freelancer') {
 
 <?php require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader(); ?>
-<link rel="stylesheet" href="../css/orders.css">
 
-<div class="orders-container">
-  <h2><?= $role === 'freelancer' ? 'Pedidos Recebidos' : 'Minhas Encomendas' ?></h2>
+<div class="container">
+  <?php drawPageHeader($role === 'freelancer' ? 'Pedidos Recebidos' : 'Minhas Encomendas', 'Gerir as suas encomendas'); ?>
 
   <?php if (empty($orders)): ?>
-    <p>Nenhuma encomenda encontrada.</p>
+    <?php drawEmptyState('Nenhuma encomenda encontrada.', 'Ver Serviços', '/pages/search.php'); ?>
   <?php else: ?>
-    <div class="orders-list">
+    <div class="card-list">
       <?php foreach ($orders as $order): ?>
-        <div class="order-card">
-          <h3><?= htmlspecialchars($order['title']) ?></h3>
-          <p><strong><?= $role === 'freelancer' ? 'Cliente' : 'Freelancer' ?>:</strong> <?= htmlspecialchars($role === 'freelancer' ? $order['client_name'] : $order['freelancer_name']) ?></p>
-          <p><strong>Estado:</strong> <?= ucfirst($order['status']) ?></p>
-          <p><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></p>
-          <form action="chat.php" method="GET">
-            <input type="hidden" name="user_id" value="<?= $user_id ?>">
-            <input type="hidden" name="receiver_id" value="<?= $role === 'freelancer' ?
-                                                              $order['client_id'] : $order['freelancer_id'] ?>">
-            <button type="submit">Chat</button>
-          </form>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-primary mb"><?= htmlspecialchars($order['title']) ?></h3>
+            
+            <div class="card-content mb">
+              <p class="mb-sm"><strong><?= $role === 'freelancer' ? 'Cliente' : 'Freelancer' ?>:</strong> <?= htmlspecialchars($role === 'freelancer' ? $order['client_name'] : $order['freelancer_name']) ?></p>
+              <p class="mb-sm"><strong>Estado:</strong> <span class="text-primary font-bold"><?= ucfirst($order['status']) ?></span></p>
+              <p class="mb-sm"><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></p>
+            </div>
+          </div>
 
-          <?php if ($role === 'freelancer' && $order['status'] === 'Pendente'): ?>
-            <form action="../actions/accept_order.php" method="POST" class="status-form">
-              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-              <button type="submit" name="action" value="Aceite">Aceitar</button>
-              <button type="submit" name="action" value="Rejeitado">Rejeitar</button>
-            </form>
-          <?php elseif ($role === 'client' && $order['status'] === 'Aceite'): ?>
-            <form action="pay_service.php" method="GET">
-              <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
-              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-              <button type="submit">Proceder para o Pagamento</button>
-            </form>
-          <?php elseif ($role === 'freelancer' && $order['status'] === 'Pago'): ?>
-            <form action="../actions/deliver_order.php" method="POST">
-              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-              <button type="submit">Entregar</button>
-            </form>
-          <?php elseif ($role === 'client' && $order['status'] === 'Entregue'): ?>
-            <form action="../actions/complete_order.php" method="POST">
-              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-              <button type="submit" name="action" value="Aceite">Marcar como concluído</button>
-              <button type="submit" name="action" value="Rejeitado">Rejeitar</button>
-            </form>
-          <?php endif; ?>
+          <div class="card-footer">
+            <div class="order-actions d-flex gap">
+              <form action="chat.php" method="GET" class="d-inline">
+                <input type="hidden" name="user_id" value="<?= $user_id ?>">
+                <input type="hidden" name="receiver_id" value="<?= $role === 'freelancer' ?
+                                                                  $order['client_id'] : $order['freelancer_id'] ?>">
+                <button type="submit" class="btn btn-secondary">Chat</button>
+              </form>
+
+              <?php if ($role === 'freelancer' && $order['status'] === 'Pendente'): ?>
+                <form action="../actions/accept_order.php" method="POST" class="d-inline">
+                  <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                  <button type="submit" name="action" value="Aceite" class="btn btn-success">Aceitar</button>
+                  <button type="submit" name="action" value="Rejeitado" class="btn btn-danger">Rejeitar</button>
+                </form>
+              <?php elseif ($role === 'client' && $order['status'] === 'Aceite'): ?>
+                <form action="pay_service.php" method="GET" class="d-inline">
+                  <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
+                  <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                  <button type="submit" class="btn btn-primary">Proceder para o Pagamento</button>
+                </form>
+              <?php elseif ($role === 'freelancer' && $order['status'] === 'Pago'): ?>
+                <form action="../actions/deliver_order.php" method="POST" class="d-inline">
+                  <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                  <button type="submit" class="btn btn-success">Entregar</button>
+                </form>
+              <?php elseif ($role === 'client' && $order['status'] === 'Entregue'): ?>
+                <form action="../actions/complete_order.php" method="POST" class="d-inline">
+                  <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                  <button type="submit" name="action" value="Aceite" class="btn btn-success">Marcar como concluído</button>
+                  <button type="submit" name="action" value="Rejeitado" class="btn btn-danger">Rejeitar</button>
+                </form>
+              <?php endif; ?>
+            </div>
+          </div>
         </div>
       <?php endforeach; ?>
     </div>

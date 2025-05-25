@@ -5,7 +5,7 @@ drawHeader(); ?>
 
 <link rel="stylesheet" href="../css/terms.css">
 
-<div class="terms-container">
+<div class="container">
   <h3>Termos de Utilização e Política de Privacidade</h3>
   <p>
     Ao utilizar a nossa plataforma, concorda em respeitar os nossos termos de serviço, a política de privacidade e todas as leis aplicáveis.

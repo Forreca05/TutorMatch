@@ -20,10 +20,14 @@ drawHeader();
 ?>
 <h2>Serviços oferecidos por <?= htmlspecialchars($services[0]['username'] ?? 'Utilizador') ?></h2>
 
-<link rel="stylesheet" href="/css/services.css">
-<div class="card-list">
-  <?php foreach ($services as $s): 
-    drawServiceCard($s, false, false);
-  endforeach; ?>
-</div>
+<?php if (empty($services)): ?>
+  <?php drawEmptyState('Este utilizador ainda não criou nenhum serviço.', 'Explorar Outros Serviços', '/pages/search.php'); ?>
+<?php else: ?>
+  <div class="card-list">
+    <?php foreach ($services as $s): 
+      drawServiceCard($s, false, false);
+    endforeach; ?>
+  </div>
+<?php endif; ?>
+
 <?php drawFooter(); ?>

@@ -2,27 +2,27 @@
 drawHeader(); ?>
 <link rel="stylesheet" href="../css/register.css">
 
-<div class="register-container">
+<div class="container-sm text-center">
   <h2>Cria a tua Conta</h2>
 
-  <form action="../actions/action_register.php" method="post" class="register-form">
-    <input type="text" name="username" placeholder="Nome de utilizador" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Palavra-passe" required>
+  <form action="../actions/action_register.php" method="post" class="form">
+    <input type="text" name="username" placeholder="Nome de utilizador" class="form-input" required>
+    <input type="email" name="email" placeholder="Email" class="form-input" required>
+    <input type="password" name="password" placeholder="Palavra-passe" class="form-input" required>
 
     <label class="checkbox-label">
       <input type="checkbox" required>
       Aceito os <a href="#" id="terms-link">Termos e Serviços</a>
     </label>
 
-    <button type="submit" class="btn-register">Criar conta</button>
+    <button type="submit" class="btn btn-primary btn-full">Criar conta</button>
   </form>
 </div>
 
 <!-- Modal dos Termos -->
 <div id="terms-modal" class="modal">
   <div class="modal-content">
-    <span class="close-modal">&times;</span>
+    <span class="modal-close">&times;</span>
     <h3>Termos de Utilização e Política de Privacidade</h3>
     <p>
       Ao utilizar a nossa plataforma, concorda em respeitar os nossos termos de serviço, a política de privacidade e todas as leis aplicáveis.
