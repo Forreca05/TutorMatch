@@ -20,7 +20,6 @@ require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader('Criar Novo Serviço'); 
 ?>
 
-<<<<<<< HEAD
 <div class="container-sm">
   <div class="page-header">
     <h2 class="text-center">Criar Novo Serviço</h2>
