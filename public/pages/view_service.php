@@ -57,6 +57,7 @@ drawHeader(); ?>
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $service['freelancer_id']): ?>
         <a href="../pages/edit_service.php?id=<?= $service_id ?>" class="btn" style="margin-top: 10px; display: inline-block;">Editar Serviço</a>
+        <a href="../actions/delete_service.php?id=<?= $service_id ?>" class="btn" style="margin-top: 10px; display: inline-block;">Apagar Serviço</a>
     <?php endif; ?>
 
     <div class="review-section">
