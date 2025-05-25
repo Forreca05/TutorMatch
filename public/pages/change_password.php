@@ -8,7 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 
 <h2>Alterar Password</h2>
 
@@ -22,4 +23,4 @@ if (!isset($_SESSION['user_id'])) {
   <button type="submit">Alterar Password</button>
 </form>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

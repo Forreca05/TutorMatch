@@ -59,7 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<?php include '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 <link rel="stylesheet" href="/css/edit_service.css">
 
 <div class="edit-service-container">
@@ -99,4 +100,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

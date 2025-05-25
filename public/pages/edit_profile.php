@@ -19,7 +19,8 @@ if ($user) {
 }
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 
 <h2>Editar Perfil</h2>
 <form action="../actions/action_updateprofile.php" method="POST" enctype="multipart/form-data" class="profile-form">
@@ -41,4 +42,4 @@ if ($user) {
   </div>
 </form>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

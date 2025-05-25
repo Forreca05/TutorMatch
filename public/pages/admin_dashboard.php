@@ -17,7 +17,8 @@ $totalOrders = $db->query("SELECT COUNT(*) FROM orders")->fetchColumn();
 $latestUsers = $db->query("SELECT username, email, role FROM users ORDER BY id DESC LIMIT 5")->fetchAll();
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 
 <h1>Painel de Administração</h1>
 <div class="admin-dashboard-stats">

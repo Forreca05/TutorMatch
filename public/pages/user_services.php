@@ -14,7 +14,8 @@ $stmt = $db->prepare("
 ");
 $stmt->execute([$userId]);
 $services = $stmt->fetchAll();
-include_once '../includes/header.php';
+require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader();
 ?>
 <h2>Serviços oferecidos por <?= htmlspecialchars($services[0]['username'] ?? 'Utilizador') ?></h2>
 
@@ -31,4 +32,4 @@ include_once '../includes/header.php';
     </div>
   <?php endforeach; ?>
 </div>
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

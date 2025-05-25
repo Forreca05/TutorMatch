@@ -29,7 +29,8 @@ $username = $user['username'];
 $role = $user['role'];
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 <link rel="stylesheet" href="/css/view_profile.css">
 
 <div class="user-profile-container">
@@ -52,4 +53,4 @@ $role = $user['role'];
 </div>
 
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

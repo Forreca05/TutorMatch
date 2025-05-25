@@ -8,8 +8,9 @@ $stmt = $db->prepare("SELECT SUM(price) AS total FROM orders o JOIN services s O
 $stmt->execute([$user_id]);
 $total = $stmt->fetchColumn();
 
-include '../includes/header.php';
+require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader();
 ?>
 <h2>Ganhos Totais</h2>
 <p>€<?= number_format($total ?? 0, 2) ?></p>
-<?php include '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

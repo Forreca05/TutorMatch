@@ -35,7 +35,8 @@ $stmt->execute(['user_id' => $user_id]);
 $conversations = $stmt->fetchAll();
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 <link rel="stylesheet" href="../css/chat.css">
 
 <div class="chat-container">
@@ -62,4 +63,4 @@ $conversations = $stmt->fetchAll();
   </div>
 </div>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

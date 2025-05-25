@@ -1,4 +1,5 @@
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 <link rel="stylesheet" href="../css/register.css">
 
 <div class="register-container">
@@ -59,4 +60,4 @@
 
 <script src="../js/terms.js"></script>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

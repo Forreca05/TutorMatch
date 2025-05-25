@@ -25,7 +25,8 @@ foreach ($services as $service) {
 }
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 <link rel="stylesheet" href="../css/services.css">
 
 <div class="my-services-container">
@@ -57,4 +58,4 @@ foreach ($services as $service) {
   <?php endif; ?>
 </div>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

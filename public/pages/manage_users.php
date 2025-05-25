@@ -13,7 +13,8 @@ $stmt = $db->query("SELECT id, username, email, role FROM users");
 $users = $stmt->fetchAll();
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 
 <h1>Gerir Utilizadores</h1>
 
@@ -42,4 +43,4 @@ $users = $stmt->fetchAll();
     <?php endforeach; ?>
 </table>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>

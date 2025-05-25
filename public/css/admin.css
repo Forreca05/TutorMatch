@@ -1,9 +1,15 @@
 @import url('variables.css');
 
+
+
 .category-container {
     max-width: 600px;
     margin: var(--space-lg) auto;
     font-family: var(--font-main);
+    background-color: var(--color-background-secondary);
+    border-radius: var(--radius);
+    box-shadow: var(--color-shadow);
+    padding: var(--space);
 }
   
 h2 {
@@ -127,7 +133,7 @@ h2 {
 .admin-users-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
+    background-color: var(--color-background-secondary);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 1px 5px rgba(0,0,0,0.05);

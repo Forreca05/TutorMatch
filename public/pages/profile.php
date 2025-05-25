@@ -17,7 +17,8 @@ if ($user) {
 }
 ?>
 
-<?php include_once '../includes/header.php'; ?>
+<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+drawHeader(); ?>
 
 <div class="profile-container">
   <div class="profile-sidebar">
@@ -33,4 +34,4 @@ if ($user) {
   </div>
 </div>
 
-<?php include_once '../includes/footer.php'; ?>
+<?php drawFooter(); ?>
