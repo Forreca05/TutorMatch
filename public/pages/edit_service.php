@@ -98,8 +98,29 @@ drawHeader(); ?>
 
     <?php drawFormField('file', 'image', 'Imagem (opcional)', '', ['accept' => 'image/*']); ?>
 
-    <button type="submit" class="btn btn-primary btn-large">Atualizar Serviço</button>
-  </form>
+
+        <label for="delivery_time">Tempo de Entrega (dias)</label>
+        <input type="number" id="delivery_time" name="delivery_time" value="<?= htmlspecialchars($service['delivery_time']) ?>" required>
+
+        <label for="category_id">Categoria</label>
+        <select id="category_id" name="category_id" required>
+            <?php foreach ($categories as $cat): ?>
+                <option value="<?= $cat['id'] ?>" <?= $service['category_id'] == $cat['id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($cat['name']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <label for="image">Imagem (opcional)</label>
+        <input type="file" id="image" name="image">
+
+        <?php if (!empty($service['image_path'])): ?>
+            <p>Imagem atual:</p>
+            <img src="../uploads/<?php echo htmlspecialchars($service['image_path']); ?>" alt="Imagem atual" style="max-width: 200px;">
+        <?php endif; ?>
+
+        <button type="submit">Atualizar Serviço</button>
+    </form>
 </div>
 
 <?php drawFooter(); ?>

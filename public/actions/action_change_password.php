@@ -1,10 +1,13 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
-if (!isset($_SESSION['user_id'])) {
-  die('Acesso negado.');
+if (!isset($_SESSION['user_id']) && $_SERVER['REQUEST_METHOD'] !== 'POST' && !verify_csrf_token($_POST['csrf_token'])) {
+    header('Location: ../pages/login.php');
+    exit();
 }
+
 
 $userId = $_SESSION['user_id'];
 
@@ -17,8 +20,8 @@ if (!$user) {
   die('Usuário não encontrado.');
 }
 
-$currentPassword = $_POST['current_password'];
-$newPassword = $_POST['new_password'];
+$currentPassword = isset($_POST['current_password']) ? htmlspecialchars($_POST['current_password']) : '';
+$newPassword = isset($_POST['new_password']) ? htmlspecialchars($_POST['new_password']) : '';
 
 if (!password_verify($currentPassword, $user['password'])) {
   die('Password atual incorreta.');

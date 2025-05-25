@@ -1,5 +1,8 @@
 <?php
+session_start();
 require_once(__DIR__ . '/../templates/common.tpl.php');
+require_once(__DIR__ . '/../../private/utils/csrf.php');
+
 drawHeader();
 ?>
 
@@ -9,9 +12,11 @@ drawHeader();
   <h2>Bem-vindo de volta!</h2>
 
   <form action="../actions/action_login.php" method="post" class="form">
+    <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
     <input type="text" name="username" placeholder="Nome de utilizador ou Email" class="form-input" required>
     <input type="password" name="password" placeholder="Palavra-passe" class="form-input" required>
     <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+
 
     <?php if (isset($_GET['error'])): ?>
       <p class="message message-error">
