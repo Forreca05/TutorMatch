@@ -20,7 +20,7 @@ function drawServiceCard($service, $show_username = true, $show_actions = false,
                            onclick="return confirm('Tem a certeza que quer eliminar este serviço?')">Eliminar</a>
                     <?php elseif ($user_role === 'freelancer'): ?>
                         <a href="/pages/edit_service.php?id=<?= $service['id'] ?>" class="btn btn-success btn-small">Editar</a>
-                        <a href="/pages/delete_service.php?id=<?= $service['id'] ?>" class="btn btn-danger btn-small"
+                        <a href="/actions/delete_service.php?id=<?= $service['id'] ?>" class="btn btn-danger btn-small"
                            onclick="return confirm('Tem a certeza que quer eliminar este serviço?')">Eliminar</a>
                     <?php else: ?>
                         <a href="/pages/view_service.php?id=<?= $service['id'] ?>" class="btn btn-primary">Ver Serviço</a>
