@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
-
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 if (!isset($_SESSION['user_id'])) {
   die('Usuário não está logado');
 }
@@ -23,15 +23,16 @@ if ($user) {
 drawHeader(); ?>
 
 <div class="container-md">
-  <h2 class="text-center">Editar Perfil</h2>
-  
+  <h2 class="text-center">Editar Perfil</h2>  
   <form action="../actions/action_updateprofile.php" method="POST" enctype="multipart/form-data" class="form">
+    <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
     <div class="form-row">
       <div class="text-center">
         <?php drawProfilePicture("../uploads/" . $profilePic, 'Foto de Perfil'); ?>
         <label for="profile_pic" class="form-label mt">Nova Foto de Perfil</label>
         <input type="file" name="profile_pic" id="profile_pic" accept=".jpg,.jpeg,.png" class="form-input">
       </div>
+
     </div>
 
     <div class="form-group">

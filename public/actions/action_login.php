@@ -1,6 +1,13 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once '../../private/utils/csrf.php';
+
+
+if (!verify_csrf_token($_POST['csrf_token'])) {
+    header('Location: ../pages/login.php?error=invalid_token');
+    exit();
+}
 
 $login = $_POST['username']; // Can be username or email
 $password = $_POST['password'];

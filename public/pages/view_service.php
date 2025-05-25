@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 if (!isset($_GET['id'])) {
   die("Serviço não especificado.");
@@ -73,8 +74,9 @@ drawHeader(); ?>
       </div>
     <?php endif; ?>
 
+
     <div class="d-flex gap justify-center mt-lg">
-      <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
+      <?php if (isset($_SESSION['user_id']) && ($service['freelancer_id'] !==$_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
         <button id="order-link" class="btn btn-primary">Encomendar Serviço</button>
       <?php endif; ?>
 
@@ -96,6 +98,7 @@ drawHeader(); ?>
     <?php elseif (isset($_GET['review']) && $_GET['review'] === 'error'): ?>
       <div class="message message-error">Erro ao submeter avaliação.</div>
     <?php endif; ?>
+
 
     <?php
     $review_stmt = $db->prepare("
@@ -121,6 +124,7 @@ drawHeader(); ?>
           if ($half) echo '<span class="text-primary">★</span>';
           for ($i = 0; $i < $empty; $i++) echo '<span class="text-muted">★</span>';
           ?>
+
         </div>
         <p class="text-lg font-bold"><?= $averageRating ?> em 5 <span class="text-muted">(<?= $totalReviews ?> avaliação<?= $totalReviews > 1 ? 'es' : '' ?>)</span></p>
       </div>
