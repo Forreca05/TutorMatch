@@ -29,6 +29,7 @@
 - [x] Terms and Services.
 - [x] Freelancer Dashboard
 - [x] Possibility to pay with different types of coins(i.e. dollars, euros, ...) 
+- [x] Freelancer Dashboard
 
 ## Running
 Database:
