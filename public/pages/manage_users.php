@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 require_once '../../private/database/db.php'; // conexão à BD
 
 // Garante que só admins acedem
@@ -34,6 +35,7 @@ drawHeader(); ?>
         <td><?php echo htmlspecialchars($user['username']); ?></td>
         <td><?php echo htmlspecialchars($user['email']); ?></td>
         <td>
+
           <?php
           echo htmlspecialchars(
             $user['role'] === 'admin' ? 'Admin' : 'Client/Freelancer'
@@ -42,11 +44,25 @@ drawHeader(); ?>
         </td>
         <td>
           <?php if ($user['role'] !== 'admin'): ?>
+<<<<<<< HEAD
             <a href="../actions/promote_user.php?id=<?php echo $user['id']; ?>" class="btn btn-primary btn-sm">Promover a admin</a>
             <a href="../actions/delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Tem a certeza que quer eliminar?')" class="btn btn-danger btn-sm">Eliminar</a>
+=======
+            <form action="../actions/promote_user.php" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que quer Promover')">
+                    <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
+                    <button type="submit" >Promover a admin </button>
+            </form>
+            <form action="../actions/delete_user.php" method="post" style="display:inline;" onsubmit="return confirm('Tem a certeza que quer eliminar?')">
+                <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
+                <button type="submit" >Eliminar</button>
+            </form>
+>>>>>>> refs/remotes/origin/master
           <?php endif; ?>
         </td>
       </tr>
+
     <?php endforeach; ?>
   </table>
 </div>

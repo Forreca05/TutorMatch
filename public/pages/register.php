@@ -1,18 +1,21 @@
-<?php require_once(__DIR__ . '/../templates/common.tpl.php');
+<?php 
+require_once(__DIR__ . '/../templates/common.tpl.php');
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 drawHeader(); ?>
 <link rel="stylesheet" href="../css/register.css">
 
 <div class="container-sm text-center">
   <h2>Cria a tua Conta</h2>
 
+
   <form action="../actions/action_register.php" method="post" class="form">
+    <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
     <input type="text" name="username" placeholder="Nome de utilizador" class="form-input" required>
     <input type="email" name="email" placeholder="Email" class="form-input" required>
     <input type="password" name="password" placeholder="Palavra-passe" class="form-input" 
        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$" 
        title="A palavra-passe deve ter pelo menos 7 caracteres, incluindo uma letra e um número." 
        required>
-
     <label class="checkbox-label">
       <input type="checkbox" required>
       Aceito os <a href="#" id="terms-link">Termos e Serviços</a>

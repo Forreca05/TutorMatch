@@ -2,6 +2,7 @@
 // File: create_service.php
 session_start();
 require_once '../../private/database/db.php';
+require_once(__DIR__ . '/../../private/utils/csrf.php');
 
 // Verifica se o utilizador está autenticado e é freelancer
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'freelancer') {
@@ -19,24 +20,32 @@ require_once(__DIR__ . '/../templates/common.tpl.php');
 drawHeader('Criar Novo Serviço'); 
 ?>
 
+<<<<<<< HEAD
 <div class="container-sm">
   <div class="page-header">
     <h2 class="text-center">Criar Novo Serviço</h2>
   </div>
   
   <form action="../actions/create_service_action.php" method="POST" enctype="multipart/form-data" class="form">
-    <?php 
-    drawFormField('text', 'title', 'Título', '', ['placeholder' => 'Título do Serviço'], true);
-    
-    // Generate category options
-    $categoryOptions = '<option value="" disabled selected>Selecione uma categoria</option>';
-    foreach ($categories as $cat) {
-      $categoryOptions .= '<option value="' . htmlspecialchars($cat['id']) . '">' . htmlspecialchars($cat['name']) . '</option>';
-    }
-    drawFormField('select', 'category_id', 'Categoria', $categoryOptions, [], true);
-    
-    drawFormField('textarea', 'description', 'Descrição', '', ['placeholder' => 'Descrição do serviço'], true);
-    ?>
+    <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
+    <div class="form-group">
+      <label for="title" class="form-label">Título:</label>
+      <input type="text" name="title" id="title" placeholder="Título do Serviço" class="form-input" required>
+    </div>
+    <div class="form-group">
+      <label for="category" class="form-label">Categoria:</label>
+      <select name="category_id" id="category" class="form-input form-select" required>
+        <option value="" disabled selected>Select a category</option>
+        <?php foreach ($categories as $cat): ?>
+          <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="form-label">Descrição:</label>
+      <textarea name="description" id="description" placeholder="Descrição do serviço" class="form-input form-textarea" required></textarea>
+    </div>
 
     <div class="form-row">
       <?php 
