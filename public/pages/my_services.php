@@ -10,11 +10,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'freelancer') {
 
 // Buscar os serviços com nome da categoria
 $stmt = $db->prepare("
-    SELECT s.*, c.name AS category_name
-    FROM services s
-    JOIN categories c ON s.category_id = c.id
-    WHERE s.user_id = ?
-    ORDER BY c.name ASC, s.title ASC
+  SELECT s.*, c.name AS category_name
+  FROM services s
+  JOIN categories c ON s.category_id = c.id
+  WHERE s.user_id = ?
+  ORDER BY c.name ASC, s.title ASC
 ");
 $stmt->execute([$_SESSION['user_id']]);
 $services = $stmt->fetchAll();
