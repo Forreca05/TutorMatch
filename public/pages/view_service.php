@@ -52,7 +52,7 @@ drawHeader(); ?>
     <?php endif; ?>
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
-        <a href="#" id="order-link" class="btn" style="margin-top: 10px; display: inline-block;">Encomendar Serviço</a>
+        <a href="#" id="order-link" class="order-button" style="margin-top: 10px; display: inline-block;">Encomendar Serviço</a>
     <?php endif; ?>
 
     <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $service['freelancer_id']): ?>
