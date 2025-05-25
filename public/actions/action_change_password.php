@@ -3,7 +3,7 @@ session_start();
 require_once '../../private/database/db.php';
 
 if (!isset($_SESSION['user_id'])) {
-    die('Acesso negado.');
+  die('Acesso negado.');
 }
 
 $userId = $_SESSION['user_id'];
@@ -14,14 +14,14 @@ $stmt->execute([$userId]);
 $user = $stmt->fetch();
 
 if (!$user) {
-    die('Usuário não encontrado.');
+  die('Usuário não encontrado.');
 }
 
 $currentPassword = $_POST['current_password'];
 $newPassword = $_POST['new_password'];
 
 if (!password_verify($currentPassword, $user['password'])) {
-    die('Password atual incorreta.');
+  die('Password atual incorreta.');
 }
 
 $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);

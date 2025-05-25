@@ -8,7 +8,7 @@ $currentUserRole = $_SESSION['role'] ?? null;
 $viewedUserId = $_GET['id'] ?? null;
 
 if (!$viewedUserId) {
-    die('Utilizador não especificado.');
+  die('Utilizador não especificado.');
 }
 
 $stmt = $db->prepare("SELECT id, username, profile_pic, role FROM users WHERE id = ?");
@@ -16,7 +16,7 @@ $stmt->execute([$viewedUserId]);
 $user = $stmt->fetch();
 
 if (!$user) {
-    die('Utilizador não encontrado.');
+  die('Utilizador não encontrado.');
 }
 
 $isOwnProfile = $currentUserId && $currentUserId == $user['id'];
@@ -34,22 +34,22 @@ drawHeader(); ?>
 <link rel="stylesheet" href="/css/view_profile.css">
 
 <div class="user-profile-container">
-    <img src="<?= htmlspecialchars($profilePic) ?>" alt="Foto de perfil" class="user-profile-pic">
-    <h2 class="user-profile-name"><?= htmlspecialchars($username) ?></h2>
+  <img src="<?= htmlspecialchars($profilePic) ?>" alt="Foto de perfil" class="user-profile-pic">
+  <h2 class="user-profile-name"><?= htmlspecialchars($username) ?></h2>
 
-    <?php if (htmlspecialchars($role) === 'admin'): ?>
-        <p class="user-profile-role admin">Tipo de utilizador: admin</p>
-    <?php else: ?>
-        <p class="user-profile-role">Tipo de utilizador: client/freelancer</p>
-    <?php endif; ?>
+  <?php if (htmlspecialchars($role) === 'admin'): ?>
+    <p class="user-profile-role admin">Tipo de utilizador: admin</p>
+  <?php else: ?>
+    <p class="user-profile-role">Tipo de utilizador: client/freelancer</p>
+  <?php endif; ?>
 
-    <a href="/pages/user_services.php?id=<?= urlencode($user['id']) ?>" class="user-profile-btn">
-        Ver Serviços que Oferece
-    </a>
+  <a href="/pages/user_services.php?id=<?= urlencode($user['id']) ?>" class="user-profile-btn">
+    Ver Serviços que Oferece
+  </a>
 
-    <a href="/pages/user_orders.php?id=<?= urlencode($user['id']) ?>" class="user-profile-btn">
-        Ver Serviços que Comprou
-    </a>
+  <a href="/pages/user_orders.php?id=<?= urlencode($user['id']) ?>" class="user-profile-btn">
+    Ver Serviços que Comprou
+  </a>
 </div>
 
 

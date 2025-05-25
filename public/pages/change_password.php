@@ -3,7 +3,7 @@ session_start();
 require_once '../../private/database/db.php';
 
 if (!isset($_SESSION['user_id'])) {
-    die('Acesso negado.');
+  die('Acesso negado.');
 }
 
 ?>

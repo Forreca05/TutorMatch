@@ -28,13 +28,17 @@ drawHeader();
   <h2 class="orders-view-title">Serviços comprados</h2>
 
   <?php if (count($orders) === 0): ?>
-      <p class="orders-view-empty">Ainda não existem encomendas.</p>
+    <p class="orders-view-empty">Ainda não existem encomendas.</p>
   <?php else: ?>
-      <table class="orders-view-table">
-        <thead>
-          <tr><th>Serviço</th><th>Data</th><th>Estado</th></tr>
-        </thead>
-        <tbody>
+    <table class="orders-view-table">
+      <thead>
+        <tr>
+          <th>Serviço</th>
+          <th>Data</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
         <?php foreach ($orders as $o): ?>
           <tr>
             <td>
@@ -46,8 +50,8 @@ drawHeader();
             <td><?= htmlspecialchars(ucfirst($o['status'])) ?></td>
           </tr>
         <?php endforeach; ?>
-        </tbody>
-      </table>
+      </tbody>
+    </table>
   <?php endif; ?>
 </div>
 

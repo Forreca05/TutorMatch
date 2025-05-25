@@ -3,7 +3,7 @@ session_start();
 require_once '../../private/database/db.php';
 
 if (!isset($_SESSION['user_id'])) {
-    die('Usuário não está logado.');
+  die('Usuário não está logado.');
 }
 
 $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
@@ -11,9 +11,9 @@ $stmt->execute([$_SESSION['user_id']]);
 $user = $stmt->fetch();
 
 if ($user) {
-    $profilePic = $user['profile_pic'] ?: 'default.jpg';
+  $profilePic = $user['profile_pic'] ?: 'default.jpg';
 } else {
-    die('Usuário não encontrado.');
+  die('Usuário não encontrado.');
 }
 ?>
 

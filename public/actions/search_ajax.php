@@ -18,20 +18,20 @@ $sql = "SELECT * FROM services WHERE 1=1";
 $params = [];
 
 if (!empty($query)) {
-    $sql .= " AND title LIKE :query";
-    $params[':query'] = '%' . $query . '%';
+  $sql .= " AND title LIKE :query";
+  $params[':query'] = '%' . $query . '%';
 }
 if (!empty($category)) {
-    $sql .= " AND category_id = :category";
-    $params[':category'] = $category;
+  $sql .= " AND category_id = :category";
+  $params[':category'] = $category;
 }
 if (is_numeric($min_price)) {
-    $sql .= " AND price >= :min_price";
-    $params[':min_price'] = $min_price;
+  $sql .= " AND price >= :min_price";
+  $params[':min_price'] = $min_price;
 }
 if (is_numeric($max_price)) {
-    $sql .= " AND price <= :max_price";
-    $params[':max_price'] = $max_price;
+  $sql .= " AND price <= :max_price";
+  $params[':max_price'] = $max_price;
 }
 
 

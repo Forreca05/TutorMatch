@@ -10,15 +10,14 @@ $stmt->execute([$login, $login]);
 $userName = $stmt->fetch();
 
 if ($userName && password_verify($password, $userName['password'])) {
-    $_SESSION['user_id'] = $userName['id'];
-    $_SESSION['username'] = $userName['username'];
-    $_SESSION['role'] = $userName['role'];
-    $_SESSION['profile_pic'] = $userName['profile_pic']; 
-    $_SESSION['name'] = $userName['name']; // Adicionando o nome do usuário à sessão
-    $_SESSION['email'] = $userName['email']; // Adicionando o email do usuário à sessão
-    header('Location: ../index.php');
-}
-else {
-    header('Location: ../pages/login.php?error=Login inválido');
-    exit;
+  $_SESSION['user_id'] = $userName['id'];
+  $_SESSION['username'] = $userName['username'];
+  $_SESSION['role'] = $userName['role'];
+  $_SESSION['profile_pic'] = $userName['profile_pic'];
+  $_SESSION['name'] = $userName['name']; // Adicionando o nome do usuário à sessão
+  $_SESSION['email'] = $userName['email']; // Adicionando o email do usuário à sessão
+  header('Location: ../index.php');
+} else {
+  header('Location: ../pages/login.php?error=Login inválido');
+  exit;
 }

@@ -3,8 +3,8 @@ session_start();
 require_once '../../private/database/db.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'freelancer') {
-    header('Location: ../pages/login.php');
-    exit;
+  header('Location: ../pages/login.php');
+  exit;
 }
 
 // Buscar os serviços com nome da categoria
@@ -21,7 +21,7 @@ $services = $stmt->fetchAll();
 // Agrupar serviços por categoria
 $grouped = [];
 foreach ($services as $service) {
-    $grouped[$service['category_name']][] = $service;
+  $grouped[$service['category_name']][] = $service;
 }
 ?>
 

@@ -13,18 +13,18 @@ $total_services = $total_services_stmt->fetchColumn();
 
 // Total de encomendas recebidas
 $total_orders_stmt = $db->prepare("
-    SELECT COUNT(*) FROM orders o
-    JOIN services s ON s.id = o.service_id
-    WHERE s.user_id = ?
+  SELECT COUNT(*) FROM orders o
+  JOIN services s ON s.id = o.service_id
+  WHERE s.user_id = ?
 ");
 $total_orders_stmt->execute([$user_id]);
 $total_orders = $total_orders_stmt->fetchColumn();
 
 // Ganhos totais (apenas concluídas)
 $total_earnings_stmt = $db->prepare("
-    SELECT SUM(s.price) FROM orders o
-    JOIN services s ON s.id = o.service_id
-    WHERE s.user_id = ? AND o.status = 'Concluído'
+  SELECT SUM(s.price) FROM orders o
+  JOIN services s ON s.id = o.service_id
+  WHERE s.user_id = ? AND o.status = 'Concluído'
 ");
 $total_earnings_stmt->execute([$user_id]);
 $total_earnings = $total_earnings_stmt->fetchColumn();

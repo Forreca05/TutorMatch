@@ -4,8 +4,8 @@ require_once '../../private/database/db.php';
 $q = trim($_GET['q'] ?? '');
 
 if (strlen($q) < 2) {
-    echo json_encode([]);
-    exit;
+  echo json_encode([]);
+  exit;
 }
 
 $stmt = $db->prepare("SELECT id, title FROM services WHERE title LIKE ? LIMIT 10");

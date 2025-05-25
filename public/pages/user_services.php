@@ -26,7 +26,7 @@ drawHeader();
       <img src="<?= htmlspecialchars($s['image_path'] ?: '/img/default.jpeg') ?>" class="service-img">
       <div class="service-info">
         <h3><?= htmlspecialchars($s['title']) ?></h3>
-        <p class="price"><?= number_format($s['price'],2) ?> €</p>
+        <p class="price"><?= number_format($s['price'], 2) ?> €</p>
         <a href="/pages/view_service.php?id=<?= $s['id'] ?>" class="btn">Ver</a>
       </div>
     </div>

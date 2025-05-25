@@ -54,9 +54,9 @@ drawHeader(); ?>
           <p><strong>Estado:</strong> <?= ucfirst($order['status']) ?></p>
           <p><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></p>
           <form action="chat.php" method="GET">
-            <input type="hidden" name="user_id" value="<?= $user_id?>">
-            <input type="hidden" name="receiver_id" value="<?= $role === 'freelancer' ? 
-            $order['client_id'] : $order['freelancer_id']?>">
+            <input type="hidden" name="user_id" value="<?= $user_id ?>">
+            <input type="hidden" name="receiver_id" value="<?= $role === 'freelancer' ?
+                                                              $order['client_id'] : $order['freelancer_id'] ?>">
             <button type="submit">Chat</button>
           </form>
 
@@ -67,16 +67,16 @@ drawHeader(); ?>
               <button type="submit" name="action" value="Rejeitado">Rejeitar</button>
             </form>
           <?php elseif ($role === 'client' && $order['status'] === 'Aceite'): ?>
-              <form action="pay_service.php" method="GET">
-                <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
-                <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-                <button type="submit">Proceder para o Pagamento</button>
-              </form>
+            <form action="pay_service.php" method="GET">
+              <input type="hidden" name="id" value="<?= $order['service_id'] ?>">
+              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+              <button type="submit">Proceder para o Pagamento</button>
+            </form>
           <?php elseif ($role === 'freelancer' && $order['status'] === 'Pago'): ?>
-              <form action="../actions/deliver_order.php" method="POST">
-                <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-                <button type="submit">Entregar</button>
-              </form>
+            <form action="../actions/deliver_order.php" method="POST">
+              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+              <button type="submit">Entregar</button>
+            </form>
           <?php elseif ($role === 'client' && $order['status'] === 'Entregue'): ?>
             <form action="../actions/complete_order.php" method="POST">
               <input type="hidden" name="order_id" value="<?= $order['id'] ?>">

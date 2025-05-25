@@ -14,13 +14,13 @@ $description = $input['description'] ?? null;
 $user_id = $input['user_id'] ?? 1; // Em breve vamos autenticar de verdade
 
 if (!$title || !$description) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Title and description required']);
-    exit;
+  http_response_code(400);
+  echo json_encode(['error' => 'Title and description required']);
+  exit;
 }
 
 $stmt = $db->prepare("INSERT INTO services (user_id, category_id, title, description, created_at)
-                      VALUES (?, 1, ?, ?, datetime('now'))");
+  VALUES (?, 1, ?, ?, datetime('now'))");
 $stmt->execute([$user_id, $title, $description]);
 
 $serviceId = $db->lastInsertId();

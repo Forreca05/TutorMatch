@@ -5,8 +5,8 @@ require_once '../../private/database/db.php';
 
 // Verifica se o utilizador está autenticado e é freelancer
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'freelancer') {
-    header('Location: ../pages/login.php');
-    exit;
+  header('Location: ../pages/login.php');
+  exit;
 }
 
 // Busca categorias ordenadas alfabeticamente
@@ -21,7 +21,7 @@ drawHeader(); ?>
 <div class="create-service-container">
   <h2>Criar Novo Serviço</h2>
   <form action="../actions/create_service_action.php" method="POST" enctype="multipart/form-data" class="create-service-form">
-    
+
     <label for="title">Título:</label>
     <input type="text" name="title" id="title" placeholder="Título do Serviço" required>
 

@@ -1,7 +1,6 @@
 @import url('variables.css');
 
 .search-container {
-  max-width: 1000px;
   margin: var(--space-lg) auto;
   padding: var(--space);
   background: var(--color-background-secondary);

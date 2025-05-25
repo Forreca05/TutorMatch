@@ -40,9 +40,11 @@ drawHeader(); ?>
 <link rel="stylesheet" href="../css/chat.css">
 
 <div class="chat-container">
-  <div class="chat-header"><h2>As Minhas Conversas</h2></div>
+  <div class="chat-header">
+    <h2>As Minhas Conversas</h2>
+  </div>
   <div class="chat-box">
-    <?php foreach ($conversations as $conv): 
+    <?php foreach ($conversations as $conv):
       $other_id = ($conv['sender_id'] == $user_id) ? $conv['receiver_id'] : $conv['sender_id'];
     ?>
       <a class="chat-preview" href="chat.php?receiver_id=<?= $other_id ?>">
@@ -50,10 +52,10 @@ drawHeader(); ?>
         <div class="preview-text">
           <strong><?= htmlspecialchars($conv['username']) ?></strong><br>
           <?php if (strlen($conv['message']) > 40) {
-                $previewMessage = substr($conv['message'], 0, 40) . '...';
-              } else {
-                $previewMessage = $conv['message'];
-              }
+            $previewMessage = substr($conv['message'], 0, 40) . '...';
+          } else {
+            $previewMessage = $conv['message'];
+          }
           ?>
           <small><?= htmlspecialchars($previewMessage) ?></small>
         </div>
