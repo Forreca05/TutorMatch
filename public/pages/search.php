@@ -3,10 +3,46 @@ session_start();
 require_once '../../private/database/db.php';
 include '../includes/header.php';
 
-$query = $_GET['q'] ?? '';
-$min_price = $_GET['min_price'] ?? '';
-$max_price = $_GET['max_price'] ?? '';
-$category = $_GET['category'] ?? '';
+
+if (isset($_GET['q'])) {
+  if (!preg_match ("/^[a-zA-Z0-9\s]+$/", $_GET['q'])) {
+    $query = preg_replace ("/^[a-zA-Z0-9\s]+$/", '', $_GET['q']);
+  } else {
+    $query = $_GET['q'];
+  }
+} else {
+  $query = '';
+}
+
+if (isset($_GET['min_price'])) {
+  if (!preg_match ("/^[a-zA-Z0-9\s]+$/", $_GET['min_price'])) {
+    $min_price = preg_replace ("/^[a-zA-Z0-9\s]+$/", '', $_GET['min_price']);
+  } else {
+    $min_price = $_GET['min_price'];
+  }
+} else {
+  $min_price = '';
+}
+
+if (isset($_GET['max_price'])) {
+  if (!preg_match ("/^[a-zA-Z0-9\s]+$/", $_GET['max_price'])) {
+    $max_price = preg_replace ("/^[a-zA-Z0-9\s]+$/", '', $_GET['max_price']);
+  } else {
+    $max_price = $_GET['max_price'];
+  }
+} else {
+  $max_price = '';
+}
+
+if (isset($_GET['category'])) {
+  if (!preg_match ("/^[a-zA-Z0-9\s]+$/", $_GET['category'])) {
+    $category = preg_replace ("/^[a-zA-Z0-9\s]+$/", '',$_GET['category']);
+  } else {
+    $category = $_GET['category'];
+  }
+} else {
+  $category = '';
+}
 
 $catStmt = $db->query("
   SELECT DISTINCT c.id, c.name 
