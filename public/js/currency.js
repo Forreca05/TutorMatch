@@ -8,8 +8,10 @@ async function currencyAPI() {
     precoSpan.textContent = 'Preço inválido';
     return;
   }
-
-  const apiUrl = "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_4hPrrPbeQw6KDaTEBHHeg2FuYuPCrsWJPUIbUxUF";
+  
+  require('dotenv').config();
+  const apiKey = process.env.FREECURRENCY_API_KEY;
+  const apiUrl = `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}`;
 
   try {
     const res = await fetch(apiUrl);
