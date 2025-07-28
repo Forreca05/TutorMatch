@@ -39,18 +39,4 @@ Database:
 Site:
     First we need to do "cd public" and then we can :   php -S localhost:9000
 
-## Credentials
-Admin: 
--Username: 12345
--Password: 12345
 
-User/Freelancer:
--Username: JoséRic
--Email: josericardo1967@sapo.pt
--Password: 1974abril
-
-or
-
--Username: MiguelRaposo
--Email: miguelraposo1959@sapo.pt
--Password: sictvirtp341
